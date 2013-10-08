@@ -1,13 +1,11 @@
-this.Group = function()
-{
+this.Group = function(args,owners){
+	this.owners = owners;
 	this.id;
-	this.plussers = new Array();
+	this.name;
+	this.plussers = new Object();
 
-	try{
-		this.name = args.name;
-		args.plussers.forEach(function(plusser){
-			plussers.push(plusser);
-		});
-	}
-	catch(err) {}
+	try { this.name = args.name; } catch(err) {}
+	try { this.name = args.name; } catch(err) {}
+
+	this.plussers = owners;
 }
