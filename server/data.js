@@ -19,9 +19,53 @@ this.load = function(){
 		lastPlus = plusser;
 	}
 }
+
+
+get = function(type,args){
+	var arr;
+	var answer;
+
+	var isStringInt = parseInt(args);
+	if(args == isStringInt) isStringInt == true;
+	else isStringInt = false;
+
+	switch(type){
+		case "plussers": arr = plussers; break;
+		case "groups": arr = groups; break;
+		case "interests": arr = interests; break;
+		default: return false;
+	}
+	if(args == undefined){
+		console.log("no args");
+		return arr;
+	} 
+
+	if(typeof args == 'string' && isStringInt == false){
+		if(args == 'all'){
+			return arr;
+		}
+		return false //"Invallid command";
+	}	
+	if(typeof args == 'number' || isStringInt){;
+		if(arr[args]) return arr[args];
+		else return false //"Incorect id";
+	}
+	if(typeof args == 'object'){
+		if(Array.isArray(args)){
+			args.forEach(function(i){
+				answer.push(arr[i]);
+			});
+			return answer;
+		}
+	}
+
+	return false //"Not found";
+}
+exports.get = get;
+
 /*PLUSSERS*/
-getPlussers = function(){ return plussers; }; exports.getPlussers = getPlussers;
-getPlusser = function(id){ return plussers[id]; }; exports.getPlusser = getPlusser;
+/*getPlussers = function(){ return plussers; }; exports.getPlussers = getPlussers;
+getPlusser = function(id){ return plussers[id]; }; exports.getPlusser = getPlusser;*/
 
 addPlusser = function(plusser){
 	plusser.id = newId(plussers);
@@ -31,14 +75,14 @@ addPlusser = function(plusser){
 exports.addPlusser = addPlusser;
 
 /*GROUPS*/
-getGroups = function(){ return groups; }; exports.getGroups = getGroups;
-getGroup = function(id){ return groups[id]; }; exports.getGroup = getGroup;
+/*getGroups = function(){ return groups; }; exports.getGroups = getGroups;
+getGroup = function(id){ return groups[id]; }; exports.getGroup = getGroup;*/
 
 addGroup = function(group){
 	group.id = newId(groups);
 	groups[group.id] = group;
 	for(key in group.owners){
-		var plusser = getPlusser(group.owners[key]);
+		var plusser = get('plussers',group.owners[key]);
 		plusser.groups.push(group.id);
 	}
 	return group;
@@ -47,8 +91,8 @@ exports.addGroup = addGroup;
 
 
 /* INTEREST */
-getInterests = function(){ return interests; }; exports.getGroups = getGroups;
-getInterest = function(name){ return interests[name]; }; exports.getGroup = getGroup;
+/*getInterests = function(){ return interests; }; exports.getGroups = getGroups;
+getInterest = function(name){ return interests[name]; }; exports.getGroup = getGroup;*/
 
 function addInterest(interest){
 	interest.id = newId(interests);
@@ -58,17 +102,20 @@ function addInterest(interest){
 
 /* CONNECTIONS */
 addPlusserToGroup = function(group, plusser){
+	
 	if(!group || !plusser) return false;
-
+	
 	var doubleCheck = true;
 	for(key in group.plussers){
-		var plus = getPlusser(group.plussers[key]);
+		var plus = get('plussers',group.plussers[key]);
 		if(plus.id == plusser.id){
 			doubleCheck = false;
 		}
 	}
+
 	if(doubleCheck){
-		group.plussers.push(plusser);
+		group.plussers.push(plusser.id);
+		plusser.groups.push(group.id);
 		return true;
 	}
 	return  false;
@@ -76,8 +123,6 @@ addPlusserToGroup = function(group, plusser){
 exports.addPlusserToGroup = addPlusserToGroup;
 
 addInterestToPlusser = function(interest, plusser){
-	var interest = getGroup(group.id);
-	var plusser = getPlusser(plusser.id);
 	var doubleCheck = true;
 	if(group && plusser){
 		for(key in group.plussers){
@@ -86,7 +131,7 @@ addInterestToPlusser = function(interest, plusser){
 			}			
 		}
 		if(doubleCheck){
-			group.plussers.push(plusser);
+			group.plussers.push(plusser.id);
 			return true;
 		}
 	}

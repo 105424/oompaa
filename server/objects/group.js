@@ -8,6 +8,8 @@ this.Group = function(args,owners){;
 	try { this.name = args.name; } catch(err) {}
 	try { this.name = args.name; } catch(err) {}
 
-	this.plussers = owners;
-	this.owners = owners
+	if(owners != undefined){
+		this.plussers = owners;
+		this.owners = this.plussers;
+	}
 }
