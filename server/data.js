@@ -10,13 +10,12 @@ var interests = new Object(); // Stored by name
 
 this.load = function(){
 	/*get users from database*/
-	for (var i = 0; i < 50; i++) {
-		var plusser = addPlusser(new Plusser());
+	for (var i = 0; i < 2; i++) {
+		var plusser = addPlusser(new Plusser({"firstName":"mark"}));
 		var obj = {};
 		obj[plusser.id] = plusser;
 		addGroup(new Group({'name':'test'},obj));
 	}
-	console.log(plussers);
 }
 
 /*PLUSSERS*/
@@ -41,7 +40,7 @@ addGroup = function(group){
 	groups[group.id] = group;
 	for(key in group.owners){
 		var plusser = group.owners[key];
-		plusser.groups[plusser.id] = plusser;
+		plusser.groups[group.id] = group;
 	}
 	return group;
 }

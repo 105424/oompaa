@@ -1,5 +1,5 @@
-this.Group = function(args,owners){
-	this.owners = owners;
+this.Group = function(args,owners){;
+	this.type = "GROUP"
 	this.id;
 	this.name;
 	this.plussers = new Object();
@@ -8,4 +8,5 @@ this.Group = function(args,owners){
 	try { this.name = args.name; } catch(err) {}
 
 	this.plussers = owners;
+		this.owners = owners
 }

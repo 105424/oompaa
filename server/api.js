@@ -16,7 +16,7 @@ this.init = function(args){
 	app.listen(process.env.PORT || port);
 
 	app.get('/', function(req, res) {
-		res.type('application/json');
+		res.type('text/plain');
 		res.send("i'm back baby"); 
 	});
 
@@ -27,10 +27,8 @@ this.init = function(args){
 	});
 	app.post('/plussers', function(req, res) {
 		res.type('application/json');
-
 		var plusser = new Plusser(req.body);
 		res.send(circularJson(data.addPlusser(plusser)));
-		res.statusCode = 400;
 	});
 	app.get('/plussers/:id', function(req, res) {
 		res.type('application/json');
@@ -99,23 +97,26 @@ function isJson(str) {
     return true;
 }
 
+depth = 0;
+
 function circularJson(json){
 	var cache = [];
-
-	var depthMax = 1;
-	var depthCount = 0;
-
+	var depthMax = 0;
 	var answer = JSON.stringify(json, function(key, value) {
 	    if (typeof value === 'object' && value !== null) {
 	        if (cache.indexOf(value) !== -1) {
 	            // Circular reference found, discard key
-	            depthCount++;
-	            if(depthCount >= depthMax) return;
+	            if(depth < depthMax){
+	            	depth++;
+	            	return JSON.parse(circularJson(value,depth));
+	            }else {
+	            	depth = 0;
+	            	return "Circular";
+	            }
 	        }
 	        // Store value in our collection
 	        cache.push(value);
 	    }
-	    depthCount = 0;
 	    return value;
 	});
 	cache = null;
