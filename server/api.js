@@ -45,7 +45,7 @@ this.init = function(args){
 
 		var group = new Group(req.body.group,req.body.owners);
 		data.addGroup(group);
-		res.json(group);
+		res.send(circularJson(group));
 	});
 
 	app.get('/groups/:id', function(req, res) {
@@ -98,21 +98,14 @@ function isJson(str) {
 }
 
 depth = 0;
-
 function circularJson(json){
 	var cache = [];
-	var depthMax = 0;
+	var depthMax = 2;
 	var answer = JSON.stringify(json, function(key, value) {
 	    if (typeof value === 'object' && value !== null) {
 	        if (cache.indexOf(value) !== -1) {
 	            // Circular reference found, discard key
-	            if(depth < depthMax){
-	            	depth++;
-	            	return JSON.parse(circularJson(value,depth));
-	            }else {
-	            	depth = 0;
-	            	return "Circular";
-	            }
+	            	return value.id;
 	        }
 	        // Store value in our collection
 	        cache.push(value);

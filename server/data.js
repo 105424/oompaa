@@ -7,17 +7,18 @@ var groups = new Object();	 // Stored by id
 var interests = new Object(); // Stored by name
 
 
+var lastPlus = new Plusser({"firstName":"first"});
+lastPlus.id = 1;
+plussers[1] = lastPlus;
 
 this.load = function(){
 	/*get users from database*/
-	for (var i = 0; i < 2; i++) {
+	for (var i = 0; i < 50; i++) {
 		var plusser = addPlusser(new Plusser({"firstName":"mark"}));
-		var obj = {};
-		obj[plusser.id] = plusser;
-		addGroup(new Group({'name':'test'},obj));
+		addGroup(new Group({'name':'test'},[plusser.id,lastPlus.id]));
+		lastPlus = plusser;
 	}
 }
-
 /*PLUSSERS*/
 getPlussers = function(){ return plussers; }; exports.getPlussers = getPlussers;
 getPlusser = function(id){ return plussers[id]; }; exports.getPlusser = getPlusser;
@@ -30,17 +31,15 @@ addPlusser = function(plusser){
 exports.addPlusser = addPlusser;
 
 /*GROUPS*/
-getGroups = function(){
- return groups; 
-}; exports.getGroups = getGroups;
+getGroups = function(){ return groups; }; exports.getGroups = getGroups;
 getGroup = function(id){ return groups[id]; }; exports.getGroup = getGroup;
 
 addGroup = function(group){
 	group.id = newId(groups);
 	groups[group.id] = group;
 	for(key in group.owners){
-		var plusser = group.owners[key];
-		plusser.groups[group.id] = group;
+		var plusser = getPlusser(group.owners[key]);
+		plusser.groups.push(group.id);
 	}
 	return group;
 }
@@ -59,16 +58,17 @@ function addInterest(interest){
 
 /* CONNECTIONS */
 addPlusserToGroup = function(group, plusser){
-	var doubleCheck = true;
+	if(!group || !plusser) return false;
 
+	var doubleCheck = true;
 	for(key in group.plussers){
-		var plus = group.plussers[key];
+		var plus = getPlusser(group.plussers[key]);
 		if(plus.id == plusser.id){
 			doubleCheck = false;
 		}
 	}
 	if(doubleCheck){
-		group.plussers[plusser.id] = plusser;
+		group.plussers.push(plusser);
 		return true;
 	}
 	return  false;
@@ -81,7 +81,7 @@ addInterestToPlusser = function(interest, plusser){
 	var doubleCheck = true;
 	if(group && plusser){
 		for(key in group.plussers){
-			if(group.plussers[key].id == plusser.id){
+			if(group.plussers[key] == plusser.id){
 				doubleCheck = false;
 			}			
 		}

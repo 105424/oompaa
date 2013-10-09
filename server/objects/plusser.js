@@ -2,8 +2,8 @@ this.Plusser = function(args)
 {
 	this.id = 0;
 	this.type = "PLUSSER";
-	this.interests = new Object(); 
-	this.groups = new Object();
+	this.interests = new Array(); 
+	this.groups = new Array();
 	this.firstName;
 	this.lastName;
 
