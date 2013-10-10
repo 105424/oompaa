@@ -1,28 +1,67 @@
 <head>
 
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"> </script>
+	<script src="/bower_components/jquery/jquery.js"></script>
+
+	<script src="bower_components/eventEmitter/EventEmitter.js"></script>
+	<script src="bower_components/eventie/eventie.js"></script>
+	<script src="bower_components/doc-ready/doc-ready.js"></script>
+	<script src="bower_components/get-style-property/get-style-property.js"></script>
+	<script src="bower_components/get-size/get-size.js"></script>
+	<script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
+	<script src="bower_components/matches-selector/matches-selector.js"></script>
+	<script src="bower_components/outlayer/item.js"></script>
+	<script src="bower_components/outlayer/outlayer.js"></script>
+
+	<script src="bower_components/masonry/masonry.js"></script>
+
 	<script src="main.js"> </script>
+
+	<style>
+		.demo{
+			width:250px;
+
+			border-style: none solid solid solid;
+			border-width: 1px;
+			padding:5px;
+			margin:5px;
+
+
+		}
+	</style>
 </head>
 
 <body> 
 	<h1>Bitches enzo </h1>
-	<button id="buttonG">Get groups</button>
-	<input id="amountG" type="text" placeholder="amount"> </input>
-	<div id="groups"></div>
+	<div id="container">
+		<div class="demo">
+			<button id="buttonG">Get groups</button>
+			<input id="amountG" type="text" placeholder="amount"> </input>
+			<div id="groups"></div>
+		</div>
 
-	<button id="buttonP">Get Plussers</button>
-	<input id="amountP" type="text" placeholder="amount"> </input>
-	<div id="plussers"></div>
+		<div class="demo">
+			<button id="buttonP">Get Plussers</button>
+			<input id="amountP" type="text" placeholder="amount"> </input>
+			<div id="plussers"></div>
+		</div>
 
-	<button id="buttonF">Get group from ID</button>
-	<input id="amountF" type="text" placeholder="group id"> </input>
-	<div id="groupF"></div>
+		<div class="demo">
+			<button id="buttonF">Get group from ID</button>
+			<input id="amountF" type="text" placeholder="group id"> </input>
+			<div id="groupF"></div>
+		</div>
 
-	<button id="buttonH">Get plusser from ID</button>
-	<input id="amountH" type="text" placeholder="plusser id"> </input>
-	<div id="plusserH"></div>
 
-	<button id="buttonI">Add plusser to group</button>
-	<input id="amountIa" type="text" placeholder="group id"> </input><input id="amountIb" type="text" placeholder="plusser id"> </input>
-	<div id="groupI"></div>
+		<div class="demo">
+			<button id="buttonH">Get plusser from ID</button>
+			<input id="amountH" type="text" placeholder="plusser id"> </input>
+			<div id="plusserH"></div>
+		</div>
+
+		<div class="demo">
+			<button id="buttonI">Add plusser to group</button>
+			<input id="amountIa" type="text" placeholder="group id"> </input><input id="amountIb" type="text" placeholder="plusser id"> </input>
+			<div id="groupI"></div>
+		</div>
+	</div>
 </body>

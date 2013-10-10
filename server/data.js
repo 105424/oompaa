@@ -125,13 +125,13 @@ exports.addPlusserToGroup = addPlusserToGroup;
 addInterestToPlusser = function(interest, plusser){
 	var doubleCheck = true;
 	if(group && plusser){
-		for(key in group.plussers){
-			if(group.plussers[key] == plusser.id){
+		for(key in plusser.interests){
+			if(plusser.interests[key] == interests.name){
 				doubleCheck = false;
 			}			
 		}
 		if(doubleCheck){
-			group.plussers.push(plusser.id);
+			plusser.interests.push(plusser.name);
 			return true;
 		}
 	}

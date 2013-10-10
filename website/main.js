@@ -1,4 +1,10 @@
 $(document).ready(function(){
+
+	var container = $("#container")
+	container.masonry( {
+	  itemSelector: '.demo'
+	});
+
 	getGroups(5);
 	getPlussers(5);
 	getGroupFromId(614);
@@ -21,14 +27,14 @@ $(document).ready(function(){
 	$('#buttonI').click(function(){
 		addPlusserToGRoup($('#amountIa').val(),$('#amountIb').val())
 	});
-
 });
 
 function getGroups(amount){
 	var html = $("#groups");
+	var html2 = "";
 
 	html.fadeOut(function(){
-		html.empty();
+		//html.empty();
 		$.get( "http://www.thomassio.nl:2001/groups").done(function(data){
 			var i = 0;
 			$.each(data,function(key,group){
@@ -37,19 +43,21 @@ function getGroups(amount){
 					return
 				}
 
-				html.append("<div class='group'>"+group.id+" : "+group.name+"</div>");
+				html2 += "<div class='group'>"+group.id+" : "+group.name+"</div>";
 				i++;
 			});
+			html.html(html2);
+			html.fadeIn();
+			$("#container").masonry();
 		});
 	});
-	html.fadeIn();
 }
 
 function getPlussers(amount){
 	var html = $("#plussers");
+	var html2 = "";
 
 	html.fadeOut(function(){
-		html.empty();
 		$.get( "http://www.thomassio.nl:2001/plussers").done(function(data){
 			var i = 0;
 			$.each(data,function(key,plusser){
@@ -58,35 +66,38 @@ function getPlussers(amount){
 					return
 				}
 
-				html.append("<div class='plusser'>"+plusser.id+" : "+plusser.lastName+" : "+plusser.firstName+"</div>");
+				html2 += ("<div class='plusser'>"+plusser.id+" : "+plusser.lastName+" : "+plusser.firstName+"</div>");
 				i++;
 			});
+			html.html(html2);
+			html.fadeIn();
+			$("#container").masonry();
 		});
 	});
-	html.fadeIn();
 }
 
 function getGroupFromId(id){
 	var html = $("#groupF");
-
+	var html2 = $("<div class='plus'>");;
 	html.fadeOut(function(){
 		html.empty();
 		$.get( "http://www.thomassio.nl:2001/groups/"+id).done(function(data){
 
-			html.append("<div class='plus'>"+data.id+" : "+data.name+"</div>");
+			html2.append(data.id+" : "+data.name);
 
-			html.find(".plus").append("<ul></ul>");
+			html2.append("<ul></ul>");
 
 			$.each(data.plussers, function(key,value){
-				console.log(value);
-				html.find(".plus").find("ul").append(
+				html2.find("ul").append(
 					"<li>"+key+
 					" id: "+value+"</li>"
 				);
 			});
+			html.html(html2.html());
+			html.fadeIn();
+			$("#container").masonry();
 		});
 	});
-	html.fadeIn();
 }
 function getPlusserFromId(id){
 	var html = $("#plusserH");
@@ -99,15 +110,15 @@ function getPlusserFromId(id){
 			html.find(".plus").append("<ul></ul>");
 
 			$.each(data.groups, function(key,value){
-				console.log(value);
 				html.find(".plus").find("ul").append(
 					"<li>"+key+
 					" id: "+value+"</li>"
 				);
 			});
+			html.fadeIn();
+			$("#container").masonry();
 		});
 	});
-	html.fadeIn();
 }
 
 function addPlusserToGRoup(groupId,plusId){
