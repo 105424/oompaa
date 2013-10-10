@@ -1,7 +1,9 @@
-//var link = "www.thomassio.nl:2001";
-var link = "localhost:2001";
+var link = "www.thomassio.nl:2001";
+//var link = "localhost:2001";
 
 $(document).ready(function(){
+
+	$('h1').html(link);
 
 	var container = $("#container")
 	container.masonry( {
@@ -20,6 +22,7 @@ $(document).ready(function(){
 		getPlussers(5);
 		getGroupFromId(614);
 		getPlusserFromId(1);		
+		$('h1').html(link);
 	});
 
 	$('#buttonG').click(function(){
@@ -39,7 +42,11 @@ $(document).ready(function(){
 	$('#buttonI').click(function(){
 		addPlusserToGRoup($('#amountIa').val(),$('#amountIb').val())
 	});
+	$('#buttonJ').click(function(){
+		customGet($('#amountJ').val());
+	});
 });
+
 
 function getGroups(amount){
 	var html = $("#groups");
@@ -48,6 +55,7 @@ function getGroups(amount){
 	html.fadeOut(function(){
 		//html.empty();
 		$.get( "http://"+link+"/groups").done(function(data){
+				console.log(data);
 			var i = 0;
 			$.each(data,function(key,group){
 
@@ -71,6 +79,7 @@ function getPlussers(amount){
 
 	html.fadeOut(function(){
 		$.get( "http://"+link+"/plussers").done(function(data){
+				console.log(data);
 			var i = 0;
 			$.each(data,function(key,plusser){
 
@@ -94,7 +103,7 @@ function getGroupFromId(id){
 	html.fadeOut(function(){
 		html.empty();
 		$.get( "http://"+link+"/groups/"+id).done(function(data){
-
+			console.log(data);
 			html2.append(data.id+" : "+data.name);
 
 			html2.append("<ul></ul>");
@@ -117,6 +126,7 @@ function getPlusserFromId(id){
 	html.fadeOut(function(){
 		html.empty();
 		$.get( "http://"+link+"/plussers/"+id).done(function(data){
+				console.log(data);
 			html.append("<div class='plus'>"+data.id+" : "+data.firstName+"</div>");
 			console.log(data);
 			html.find(".plus").append("<ul></ul>");
@@ -142,4 +152,32 @@ function addPlusserToGRoup(groupId,plusId){
 		html.html(JSON.stringify(data));
 	});
 
+}
+function customGet(get){
+	var html = $("#groupJ");
+	var html2 = $("<div class='plus'>");;
+	console.log(1);
+	html.fadeOut(function(){
+		html.empty();
+		console.log("http://"+link+"/"+get);
+		$.get( "http://"+link+"/"+get).done(function(data){
+			console.log(data);
+			html2.append(JSON.stringify(data));
+
+			//html2.append("<ul></ul>");
+
+			html.html(html2.html());
+			html.fadeIn();
+			$("#container").masonry();
+		}).error(function(err){
+			console.log(err);
+			html2.append(err.responseText);
+
+			//html2.append("<ul></ul>");
+
+			html.html(html2.html());
+			html.fadeIn();
+			$("#container").masonry();
+		});
+	});
 }

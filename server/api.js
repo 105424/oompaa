@@ -54,6 +54,8 @@ this.init = function(args){
 
 	app.post('/groups/:id', function(req, res) {
 		if(req.body.hasOwnProperty('plussers')){
+			console.log(data.get('group',req.params.id));
+			console.log(data.get('plusser',req.body.plussers));
 			if(data.addPlusserToGroup(data.get('group',req.params.id),data.get('plusser',req.body.plussers))){
 				res.json(data.get('group',req.params.id));
 			}else{

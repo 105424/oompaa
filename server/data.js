@@ -22,12 +22,12 @@ this.load = function(){
 modify = function(type, id, adjustments){
 	var arr = getArr(type);
 	if(arr){
-			var original = arr[id];
-			if(original){
-				jQuery.extend(original, adjustments);
-				return original;
-			}
-			return false; // "Invalid id";
+		var original = arr[id];
+		if(original){
+			jQuery.extend(original, adjustments);
+			return original;
+		}
+		return false; // "Invalid id";
 	}
 	return false; // "Invalid type";
 }
@@ -43,12 +43,12 @@ get = function(type,args){
 
 		if(isNumber(args)){;
 			if(arr[args]) return arr[args];
-			else return false ;//"Incorect id";
+			else return false; //"get: Incorect id";
 		}	
 
 		if(typeof args == 'string'){
 			if(args == 'all') return arr; 
-			return false; //"Invallid command";
+			return false; //"get: Invallid command";
 		}	
 
 		if(typeof args == 'object'){
@@ -61,9 +61,9 @@ get = function(type,args){
 			}
 		}
 
-		return false; //"Not found";
+		returnfalse; // "get: Not found";
 	}
-	return false; // "Invalid type";
+	return false; //"get: Invalid type";
 }
 exports.get = get;
 
@@ -75,14 +75,14 @@ add = function(type,obj){
 		if(type="group"){
 			for(key in obj.owners){
 				var plusser = get('plusser',obj.owners[key]);
-				console.log(obj);
 				plusser.groups.push(obj.id);
 			}			
 		}
 
 		arr[obj.id] = obj;
+		return obj;
 	}
-	return false // Invalid type
+	return "add: Invalid type";
 }
 exports.add = add;
 
