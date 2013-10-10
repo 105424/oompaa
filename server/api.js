@@ -28,19 +28,19 @@ this.init = function(args){
 
 	/* PLUSSERS */
 	app.get('/plussers', function(req, res) {
-		res.json(data.get('plussers'));
+		res.json(data.get('plusser'));
 	});
 	app.post('/plussers', function(req, res) {
 		var plusser = new Plusser(req.body);
 		res.json(data.addPlusser(plusser));
 	});
 	app.get('/plussers/:id', function(req, res) {
-		res.json(data.get('plussers',req.params.id));
+		res.json(data.get('plusser',req.params.id));
 	});
 
 	/* GROUPS */
 	app.get('/groups', function(req, res) {
-		res.json(data.get('groups'));
+		res.json(data.get('group'));
 	});
 	app.post('/groups', function(req, res) {
 		var group = new Group(req.body.group,req.body.owners);
@@ -49,28 +49,26 @@ this.init = function(args){
 	});
 
 	app.get('/groups/:id', function(req, res) {
-		res.json(data.get('groups',req.params.id));
+		res.json(data.get('group',req.params.id));
 	});
 
 	app.post('/groups/:id', function(req, res) {
 		if(req.body.hasOwnProperty('plussers')){
-			console.log(data.get('groups',req.params.id));
-			console.log(data.get('plussers',req.body.plussers));
-			if(data.addPlusserToGroup(data.get('groups',req.params.id),data.get('plussers',req.body.plussers))){
-				res.json(data.get('groups',req.params.id));
+			if(data.addPlusserToGroup(data.get('group',req.params.id),data.get('plusser',req.body.plussers))){
+				res.json(data.get('group',req.params.id));
 			}else{
 				res.statusCode = 400;
 	    		return res.send('Error 400: No plusser or group found with that ID.');				
 			}
 		}else{
 			res.statusCode = 400;
-    		return res.send('Error 400: Post syntax incorrect.');
+    		return res.send('Error 400: json syntax incorrect.');
 		}
 	});
 
 	/* INTERESTS */
 	app.get('/interests', function(req, res) {
-		res.json(data.get('interests'));
+		res.json(data.get('interest'));
 	});
 	app.post('/interests', function(req, res) {
 		var interest = new Interest(req.body);
@@ -78,7 +76,7 @@ this.init = function(args){
 	});
 
 	app.get('/plussers/:id', function(req, res) {
-		res.json(data.get('interests',req.params.id));
+		res.json(data.get('interest',req.params.id));
 	});
 }
 

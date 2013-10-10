@@ -1,3 +1,6 @@
+//var link = "www.thomassio.nl:2001";
+var link = "localhost:2001";
+
 $(document).ready(function(){
 
 	var container = $("#container")
@@ -9,6 +12,15 @@ $(document).ready(function(){
 	getPlussers(5);
 	getGroupFromId(614);
 	getPlusserFromId(1);
+
+
+	$('#linkB').click(function(){
+		link = $('#linkV').val();
+		getGroups(5);
+		getPlussers(5);
+		getGroupFromId(614);
+		getPlusserFromId(1);		
+	});
 
 	$('#buttonG').click(function(){
 		getGroups($('#amountG').val());
@@ -35,7 +47,7 @@ function getGroups(amount){
 
 	html.fadeOut(function(){
 		//html.empty();
-		$.get( "http://www.thomassio.nl:2001/groups").done(function(data){
+		$.get( "http://"+link+"/groups").done(function(data){
 			var i = 0;
 			$.each(data,function(key,group){
 
@@ -58,7 +70,7 @@ function getPlussers(amount){
 	var html2 = "";
 
 	html.fadeOut(function(){
-		$.get( "http://www.thomassio.nl:2001/plussers").done(function(data){
+		$.get( "http://"+link+"/plussers").done(function(data){
 			var i = 0;
 			$.each(data,function(key,plusser){
 
@@ -81,7 +93,7 @@ function getGroupFromId(id){
 	var html2 = $("<div class='plus'>");;
 	html.fadeOut(function(){
 		html.empty();
-		$.get( "http://www.thomassio.nl:2001/groups/"+id).done(function(data){
+		$.get( "http://"+link+"/groups/"+id).done(function(data){
 
 			html2.append(data.id+" : "+data.name);
 
@@ -104,7 +116,7 @@ function getPlusserFromId(id){
 
 	html.fadeOut(function(){
 		html.empty();
-		$.get( "http://www.thomassio.nl:2001/plussers/"+id).done(function(data){
+		$.get( "http://"+link+"/plussers/"+id).done(function(data){
 			html.append("<div class='plus'>"+data.id+" : "+data.firstName+"</div>");
 			console.log(data);
 			html.find(".plus").append("<ul></ul>");
@@ -122,8 +134,9 @@ function getPlusserFromId(id){
 }
 
 function addPlusserToGRoup(groupId,plusId){
+	console.log(plusId);
 	var html = $("#groupI");
-	$.post("http://www.thomassio.nl:2001/groups/"+groupId,{"plussers":plusId}).done(function(data){
+	$.post("http://"+link+"/groups/"+groupId,{"plussers":plusId}).done(function(data){
 		html.html(JSON.stringify(data));
 	}).error(function(data){
 		html.html(JSON.stringify(data));
