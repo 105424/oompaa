@@ -17,6 +17,9 @@ $(document).ready(function(){
 	});	
 	$('#buttonH').click(function(){
 		getPlusserFromId($('#amountH').val());
+	});	
+	$('#buttonI').click(function(){
+		addPlusserToGRoup($('#amountIa').val(),$('#amountIb').val())
 	});
 
 });
@@ -105,4 +108,14 @@ function getPlusserFromId(id){
 		});
 	});
 	html.fadeIn();
+}
+
+function addPlusserToGRoup(groupId,plusId){
+	var html = $("#groupI");
+	$.post("http://www.thomassio.nl:2001/groups/"+groupId,{"plussers":plusId}).done(function(data){
+		html.html(JSON.stringify(data));
+	}).error(function(data){
+		html.html(JSON.stringify(data));
+	});
+
 }
