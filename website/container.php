@@ -9,14 +9,38 @@
  </div>
 </div>
 
+
 <style>
+
   #wrap{
-    width:80%;
+    width:90%;
+    margin:5px auto;
+    padding:0px;
+    padding-bottom:30px;
+    background-color: white;
+    min-height: calc(100% - 100px);
+  }
+
+  #container{
+    width:100%;
     margin:auto;
   }
-  #container{
-    width:920px;
-    margin:auto;
+
+  .demo{
+    padding:5px;
+    margin:5px;
+  }
+  .demo input{
+    float:right;
+    width:157px;
+  }
+  .demo 
+  .demo #test{
+    float:right;
+  }
+  #container button{
+    height:25px;
+    float:left;
   }
 
 </style>

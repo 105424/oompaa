@@ -3,10 +3,14 @@
     <input id="linkV" placeholder="url"></input>
 
     <script>
-    $('#linkB').click(function(){
-      link = $('#linkV').val();
-      $('h1').html(link);
-    });
+
+      $("#linkV").attr("placeholder",link);  
+
+      $('#linkB').click(function(){
+        link = $('#linkV').val();
+        $("#linkV").attr("placeholder",link); 
+        $("#linkV").val("");
+      });
     </script>
   </div>
 
