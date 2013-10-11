@@ -1,14 +1,22 @@
 <div id="wrap">
   <div id="container">
-    <?php include("blocks/groups.html"); ?>
-    <?php include("blocks/plussers.html"); ?>
-    <?php include("blocks/single-group.html"); ?>
-    <?php include("blocks/single-plusser.html"); ?>
-    <?php include("blocks/add-plusser-to-group.html"); ?>
-    <?php include("blocks/custom-get.html"); ?>
  </div>
 </div>
 
+<script>
+
+  include("blocks/groups.html", "#container");
+  include("blocks/plussers.html","#container");
+  include("blocks/single-group.html","#container");
+  include("blocks/single-plusser.html","#container");
+  include("blocks/add-plusser-to-group.html","#container");
+  include("blocks/custom-get.html","#container");
+
+  var container = $("#container")
+  container.masonry( {
+    itemSelector: '.demo'
+  });
+</script>
 
 <style>
 

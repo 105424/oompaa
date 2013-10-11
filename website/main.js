@@ -5,8 +5,27 @@ var link = "thomassio.nl:2001";
 
 $(document).ready(function(){
 
-	var container = $("#container")
-	container.masonry( {
-	  itemSelector: '.demo'
-	});
+	include("header/header.php", "body");
+
+	mainPage();
+
+	include("footer/footer.php", "body");	
 });
+
+function mainPage(){
+	include("container.html", "body");	
+}
+
+
+function include(file,inTo){
+
+	$.ajax({
+	     async: false,
+	     type: 'GET',
+	     url: file,
+	     success: function(data) {
+	        $(inTo).append(data);
+	     }
+	});
+
+}

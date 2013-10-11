@@ -21,8 +21,4 @@
 </head>
 
 <body> 
-	<?php include("header/header.php");?>
-	<?php include("container.php");?>
-	<?php include("footer/footer.php");?>
-
 </body>
