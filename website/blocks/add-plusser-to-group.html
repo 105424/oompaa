@@ -1,0 +1,23 @@
+<div class="demo" style="width:200">
+  <button id="buttonI">Add plusser to group</button>
+  <input id="amountIa" type="text" placeholder="group id"> </input><input id="amountIb" type="text" placeholder="plusser id"> </input>
+  <div id="groupI"></div>
+</div>
+
+<script>
+  $('#buttonI').click(function(){
+    addPlusserToGRoup($('#amountIa').val(),$('#amountIb').val())
+  });
+
+ function addPlusserToGRoup(groupId,plusId){
+    console.log(plusId);
+    var html = $("#groupI");
+    $.post("http://"+link+"/groups/"+groupId,{"plussers":plusId}).done(function(data){
+      html.html(JSON.stringify(data));
+            $("#container").masonry();
+    }).error(function(data){
+      html.html(JSON.stringify(data));
+            $("#container").masonry();
+    });
+  } 
+</script>

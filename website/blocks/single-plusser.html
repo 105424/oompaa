@@ -1,0 +1,37 @@
+<div class="demo" style="width:200">
+  <button id="buttonH">Get plusser from ID</button>
+  <input id="amountH" type="text" placeholder="plusser id"> </input>
+  <div id="plusserH"></div>
+</div>
+
+<script>
+
+  getPlusserFromId(1);
+
+  $('#buttonH').click(function(){
+    getPlusserFromId($('#amountH').val());
+  }); 
+
+  function getPlusserFromId(id){
+    var html = $("#plusserH");
+
+    html.fadeOut(function(){
+      html.empty();
+      $.get( "http://"+link+"/plussers/"+id).done(function(data){
+          console.log(data);
+        html.append("<div class='plus'>"+data.id+" : "+data.firstName+"</div>");
+        console.log(data);
+        html.find(".plus").append("<ul></ul>");
+
+        $.each(data.groups, function(key,value){
+          html.find(".plus").find("ul").append(
+            "<li>"+key+
+            " id: "+value+"</li>"
+          );
+        });
+        html.fadeIn();
+        $("#container").masonry();
+      });
+    });
+  } 
+</script>

@@ -1,0 +1,40 @@
+<div class="demo" style="width:200">
+  <button id="buttonG">Get groups</button>
+  <input id="amountG" type="text" placeholder="amount"> </input>
+  <div id="groups"></div>
+</div>
+
+<script>
+
+  getGroups(10);
+
+  $('#buttonG').click(function(item){
+    console.log("lol");
+    getGroups($('#amountG').val());
+  });
+
+  function getGroups(amount){
+    var html = $("#groups");
+    var html2 = "";
+
+    html.fadeOut(function(){
+      //html.empty();
+      $.get( "http://"+link+"/groups").done(function(data){
+          console.log(data);
+        var i = 0;
+        $.each(data,function(key,group){
+
+          if(i >= amount){
+            return
+          }
+
+          html2 += "<div class='group'>"+group.id+" : "+group.name+"</div>";
+          i++;
+        });
+        html.html(html2);
+        html.fadeIn();
+        $("#container").masonry();
+      });
+    });
+  }
+</script>

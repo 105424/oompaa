@@ -1,0 +1,39 @@
+<div class="demo" style="width:200">
+  <button id="buttonP">Get Plussers</button>
+  <input id="amountP" type="text" placeholder="amount"> </input>
+  <div id="plussers"></div>
+</div>
+
+<script>
+
+  getPlussers(5);
+
+  $('#buttonP').click(function(item){
+      getPlussers($('#amountP').val(),$(item));
+  });
+
+
+  function getPlussers(amount){
+    var html = $("#plussers");
+    var html2 = "";
+
+    html.fadeOut(function(){
+      $.get( "http://"+link+"/plussers").done(function(data){
+          console.log(data);
+        var i = 0;
+        $.each(data,function(key,plusser){
+
+          if(i >= amount){
+            return
+          }
+
+          html2 += ("<div class='plusser'>"+plusser.id+" : "+plusser.lastName+" : "+plusser.firstName+"</div>");
+          i++;
+        });
+        html.html(html2);
+        html.fadeIn();
+        $("#container").masonry();
+      });
+    });
+  }
+</script>
