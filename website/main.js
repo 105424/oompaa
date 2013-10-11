@@ -1,31 +1,62 @@
 var link = "thomassio.nl:2001";
+var firstPage = "gets";
 //var link = "localhost:2001";
 
-//console.log = function(){};
+//console.log = function(){}; //Turns of console.log();
 
 $(document).ready(function(){
 
 	include("header/header", "body");
-
-	mainPage();
+	
+	include("menu", "body");
+	
+	include("pages/"+firstPage,"body");
 
 	include("footer/footer", "body");	
 });
 
-function mainPage(){
-	include("container", "body");	
+function navToPage(page){
+/*	$('.page').fadeOut(function(){
+		$('.page').remove();
+
+		include("pages/"+page, "body");
+
+		$('.page').css("display","none");
+		$('.page').fadeIn('slow');
+	});*/
+
+	$('.page').animate({
+			opacity: 0.25,
+    	left: "+=5000",
+   		height: "toggle"
+		},1000,function(){
+			$('.page').remove();
+
+			include("pages/"+page, "body");
+			
+			$('.page').css("display","none");
+			$('.page').fadeIn('slow');
+	});
 }
 
+function include(file,inTo,shouldReturn,async){
+	var answer;
+	var asyn = false;
 
-function include(file,inTo){
+	if(async != undefined) var asyn = async;
 
 	$.ajax({
-	     async: false,
+	     async: asyn,
 	     type: 'GET',
 	     url: file,
 	     success: function(data) {
-	        $(inTo).append(data);
+	        if(shouldReturn){
+	        	answer = data;
+		      }
+					else{
+	        	$(inTo).append(data);
+					}
 	     }
 	});
-
+	if(shouldReturn) return answer;
 }

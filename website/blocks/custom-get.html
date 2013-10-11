@@ -1,41 +1,43 @@
-<div class="demo" style="width:422">
+<div class="demo custom-get" style="width:422">
   <h3>Custom</h3>
   <button id="buttonJ">get</button>
+  <label>thomassio.nl:2001/</label>
   <input id="amountJ" type="text" placeholder="url"> </input>
   <div id="groupJ"></div>
-</div>
 
-<script>
-  $('#buttonJ').click(function(){
-    customGet($('#amountJ').val());
-  });
-
-  function customGet(get){
-  var html = $("#groupJ");
-  var html2 = $("<div class='plus'>");;
-  console.log(1);
-  html.fadeOut(function(){
-    html.empty();
-    console.log("http://"+link+"/"+get);
-    $.get( "http://"+link+"/"+get).done(function(data){
-      console.log(data);
-      html2.append(JSON.stringify(data));
-
-      //html2.append("<ul></ul>");
-
-      html.html(html2.html());
-      html.fadeIn();
-      $("#container").masonry();
-    }).error(function(err){
-      console.log(err);
-      html2.append(err.responseText);
-
-      //html2.append("<ul></ul>");
-
-      html.html(html2.html());
-      html.fadeIn();
-      $("#container").masonry();
+  <script>
+    $('#buttonJ').click(function(){
+      customGet($('#amountJ').val());
     });
-  });
-}
-</script>
+
+    function customGet(get){
+    var html = $("#groupJ");
+    var html2 = $("<div class='plus'>");;
+    console.log(1);
+    html.fadeOut(function(){
+      html.empty();
+      console.log("http://"+link+"/"+get);
+      $.get( "http://"+link+"/"+get).done(function(data){
+        console.log(data);
+        html2.append(JSON.stringify(data));
+
+        //html2.append("<ul></ul>");
+
+        html.html(html2.html());
+        html.fadeIn();
+        $(".container").masonry();
+      }).error(function(err){
+        console.log(err);
+        html2.append(err.responseText);
+
+        //html2.append("<ul></ul>");
+
+        html.html(html2.html());
+        html.fadeIn();
+        $(".container").masonry();
+      });
+    });
+  }
+  </script>
+
+</div>

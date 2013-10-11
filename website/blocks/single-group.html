@@ -3,38 +3,36 @@
   <button id="buttonF">Get</button>
   <input id="amountF" type="text" placeholder="group id"> </input>
   <div id="groupF"></div>
-</div>
 
-<script>
+  <script>
+    getGroupFromId(4629);
 
-  getGroupFromId(4629);
+    $('#buttonF').click(function(){
+      getGroupFromId($('#amountF').val());
+    }); 
 
-  $('#buttonF').click(function(){
-    getGroupFromId($('#amountF').val());
-  }); 
+    function getGroupFromId(id){
+      var html = $("#groupF");
+      var html2 = $("<div class='plus'>");;
+      html.fadeOut(function(){
+        html.empty();
+        $.get( "http://"+link+"/groups/"+id).done(function(data){
+          console.log(data);
+          html2.append(data.id+" : "+data.name);
 
-  function getGroupFromId(id){
-    var html = $("#groupF");
-    var html2 = $("<div class='plus'>");;
-    html.fadeOut(function(){
-      html.empty();
-      $.get( "http://"+link+"/groups/"+id).done(function(data){
-        console.log(data);
-        html2.append(data.id+" : "+data.name);
+          html2.append("<ul></ul>");
 
-        html2.append("<ul></ul>");
-
-        $.each(data.plussers, function(key,value){
-          html2.find("ul").append(
-            "<li>"+key+
-            " id: "+value+"</li>"
-          );
+          $.each(data.plussers, function(key,value){
+            html2.find("ul").append(
+              "<li>"+key+
+              " id: "+value+"</li>"
+            );
+          });
+          html.html(html2.html());
+          html.fadeIn();
+          $(".container").masonry();
         });
-        html.html(html2.html());
-        html.fadeIn();
-        $("#container").masonry();
       });
-    });
-  }
-
-</script>
+    }
+  </script>
+</div>

@@ -1,5 +1,49 @@
-<menu>
+<div class="menu">
   <ul>
-    
+    <li link="all">All</li>
+    <li link="gets">Gets</li>
+    <li link="posts">Posts</li>
+    <li link="custom">Custom</li>
+    <li link="faq">FAQ</li>
   </uL>
-</menu>
+
+  <style>
+    
+    .menu{
+      height: 30px;
+      width: 90%;
+      margin:auto;
+      margin-top:5px;
+
+    }
+
+
+    .menu ul {
+      display: table;
+      height: 100%;
+      width: 100%;
+      padding:0px;
+      margin:0px;
+    }
+
+    .menu ul li {
+      display: table-cell;
+      height: 100%;
+      line-height: 160%;
+      text-align: center;
+      white-space: nowrap;
+      width:20px;
+      border: solid;
+      border-size:2px;
+      border-color: lightgrey;
+      background-color: #60D4AE;
+      margin:10px;
+    }​
+
+  </style>
+  <script>
+    $(".menu ul li").click(function(data){
+        navToPage($(data.target).attr("link"));
+    });
+  </script>
+</div>

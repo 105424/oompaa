@@ -1,0 +1,52 @@
+<div class="container page">
+    <script>
+      include("blocks/groups", ".container");
+      include("blocks/plussers",".container");
+      include("blocks/single-group",".container");
+      include("blocks/single-plusser",".container");
+    </script>
+
+  <script>
+    var container = $(".container")
+    container.masonry( {
+      itemSelector: '.demo'
+    });
+  </script>
+
+  <style>
+
+    .container{
+      width:90%;
+      margin:5px auto;
+      padding:0px;
+      padding-bottom:30px;
+      background-color: white;
+      min-height: calc(100% - 100px);
+    }
+
+    .demo{
+      padding:5px;
+      margin:5px;
+    }
+
+    .demo input{
+      float:right;
+      width:157px;
+    }
+
+    .buttons{
+      height: 40px;
+    }
+
+    .demo #test{
+      float:right;
+    }
+
+    .container button{
+      height:25px;
+      float:left;
+    }
+
+  </style>
+
+</div>
