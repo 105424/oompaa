@@ -4,6 +4,7 @@ html, body {
 }
 html{
   background-color: lightgrey; 
+  overflow-x:hidden;
 }
 
 button {

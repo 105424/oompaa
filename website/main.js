@@ -5,15 +5,15 @@ var link = "thomassio.nl:2001";
 
 $(document).ready(function(){
 
-	include("header/header.php", "body");
+	include("header/header", "body");
 
 	mainPage();
 
-	include("footer/footer.php", "body");	
+	include("footer/footer", "body");	
 });
 
 function mainPage(){
-	include("container.html", "body");	
+	include("container", "body");	
 }
 
 

@@ -1,17 +1,17 @@
 <div id="wrap">
   <div id="container">
+    <script>
+      include("blocks/groups", "#container");
+      include("blocks/plussers","#container");
+      include("blocks/single-group","#container");
+      include("blocks/single-plusser","#container");
+      include("blocks/add-plusser-to-group","#container");
+      include("blocks/custom-get","#container");
+    </script>
  </div>
 </div>
 
 <script>
-
-  include("blocks/groups.html", "#container");
-  include("blocks/plussers.html","#container");
-  include("blocks/single-group.html","#container");
-  include("blocks/single-plusser.html","#container");
-  include("blocks/add-plusser-to-group.html","#container");
-  include("blocks/custom-get.html","#container");
-
   var container = $("#container")
   container.masonry( {
     itemSelector: '.demo'
