@@ -5,6 +5,8 @@ this.Plusser = function(args){
   this.firstName = "";
   this.lastName = "";
 
+  this.image = "http://static.zoom.nl/33D3217CB8BE6DE8741AA78FB645AC36-de-opa-.jpg";
+
 	this.interests = new Array(); 
 	this.groups = new Array();
   this.videos = new Array();

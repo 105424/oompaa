@@ -30,14 +30,20 @@
     padding:5px;
     margin:5px;
   }
+
   .demo input{
     float:right;
     width:157px;
   }
-  .demo 
+
+  .buttons{
+    height: 40px;
+  }
+
   .demo #test{
     float:right;
   }
+
   #container button{
     height:25px;
     float:left;

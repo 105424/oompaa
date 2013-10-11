@@ -1,7 +1,10 @@
 <div class="demo" style="width:200">
   <h3>Plussers</h3>
-  <button id="buttonP">Get</button>
-  <input id="amountP" type="text" placeholder="amount"> </input>
+  <div class="buttons">
+    <button id="buttonP">Get</button>
+    <input id="amountP" type="text" placeholder="amount"> </input>
+  </div>
+
   <div id="plussers"></div>
 </div>
 
@@ -10,7 +13,7 @@
   getPlussers(5);
 
   $('#buttonP').click(function(item){
-      getPlussers($('#amountP').val(),$(item));
+    getPlussers($('#amountP').val(),$(item));
   });
 
 
@@ -28,7 +31,7 @@
             return
           }
 
-          html2 += ("<div class='plusser'>"+plusser.id+" : "+plusser.lastName+" : "+plusser.firstName+"</div>");
+          html2 += ("<div class='plusser'> <img src='"+plusser.image+"'>"+"<p> name: "+plusser.firstName+" </p></div>");
           i++;
         });
         html.html(html2);
@@ -38,3 +41,24 @@
     });
   }
 </script>
+
+<style>
+
+  #plussers .plusser img{
+      width:40px;
+      float: left;
+  } 
+  #plussers .plusser{;
+    padding-top: 10px;
+    width:100%;
+    height:50px;
+    border-top-style: solid;
+    border-width: 1px;
+    border-color: #60D4AE;
+  }
+  #plussers p{
+    float:left;
+    padding-left:10px;
+    margin:0px;
+  }  
+</style>
