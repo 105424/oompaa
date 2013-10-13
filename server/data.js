@@ -19,7 +19,7 @@ this.load = function(){
 		add('groups', new objects.group({'name':'test'},[plusser.id,lastPlus.id]));
 		lastPlus = plusser;
 
-		add('interests',new objects.interest({"name":"TestInterest","Description":"This interest was created for testing only."},[plusser.id]));
+		add('interests', new objects.interest({"name":"TestInterest","Description":"This interest was created for testing only."},[plusser.id]));
 	}
 }
 
@@ -79,12 +79,21 @@ add = function(type,obj){
 	if (arr){
 		obj.id = newId(arr);
 		
-		if(type="group"){
+		console.log("type");
+		if(type == "groups"){
+			console.log("type = group;");
 			for(key in obj.owners){
 				var plusser = get('plussers',obj.owners[key]);
 				plusser.groups.push(obj.id);
 			}			
 		}
+		if(type == "interests"){
+			console.log("type = interests;");
+			for(key in obj.owners){
+				var plusser = get('plussers',obj.owners[key]);
+				plusser.interests.push(obj.id);
+			}			
+		}		
 
 		arr[obj.id] = obj;
 		return obj;
