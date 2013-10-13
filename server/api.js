@@ -21,8 +21,8 @@ this.init = function(args){
 
 	app.post('/groups/:id', function(req, res) {
 		if(req.body.hasOwnProperty('plussers')){
-			if(data.addPlusserToGroup(data.get('group',req.params.id),data.get('plusser',req.body.plussers))){
-				res.json(data.get('group',req.params.id));
+			if(data.addPlusserToGroup(data.get('groups',req.params.id),data.get('plussers',req.body.plussers))){
+				res.json(data.get('groups',req.params.id));
 			}else{
 				res.statusCode = 400;
 	    		return res.send('Error 400: No plusser or group found with that ID.');				

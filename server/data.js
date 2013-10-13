@@ -18,6 +18,8 @@ this.load = function(){
 		var plusser = add('plussers', new objects.plusser({"firstName":"mark"}));
 		add('groups', new objects.group({'name':'test'},[plusser.id,lastPlus.id]));
 		lastPlus = plusser;
+
+		add('interests',new objects.interest({"name":"TestInterest","Description":"This interest was created for testing only."},[plusser.id]));
 	}
 }
 
@@ -125,7 +127,7 @@ addPlusserToGroup = function(group, plusser){
 	
 	var doubleCheck = true;
 	for(key in group.plussers){
-		var plus = get('plusser',group.plussers[key]);
+		var plus = get('plussers',group.plussers[key]);
 		if(plus.id == plusser.id){
 			doubleCheck = false;
 		}

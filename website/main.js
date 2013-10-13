@@ -1,5 +1,5 @@
 var link = "thomassio.nl:2001";
-var firstPage = "gets";
+var firstPage = "all";
 //var link = "localhost:2001";
 
 //console.log = function(){}; //Turns of console.log();
