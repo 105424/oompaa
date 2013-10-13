@@ -2,9 +2,7 @@ var app;
 var port;
 var data;
 
-var Group = require('./objects/group').Group;
-var Plusser = require('./objects/plusser').Plusser;
-var Interest = require('./objects/interest').Interest;
+var objects = require('./objectHolder.js')
 
 this.init = function(args){
 	app = args.app;
@@ -15,47 +13,14 @@ this.init = function(args){
 
 	app.listen(process.env.PORT || port);
 
-	app.use(function(req,res,next) {
+	app.use(function(req,res,next) { // Always called
 		res.header("Access-Control-Allow-Origin", "*");
 		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 		next();
 	});
 
-	app.get('/', function(req, res) {
-		res.type('text/plain');
-		res.send("i'm back baby"); 
-	});
-
-	/* PLUSSERS */
-	app.get('/plussers', function(req, res) {
-		res.json(data.get('plusser'));
-	});
-	app.post('/plussers', function(req, res) {
-		var plusser = new Plusser(req.body);
-		res.json(data.addPlusser(plusser));
-	});
-	app.get('/plussers/:id', function(req, res) {
-		res.json(data.get('plusser',req.params.id));
-	});
-
-	/* GROUPS */
-	app.get('/groups', function(req, res) {
-		res.json(data.get('group'));
-	});
-	app.post('/groups', function(req, res) {
-		var group = new Group(req.body.group,req.body.owners);
-		data.addGroup(group);
-		res.json(group);
-	});
-
-	app.get('/groups/:id', function(req, res) {
-		res.json(data.get('group',req.params.id));
-	});
-
 	app.post('/groups/:id', function(req, res) {
 		if(req.body.hasOwnProperty('plussers')){
-			console.log(data.get('group',req.params.id));
-			console.log(data.get('plusser',req.body.plussers));
 			if(data.addPlusserToGroup(data.get('group',req.params.id),data.get('plusser',req.body.plussers))){
 				res.json(data.get('group',req.params.id));
 			}else{
@@ -68,8 +33,55 @@ this.init = function(args){
 		}
 	});
 
+	app.get('/', function(req, res) {
+		res.json(data.get('all'));
+	});
+
+	app.get('/:type', function(req, res){
+		res.json(data.get(req.params.type));
+	}); 
+	
+	app.post('/:type', function(req, res){
+		var thingy = new objects[req.params.type](res.body);
+		res.json(data.add(req.params.type, thingy));
+	});
+
+	app.get('/:type/:id', function(req, res){
+		res.json(data.get(req.params.type, req.params.id));
+	}); 
+
+	app.put('/:type/:id', function(req, res){
+		res.json(data.modify(req.params.type, req.params.id, res.body));
+	});
+
+	/* PLUSSERS */
+/*	app.get('/plussers', function(req, res) {
+		res.json(data.get('plusser'));
+	});
+	app.post('/plussers', function(req, res) {
+		var plusser = new Plusser(req.body);
+		res.json(data.addPlusser(plusser));
+	});
+	app.get('/plussers/:id', function(req, res) {
+		res.json(data.get('plusser',req.params.id));
+	});
+*/
+	/* GROUPS */
+/*	app.get('/groups', function(req, res) {
+		res.json(data.get('group'));
+	});*/
+/*	app.post('/groups', function(req, res) {
+		var group = new Group(req.body.group,req.body.owners);
+		data.addGroup(group);
+		res.json(group);
+	});*/
+
+/*	app.get('/groups/:id', function(req, res) {
+		res.json(data.get('group',req.params.id));
+	});*/
+
 	/* INTERESTS */
-	app.get('/interests', function(req, res) {
+/*	app.get('/interests', function(req, res) {
 		res.json(data.get('interest'));
 	});
 	app.post('/interests', function(req, res) {
@@ -79,7 +91,7 @@ this.init = function(args){
 
 	app.get('/plussers/:id', function(req, res) {
 		res.json(data.get('interest',req.params.id));
-	});
+	});*/
 }
 
 function isJson(str) {

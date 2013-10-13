@@ -1,20 +1,22 @@
 var objects = require('./objectHolder');
 
-var plussers = new Object();  // Stored by id
-var groups = new Object();	 // Stored by id
-var interests = new Object(); // Stored by id
-var videos = new Object(); // Stored by id
-var images = new Object(); // Stored by id
+var database = new Object();
+
+database['plussers'] = new Object();  // Stored by id
+database['groups'] = new Object();	 // Stored by id
+database['interests'] = new Object(); // Stored by id
+database['videos'] = new Object(); // Stored by id
+database['images'] = new Object(); // Stored by id
 
 var lastPlus = new objects.plusser({"firstName":"first"});
 lastPlus.id = 1;
-plussers[1] = lastPlus;
+database.plussers[1] = lastPlus;
 
 this.load = function(){
 	/*get users from database*/
 	for (var i = 0; i < 50; i++) {
-		var plusser = add('plusser', new objects.plusser({"firstName":"mark"}));
-		add('group', new objects.group({'name':'test'},[plusser.id,lastPlus.id]));
+		var plusser = add('plussers', new objects.plusser({"firstName":"mark"}));
+		add('groups', new objects.group({'name':'test'},[plusser.id,lastPlus.id]));
 		lastPlus = plusser;
 	}
 }
@@ -34,6 +36,9 @@ modify = function(type, id, adjustments){
 exports.modify = modify;
 
 get = function(type,args){
+	
+	if(type==="all") return database;
+
 	var arr = getArr(type);
 	if(arr){
 
@@ -74,7 +79,7 @@ add = function(type,obj){
 		
 		if(type="group"){
 			for(key in obj.owners){
-				var plusser = get('plusser',obj.owners[key]);
+				var plusser = get('plussers',obj.owners[key]);
 				plusser.groups.push(obj.id);
 			}			
 		}
@@ -106,12 +111,12 @@ addGroup = function(group){
 }
 exports.addGroup = addGroup;*/
 
-addInterest = function(interest){
+/*addInterest = function(interest){
 	interest.id = newId(interests);
 	interests[interest.name] = interest;
 	return interest.id;
 }
-exports.addInterest = addInterest;
+exports.addInterest = addInterest;*/
 
 /* CONNECTIONS */
 addPlusserToGroup = function(group, plusser){
@@ -164,11 +169,16 @@ function newId(arr){
 	return id;
 }
 
+/* 
+	It's possible to replace the calling of this function with database[type]
+	but now all calls to the data are passed trough here and some kind of check is possible
+*/
 function getArr(type){
+
 	switch(type){
-		case "plusser": return plussers; break;
-		case "group": return groups; break;
-		case "interest": return interests; break;
+		case "plussers": return database.plussers; break;
+		case "groups": return database.groups; break;
+		case "interests": return database.interests; break;
 		default: return false;
 	}	
 }
