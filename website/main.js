@@ -48,7 +48,7 @@ function include(file,inTo,shouldReturn,async){
 	$.ajax({
 	     async: asyn,
 	     type: 'GET',
-	     url: file,
+	     url: file + '.html', // Nodig omdat somigee servers geen bestanden vinden zonder extensie
 	     success: function(data) {
 	        if(shouldReturn){
 	        	answer = data;
