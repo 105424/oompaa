@@ -31,6 +31,19 @@ this.init = function(args){
 			res.statusCode = 400;
     		return res.send('Error 400: json syntax incorrect.');
 		}
+	});	
+	app.post('/plussers/:id', function(req, res) {
+		if(req.body.hasOwnProperty('interests')){
+			if(data.addInterestToPlusser(data.get('interests',req.body.interests),data.get('plussers',req.params.id))){
+				res.json(data.get('interests',req.params.id));
+			}else{
+				res.statusCode = 400;
+	    		return res.send('Error 400: No interest or group found with that ID.');				
+			}
+		}else{
+			res.statusCode = 400;
+    		return res.send('Error 400: json syntax incorrect.');
+		}
 	});
 
 	app.get('/', function(req, res) {

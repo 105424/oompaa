@@ -12,6 +12,10 @@ var lastPlus = new objects.plusser({"firstName":"first"});
 lastPlus.id = 1;
 database.plussers[1] = lastPlus;
 
+var firstInterest = new objects.interest({"name":"first"});
+firstInterest.id = 1;
+database.interests[1] = firstInterest;
+
 this.load = function(){
 	/*get users from database*/
 	for (var i = 0; i < 50; i++) {
@@ -79,16 +83,13 @@ add = function(type,obj){
 	if (arr){
 		obj.id = newId(arr);
 		
-		console.log("type");
 		if(type == "groups"){
-			console.log("type = group;");
 			for(key in obj.owners){
 				var plusser = get('plussers',obj.owners[key]);
 				plusser.groups.push(obj.id);
 			}			
 		}
 		if(type == "interests"){
-			console.log("type = interests;");
 			for(key in obj.owners){
 				var plusser = get('plussers',obj.owners[key]);
 				plusser.interests.push(obj.id);
@@ -153,20 +154,21 @@ exports.addPlusserToGroup = addPlusserToGroup;
 
 addInterestToPlusser = function(interest, plusser){
 	var doubleCheck = true;
-	if(group && plusser){
+	if(interest && plusser){
 		for(key in plusser.interests){
-			if(plusser.interests[key] == interests.name){
+			if(plusser.interests[key] == interest.id){
 				doubleCheck = false;
 			}			
 		}
 		if(doubleCheck){
-			plusser.interests.push(plusser.name);
+			plusser.interests.push(interest.id);
+			interest.owners.push(plusser.id);
 			return true;
 		}
 	}
 	return  false;
 }
-exports.addPlusserToGroup = addPlusserToGroup;
+exports.addInterestToPlusser = addInterestToPlusser;
 
 
 function newId(arr){

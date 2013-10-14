@@ -1,0 +1,25 @@
+<div class="demo add-interest-to-plusser" style="width:200">
+  <h3>interest to plusser</h3>
+  <button id="buttonM">Add</button>
+  <input id="amountMa" type="text" placeholder="interest id"> </input><input id="amountMb" type="text" placeholder="plusser id"> </input>
+  <div id="groupM"></div>
+
+  <script>
+    $('#buttonM').click(function(){
+      addInterestToPlusser($('#amountMa').val(),$('#amountMb').val())
+    });
+
+   function addInterestToPlusser(interestId,plusId){
+      console.log(plusId);
+      var html = $("#groupM");
+      $.post("http://"+link+"/plussers/"+plusId,{"interests":interestId}).done(function(data){
+        html.html(JSON.stringify(data));
+              $(".container").masonry();
+      }).error(function(data){
+        html.html(JSON.stringify(data));
+              $(".container").masonry();
+      });
+    } 
+  </script>
+
+</div>
