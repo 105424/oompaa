@@ -41,7 +41,7 @@ modify = function(type, id, adjustments){
 }
 exports.modify = modify;
 
-get = function(type,args){
+get = function(type,args,item){
 	
 	if(type==="all") return database;
 
@@ -53,8 +53,15 @@ get = function(type,args){
 		} 
 
 		if(isNumber(args)){;
-			if(arr[args]) return arr[args];
-			else return false; //"get: Incorect id";
+				if(arr[args]){
+					if(item == undefined){
+						return arr[args];
+					}else if(arr[args][item]){
+						return arr[args][item];
+					}
+					else return false; //"get: No such item" 
+				}
+				else return false; //"get: Incorect id";
 		}	
 
 		if(typeof args == 'string'){
@@ -72,7 +79,7 @@ get = function(type,args){
 			}
 		}
 
-		returnfalse; // "get: Not found";
+		return false; // "get: Not found";
 	}
 	return false; //"get: Invalid type";
 }
