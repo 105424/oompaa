@@ -5,6 +5,11 @@ this.Plusser = function(args){
   this.firstName = "";
   this.lastName = "";
 
+  this.address = "";
+  this.city = "";
+  this.zipcode = "";
+
+
   this.image = "http://static.zoom.nl/33D3217CB8BE6DE8741AA78FB645AC36-de-opa-.jpg";
 
 	this.interests = new Array(); 

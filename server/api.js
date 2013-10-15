@@ -62,6 +62,7 @@ this.init = function(args){
 	app.get('/:type/:id', function(req, res){
 		res.json(data.get(req.params.type, req.params.id));
 	}); 
+
 	app.get('/:type/:id/:item', function(req, res){
 		res.json(data.get(req.params.type, req.params.id, req.params.item));
 	}); 

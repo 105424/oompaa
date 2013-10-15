@@ -112,18 +112,22 @@ add = function(type,obj){
 exports.add = add;
 
 link = function(obj1, obj2){
-	if( hasId( obj1[obj2.type], obj2.id ) == false && hasId( obj2[obj1.type], obj1.id ) == false ) { // <-- check for duplicates
-		try{
-			obj1[obj2.type].push(obj2.id);
-			obj2[obj1.type].push(obj1.id);
+	if(obj1 && obj2)
+	{
+		if( hasId( obj1[obj2.type], obj2.id ) == false && hasId( obj2[obj1.type], obj1.id ) == false ) { // <-- check for duplicates
+			try{
+				obj1[obj2.type].push(obj2.id);
+				obj2[obj1.type].push(obj1.id);
 
-			return true;
+				return true;
+			}
+			catch(err){
+				return false // "link: link could not be made";
+			} 
 		}
-		catch(err){
-			return false // "link: link could not be made"
-		} 
+		else return false; // "link: link has already been (partly) made";
 	}
-	else return false; // "link: link has already been (partly) made"
+	else return false; // "link: One of those ids doesnt exist";
 }
 exports.link = link;
 
