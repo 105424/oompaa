@@ -1,6 +1,6 @@
 this.Plusser = function(args){
 	this.id = 0;
-	this.type = "plusser";
+	this.type = "plussers";
 
   this.firstName = "";
   this.lastName = "";

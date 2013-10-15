@@ -1,16 +1,16 @@
-this.Interest = function(args,owners){
+this.Interest = function(args,plussers){
   this.id;
-  this.type = "interest"
+  this.type = "interests"
 
 	this.name;
 	this.description;
 
-  this.owners = new Array();
+  this.plussers = new Array();
 
-	try { this.name = args.nameId; } catch(err){ }
+	try { this.name = args.name; } catch(err){ }
 	try { this.description = args.description; } catch(err){ }
 
-  if(owners != undefined){
-    this.owners = owners;
+  if(plussers != undefined){
+    this.plussers = plussers;
   }
 }

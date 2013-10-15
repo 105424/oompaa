@@ -1,6 +1,6 @@
 this.Image = function(args){
   this.id = 0;
-  this.type = "image";
+  this.type = "images";
 
   this.name = "";
   this.description = "";

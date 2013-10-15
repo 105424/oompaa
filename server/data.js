@@ -16,6 +16,7 @@ var firstInterest = new objects.interest({"name":"first"});
 firstInterest.id = 1;
 database.interests[1] = firstInterest;
 
+
 this.load = function(){
 	/*get users from database*/
 	for (var i = 0; i < 50; i++) {
@@ -23,7 +24,7 @@ this.load = function(){
 		add('groups', new objects.group({'name':'test'},[plusser.id,lastPlus.id]));
 		lastPlus = plusser;
 
-		add('interests', new objects.interest({"name":"TestInterest","Description":"This interest was created for testing only."},[plusser.id]));
+		add('interests', new objects.interest({"name":"TestInterest","description":"This interest was created for testing only."},[plusser.id]));
 	}
 }
 
@@ -110,6 +111,22 @@ add = function(type,obj){
 }
 exports.add = add;
 
+link = function(obj1, obj2){
+	if( hasId( obj1[obj2.type], obj2.id ) == false && hasId( obj2[obj1.type], obj1.id ) == false ) { // <-- check for duplicates
+		try{
+			obj1[obj2.type].push(obj2.id);
+			obj2[obj1.type].push(obj1.id);
+
+			return true;
+		}
+		catch(err){
+			return false // "link: link could not be made"
+		} 
+	}
+	else return false; // "link: link has already been (partly) made"
+}
+exports.link = link;
+
 /*addPlusser = function(plusser){
 	plusser.id = newId(plussers);
 	plussers[plusser.id] = plusser;
@@ -138,7 +155,7 @@ exports.addGroup = addGroup;*/
 exports.addInterest = addInterest;*/
 
 /* CONNECTIONS */
-addPlusserToGroup = function(group, plusser){
+/*addPlusserToGroup = function(group, plusser){
 	
 	if(!group || !plusser) return false;
 	
@@ -175,16 +192,15 @@ addInterestToPlusser = function(interest, plusser){
 	}
 	return  false;
 }
-exports.addInterestToPlusser = addInterestToPlusser;
+exports.addInterestToPlusser = addInterestToPlusser;*/
 
 
 function newId(arr){
-	var id = false;
-	while(id == false){
+	var id = 1;
+	var check = true; // <-- zorgt dat hij de while altijd 1 keer uitvoerd
+	while(check == true){
 		id = Math.floor((Math.random()*100000)+1);
-		for(var item in arr){
-			if(item.id == id) id = false;
-		}
+		check = hasId(arr,id);
 	}
 	return id;
 }
@@ -202,8 +218,24 @@ function getArr(type){
 		default: return false;
 	}	
 }
+
 function isNumber(str){
 	var parse = parseInt(str);
 	if(str == parse) return true;
 	else return false;
+}
+
+function hasId(arr,id){
+	if(Array.isArray(arr)){
+		for(var item in arr){
+			if(arr[item] == id) return true;
+		}	
+		return false;
+	}
+	else{
+		if(arr[id] != undefined){
+			return true;
+		}
+		return false;
+	}
 }

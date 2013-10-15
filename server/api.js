@@ -21,7 +21,7 @@ this.init = function(args){
 
 	app.post('/groups/:id', function(req, res) {
 		if(req.body.hasOwnProperty('plussers')){
-			if(data.addPlusserToGroup(data.get('groups',req.params.id),data.get('plussers',req.body.plussers))){
+			if(data.link(data.get('groups',req.params.id),data.get('plussers',req.body.plussers))){
 				res.json(data.get('groups',req.params.id));
 			}else{
 				res.statusCode = 400;
@@ -34,7 +34,7 @@ this.init = function(args){
 	});	
 	app.post('/plussers/:id', function(req, res) {
 		if(req.body.hasOwnProperty('interests')){
-			if(data.addInterestToPlusser(data.get('interests',req.body.interests),data.get('plussers',req.params.id))){
+			if(data.link(data.get('interests',req.body.interests),data.get('plussers',req.params.id))){
 				res.json(data.get('interests',req.params.id));
 			}else{
 				res.statusCode = 400;

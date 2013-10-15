@@ -1,6 +1,6 @@
 this.Group = function(args,owners){;
 	this.id = 0;;
-	this.type = "group"
+	this.type = "groups"
 
 	this.name;
 	this.description;

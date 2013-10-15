@@ -1,6 +1,6 @@
 this.Video = function(args){
   this.id = 0;
-  this.type = "video";
+  this.type = "videos";
 
   this.name = "";
   this.description = "";
