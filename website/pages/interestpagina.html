@@ -1,0 +1,46 @@
+<div class="container page">
+<form name="interest" class="interestform" >
+<div>
+<input type="text" name="interestval">
+<input type="submit" value="Verzenden" >
+<input type="hidden" name="ID" value="1">
+</div>
+</form>
+
+<script>
+$(function() { //shorthand document.ready function
+
+	
+	$('.interestform').on('submit', function(e) { //use on if jQuery 1.7+
+        e.preventDefault();  //prevent form from submitting
+		var interest = document.forms["interest"]["interestval"].value;
+        var id = document.forms["interest"]["ID"].value;
+		//console.log(interest);
+		//console.log(id);
+       send(id,interest);
+    });
+
+function send(getid,getinterest){
+
+var id = getid;
+var interest = getinterest;
+
+console.log("send id:"+id);
+console.log("interest:"+interest);
+
+$.post("http://www.thomassio.nl:2001/plussers/"+id,
+{"interests":interest})
+.done(function(data){console.log(data)
+
+          });		  
+
+}
+
+	
+	
+	
+	});
+</script>
+
+
+</div>
