@@ -1,0 +1,39 @@
+<div class="plussers-search">
+  <button id="btn-search">Search</button> <input></input>
+  <div id="results"> </div>
+
+  <script>
+    $("#btn-search").on("click", function(data){
+      getPlussers(60);
+    });
+
+    function getPlussers(amount){
+      var html = $("#results");
+      var html2 = "";
+
+      html.fadeOut(function(){
+        $.get( "http://"+SERVER+"/plussers").done(function(data){
+            console.log(data);
+          var i = 0;
+          $.each(data,function(key,plusser){
+
+            if(i >= amount){
+              return
+            }
+
+            html2 += ("<div class='plusser'> <img src='"+plusser.image+"'>"+"<p> name: "+plusser.firstName+" </p></div>");
+            i++;
+          });
+          html.html(html2);
+          html.fadeIn();
+        });
+      });
+    }    
+  </script>
+  
+  <style>
+    .plussers-search img{
+        width:50px;
+    }
+  </style>
+</div>
