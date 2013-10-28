@@ -1,51 +1,39 @@
-<div class="header">
+<header class="header">
+  <div id="headWrap">
+      <script>
+        include("header/info-menu", "#headWrap");
+      </script>
+  </div>
 
-  <header>
-    <div id="headWrap">
-      <h1>OOMPAA</h1>
-        <script>
-          include("header/server-switcher", "#headWrap");
-        </script>
-    </div>
-  </header>
-
-  <div id="headHolder"></div>
 
 
   <style>
     
     header{
-      position: fixed;
-      min-width:100%;
-      background-color: lightgrey;
-      height:50px;
+      width:100%;
+      height:25px;
       z-index: 9001;
-    }
-
-    #headHolder{
-      min-width:100%;
-      background-color: lightgrey;
-      height:60px;
-
+      top:0px;
+      background-color: #60D4AE;
     }
 
     #headWrap{
       position: relative;
-      top:10px;
       margin:auto;
       margin-top:0px;
       padding:0px;
-      width:calc(90% + 40px);
-      height:100%;
-      background-color: #60D4AE;
+      width:100%;
       z-index: 9001;
+      padding:0px;
+      margin:0px;
     }
-    #headWrap h1 {
+
+    #headWrap p {
       width:180px;
+
       margin:auto;
-      padding-top:10px;
       color: #000;
     }
 
   </style>
-</div>
+</header>

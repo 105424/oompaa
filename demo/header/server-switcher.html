@@ -1,0 +1,23 @@
+<div id="server-switcher">
+    <button id="linkB">Target</button>
+    <input id="linkV" placeholder="url"></input>
+
+    <script>
+
+      $("#linkV").attr("placeholder",link);  
+
+      $('#linkB').click(function(){
+        link = $('#linkV').val();
+        $("#linkV").attr("placeholder",link); 
+        $("#linkV").val("");
+      });
+    </script>
+    <style>
+    #server-switcher{
+      float:right;
+      position: relative;
+      height: 50px;
+      bottom: 50%;
+    }
+  </style>
+</div>

@@ -35,44 +35,42 @@
         </table>
     </section>
 
+    <script type="text/javascript">
+    var url = 'http://thomassio.nl:2001/';
 
-</div>
-<script type="text/javascript">
-var url = 'http://thomassio.nl:2001/';
+    $(document).ready(init);
 
-$(document).ready(init);
+    function init(){
 
-function init(){
+        $.ajax({
+            url: url,
+            success: function(data){
+                console.log(data);
 
-    $.ajax({
-        url: url,
-        success: function(data){
-            console.log(data);
+                var plussers = data.plussers;
+                var groups = data.groups;
+                var images = data.images;
+                var interests = data.interests;
+                var name = plussers[1].firstName;
+                var photo = plussers[1].image;
+                var photosrc = $('.photo').attr('src');
+                var plussergroup = plussers[1].groups;
+                var towns = plussers[1].city;
+                var address = plussers[1].address;
+                $('.name').html(name);
+    //            $('.address').html(address);
+    //            $('.hometown').html(towns);
 
-            var plussers = data.plussers;
-            var groups = data.groups;
-            var images = data.images;
-            var interests = data.interests;
-            var name = plussers[1].firstName;
-            var photo = plussers[1].image;
-            var photosrc = $('.photo').attr('src');
-            var plussergroup = plussers[1].groups;
-            var towns = plussers[1].city;
-            var address = plussers[1].address;
-            $('.name').html(name);
-//            $('.address').html(address);
-//            $('.hometown').html(towns);
+                for(var i=0; i<plussergroup.length; i++){
 
-            for(var i=0; i<plussergroup.length; i++){
+                    $('.groups').append('<p><a href="http://www.thomassio.nl:2001/groups/'+plussergroup[i]+'">'+plussergroup[i]+'</a></p>');
+                }
 
-                $('.groups').append('<p><a href="http://www.thomassio.nl:2001/groups/'+plussergroup[i]+'">'+plussergroup[i]+'</a></p>');
+                $('.photo').attr('src', photo);
             }
+        });
 
-            $('.photo').attr('src', photo);
-        }
-    });
+    };
 
-};
-
-</script>
+    </script>
 </div>

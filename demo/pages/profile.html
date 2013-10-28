@@ -1,0 +1,78 @@
+<div class="container page">
+    <section>
+        <h1>Profiel</h1>
+        <p>
+            <img class="photo" width="150px" src="" />
+        </p>
+        <table>
+            <tr>
+                <td>Naam:</td>
+                <td class="name"></td>
+            </tr>
+            <tr>
+                <td>Adres:</td>
+                <td class="address">Wijnhaven 99</td>
+            </tr>
+            <tr>
+                <td>Woonplaats:</td>
+                <td class="hometown">Rotterdam</td>
+            </tr>
+            <tr>
+                <td>Geboortedatum:</td>
+                <td class="birthdate">1947/08/01</td>
+            </tr>
+            <tr>
+                <td>Vaardigheden:</td>
+                <td class="skills"></td>
+            </tr>
+            <tr>
+                <td>Groep(en):</td>
+                <td class="groups"></td>
+            </tr>
+
+
+
+        </table>
+    </section>
+
+
+</div>
+<script type="text/javascript">
+var url = 'http://thomassio.nl:2001/';
+
+$(document).ready(init);
+
+function init(){
+
+    $.ajax({
+        url: url,
+        success: function(data){
+            console.log(data);
+
+            var plussers = data.plussers;
+            var groups = data.groups;
+            var images = data.images;
+            var interests = data.interests;
+            var name = plussers[1].firstName;
+            var photo = plussers[1].image;
+            var photosrc = $('.photo').attr('src');
+            var plussergroup = plussers[1].groups;
+            var towns = plussers[1].city;
+            var address = plussers[1].address;
+            $('.name').html(name);
+//            $('.address').html(address);
+//            $('.hometown').html(towns);
+
+            for(var i=0; i<plussergroup.length; i++){
+
+                $('.groups').append('<p><a href="http://www.thomassio.nl:2001/groups/'+plussergroup[i]+'">'+plussergroup[i]+'</a></p>');
+            }
+
+            $('.photo').attr('src', photo);
+        }
+    });
+
+};
+
+</script>
+</div>
