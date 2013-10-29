@@ -67,12 +67,19 @@ get = function(type,args,item){
 
 		if(typeof args == 'string'){
 			if(args == 'all') return arr; 
+			if(args == 'random'){
+				var answer = new Array();
+				for(var i = 0; i < item; i++){
+					answer.push(arr[randomKey(arr)]);
+				}
+				return answer;
+			}
 			return false; //"get: Invallid command";
 		}	
 
 		if(typeof args == 'object'){
 			if(Array.isArray(args)){
-				var answer;
+				var answer = new Array();
 				args.forEach(function(i){
 					answer.push(arr[i]);
 				});
@@ -131,74 +138,6 @@ link = function(obj1, obj2){
 }
 exports.link = link;
 
-/*addPlusser = function(plusser){
-	plusser.id = newId(plussers);
-	plussers[plusser.id] = plusser;
-	return plusser;
-}
-exports.addPlusser = addPlusser;
-
-
-addGroup = function(group){
-
-	group.id = newId(groups);
-	groups[group.id] = group;
-	for(key in group.owners){
-		var plusser = get('plusser',group.owners[key]);
-		plusser.groups.push(group.id);
-	}
-	return group;
-}
-exports.addGroup = addGroup;*/
-
-/*addInterest = function(interest){
-	interest.id = newId(interests);
-	interests[interest.name] = interest;
-	return interest.id;
-}
-exports.addInterest = addInterest;*/
-
-/* CONNECTIONS */
-/*addPlusserToGroup = function(group, plusser){
-	
-	if(!group || !plusser) return false;
-	
-	var doubleCheck = true;
-	for(key in group.plussers){
-		var plus = get('plussers',group.plussers[key]);
-		if(plus.id == plusser.id){
-			doubleCheck = false;
-		}
-	}
-
-	if(doubleCheck){
-		group.plussers.push(plusser.id);
-		plusser.groups.push(group.id);
-		return true;
-	}
-	return  false;
-}
-exports.addPlusserToGroup = addPlusserToGroup;
-
-addInterestToPlusser = function(interest, plusser){
-	var doubleCheck = true;
-	if(interest && plusser){
-		for(key in plusser.interests){
-			if(plusser.interests[key] == interest.id){
-				doubleCheck = false;
-			}			
-		}
-		if(doubleCheck){
-			plusser.interests.push(interest.id);
-			interest.owners.push(plusser.id);
-			return true;
-		}
-	}
-	return  false;
-}
-exports.addInterestToPlusser = addInterestToPlusser;*/
-
-
 function newId(arr){
 	var id = 1;
 	var check = true; // <-- zorgt dat hij de while altijd 1 keer uitvoerd
@@ -219,6 +158,8 @@ function getArr(type){
 		case "plussers": return database.plussers; break;
 		case "groups": return database.groups; break;
 		case "interests": return database.interests; break;
+		case "videos": return database.videos; break;
+		case "images": return database.images; break;
 		default: return false;
 	}	
 }
@@ -242,4 +183,13 @@ function hasId(arr,id){
 		}
 		return false;
 	}
+}
+
+function randomKey(obj) {
+    var result;
+    var count = 0;
+    for (var prop in obj)
+        if (Math.random() < 1/++count)
+           result = prop;
+    return result;
 }

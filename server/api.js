@@ -25,11 +25,11 @@ this.init = function(args){
 				res.json(data.get('groups',req.params.id));
 			}else{
 				res.statusCode = 400;
-	    		return res.send('Error 400: No plusser or group found with that ID.');				
+	    	return res.send('Error 400: No plusser or group found with that ID.');				
 			}
 		}else{
 			res.statusCode = 400;
-    		return res.send('Error 400: json syntax incorrect.');
+    	return res.send('Error 400: json syntax incorrect.');
 		}
 	});	
 	app.post('/plussers/:id', function(req, res) {
@@ -66,49 +66,14 @@ this.init = function(args){
 	app.get('/:type/:id/:item', function(req, res){
 		res.json(data.get(req.params.type, req.params.id, req.params.item));
 	}); 
+	
+	app.get('/:type/random/amount', function(req, res){
+		res.json(data.get(req.params.type,'random',req.params.amount));
+	}); 
 
 	app.put('/:type/:id', function(req, res){
 		res.json(data.modify(req.params.type, req.params.id, res.body));
 	});
-
-	/* PLUSSERS */
-/*	app.get('/plussers', function(req, res) {
-		res.json(data.get('plusser'));
-	});
-	app.post('/plussers', function(req, res) {
-		var plusser = new Plusser(req.body);
-		res.json(data.addPlusser(plusser));
-	});
-	app.get('/plussers/:id', function(req, res) {
-		res.json(data.get('plusser',req.params.id));
-	});
-*/
-	/* GROUPS */
-/*	app.get('/groups', function(req, res) {
-		res.json(data.get('group'));
-	});*/
-/*	app.post('/groups', function(req, res) {
-		var group = new Group(req.body.group,req.body.owners);
-		data.addGroup(group);
-		res.json(group);
-	});*/
-
-/*	app.get('/groups/:id', function(req, res) {
-		res.json(data.get('group',req.params.id));
-	});*/
-
-	/* INTERESTS */
-/*	app.get('/interests', function(req, res) {
-		res.json(data.get('interest'));
-	});
-	app.post('/interests', function(req, res) {
-		var interest = new Interest(req.body);
-		res.json(data.addInterest(interest));
-	});
-
-	app.get('/plussers/:id', function(req, res) {
-		res.json(data.get('interest',req.params.id));
-	});*/
 }
 
 function isJson(str) {
