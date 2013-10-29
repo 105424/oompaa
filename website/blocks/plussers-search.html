@@ -1,28 +1,31 @@
-<div class="plussers-search">
-  <button id="btn-search">Search</button> <input></input>
+<div class="plussers-search block">
+  <div class="search">
+    <button id="btn-search">Zoeken</button> 
+    <input id="inp-search" placeholder="typ hier"></input>
+  </div>
   <div id="results"> </div>
 
   <script>
     $("#btn-search").on("click", function(data){
-      getPlussers(60);
+      searchplussers($("#inp-search").val());
     });
 
-    function getPlussers(amount){
+    function searchplussers(term){
+      console.log(term);
       var html = $("#results");
       var html2 = "";
 
       html.fadeOut(function(){
-        $.get( "http://"+SERVER+"/plussers").done(function(data){
-            console.log(data);
+        $.get( "http://"+SERVER+"/plussers/search/"+term).done(function(data){
           var i = 0;
           $.each(data,function(key,plusser){
-
-            if(i >= amount){
-              return
-            }
-
-            html2 += ("<div class='plusser'> <img src='"+plusser.image+"'>"+"<p> name: "+plusser.firstName+" </p></div>");
-            i++;
+            html2 += (
+              "<div class='r-plusser'>"+
+                "<img src='"+plusser.image+"'>"+
+                "<p> "+plusser.firstName+" "+plusser.lastName+" </p>"+
+                "<p> "+plusser.city+" "+plusser.address+" "+plusser.zipcode+"</p>"+
+              "</div>"
+            );
           });
           html.html(html2);
           html.fadeIn();
@@ -32,8 +35,18 @@
   </script>
   
   <style>
-    .plussers-search img{
-        width:50px;
+    .plussers-search{
+      float:left;
+      width:40%;
     }
+
+    .plussers-search img{
+      width:10%;
+    }
+
+    .plussers-search .search{
+      float:right;
+    }
+
   </style>
 </div>
