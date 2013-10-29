@@ -1,0 +1,55 @@
+<div class="plussers-random">
+  <div id="randoms"> </div>
+    <div class="r-plussers">
+    </div>
+  <script>
+
+    getRandom(10);
+
+    function getRandom(amount){
+      var html = $("#randoms");
+      var html2 = "";
+
+      html.fadeOut(function(){
+        $.get( "http://"+SERVER+"/plussers/random/"+amount).done(function(data){
+            console.log(data);
+          var i = 0;
+          $.each(data,function(key,plusser){
+
+            html2 += (
+              "<div class='r-plusser'>"+
+                "<img src='"+plusser.image+"'>"+
+                "<p> "+plusser.firstName+" "+plusser.lastName+" </p>"+
+                "<p> "+plusser.city+"</p>"+
+              "</div>"
+            );
+          });
+          html.html(html2);
+          html.fadeIn();
+        });
+      });
+    }    
+  </script>
+  
+  <style>
+    .plussers-random{
+      width:25%;
+      overflow: auto;
+    }
+    .plussers-random .r-plusser{
+      width: 100%;
+      overflow: auto;
+    }
+    .plussers-random .plusser-info{
+      width:40%;
+      float:right;
+    }
+    .plussers-random .plusser-info p{
+      margin-top: 2px;
+    }
+    .plussers-random img{
+      float:left;
+      width:50%;
+    }
+  </style>
+</div>
