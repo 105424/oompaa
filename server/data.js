@@ -20,7 +20,7 @@ database.interests[1] = firstInterest;
 this.load = function(){
 	/*get users from database*/
 	for (var i = 0; i < 50; i++) {
-		var plusser = add('plussers', new objects.plusser({"firstName":"mark"}));
+		var plusser = add('plussers', new objects.plusser({"firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
 		add('groups', new objects.group({'name':'test'},[plusser.id,lastPlus.id]));
 		lastPlus = plusser;
 
@@ -138,6 +138,32 @@ link = function(obj1, obj2){
 }
 exports.link = link;
 
+search = function(type, args){
+	var arr = getArr(type);
+	var answer = new Object();
+	if (arr){ // all objects
+		for(key in arr){ //every object
+			var obj = arr[key];
+			for(key2 in obj){ //every item of object
+				var item = obj[key2];
+				if(typeof item == 'object'){
+					for (key3 in item){ // every subitem of object
+						if(typeof item[key3] == 'string'){
+							if(containsString(item[key3], args))
+								answer[obj.id] = obj;
+						}
+					}
+				}else if(typeof item == 'string'){
+					if(containsString(item, args))
+						answer[obj.id] = obj;
+				}
+			}
+		}
+	}
+	return answer
+}
+exports.search = search;
+
 function newId(arr){
 	var id = 1;
 	var check = true; // <-- zorgt dat hij de while altijd 1 keer uitvoerd
@@ -192,4 +218,9 @@ function randomKey(obj) {
         if (Math.random() < 1/++count)
            result = prop;
     return result;
+}
+
+function containsString(string,toContain){
+	if(string.toLowerCase().indexOf(toContain.toLowerCase()) !== -1) return true;
+	return false;
 }

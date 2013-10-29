@@ -19,4 +19,8 @@ this.Plusser = function(args){
 
 	try { this.firstName = args.firstName; } catch(err){ }
 	try { this.lastName = args.lastName;  } catch(err){ }
+
+  try { this.address = args.address; } catch(err){ }
+  try { this.city = args.city;  } catch(err){ }
+  try { this.zipcode = args.zipcode;  } catch(err){ }
 }

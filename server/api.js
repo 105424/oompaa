@@ -63,13 +63,18 @@ this.init = function(args){
 		res.json(data.get(req.params.type, req.params.id));
 	}); 
 
-	app.get('/:type/:id/:item', function(req, res){
-		res.json(data.get(req.params.type, req.params.id, req.params.item));
-	}); 
-	
 	app.get('/:type/random/amount', function(req, res){
 		res.json(data.get(req.params.type,'random',req.params.amount));
 	}); 
+
+	app.get('/:type/search/:term', function(req, res){
+		res.json(data.search(req.params.type,req.params.term));
+	}); 
+
+	app.get('/:type/:id/:item', function(req, res){
+		res.json(data.get(req.params.type, req.params.id, req.params.item));
+	}); 
+
 
 	app.put('/:type/:id', function(req, res){
 		res.json(data.modify(req.params.type, req.params.id, res.body));
