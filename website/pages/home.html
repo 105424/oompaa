@@ -1,8 +1,17 @@
 <div id="home" class="container page">
-  <script>
-    include("blocks/home-info","#home")
-    include("blocks/home-login","#home")
-  </script>
+  
+  <div id="left">
+    <script>
+      include("blocks/home-info","#left");
+      include("blocks/home-login","#left");
+    </script>    
+  </div>
+  
+  <div id="right"> <!-- Only 1 can be right :p -->
+    <script>
+      include("blocks/home-register","#right");
+    </script>
+  </div>
 
   <style>
 
@@ -10,6 +19,27 @@
       padding-top:5%;
       width:80%;
       margin:5px auto;
+    }
+
+    #left{
+      float:left;
+      width:50%;
+      padding:0px;
+      margin:0px;
+    }
+    #right{
+      float:right;
+      width:50%;
+      padding:0px;
+      margin:0px;
+    }
+
+    #home-info{
+      width:80%;
+    }
+
+    #home-register{
+      width:100%;
     }
 
 /*    #content{

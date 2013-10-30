@@ -1,0 +1,42 @@
+<div id="form-register-plusser" class="block" >
+  <div>
+    <h3>Register</h3>
+    <div class="form">
+      <labeL> Voornaam: </label><input type="text" class="firstName"></input> </br>
+      <labeL> Achternaam: </label><input type="text" class="lastName"></input> </br>    
+      <labeL> Geboortdatum: </label><input type="date" class="dop"></input></br>
+      <labeL> Foto: </label><input type="url" class="image"></input></br>
+      <labeL> Adres: </label><input class="address"></input>      </br>
+      <labeL> Postcode: </label><input class="zipcode"></input></br>
+      <labeL> Stad: </label><input class="city"></input>      </br>
+      <labeL> Bio: </label><textarea type="textarea" class="bio"></textarea></br>
+      <button class="btn-register">Register</button>
+    </div>
+  </div>
+
+  <style>
+    .form label{
+      width:100px;
+      float:left;
+    }
+    .form input{
+      max-width:40%;
+    }
+  </style> 
+
+  <script>
+    if(PARAMS != undefined){
+      $(".firstName").val(PARAMS.firstName);
+      $(".lastName").val(PARAMS.lastName);
+    }
+
+    $(".btn-register").on("click",function(){
+
+      var plusser = parseForm($(".form"));
+      console.log(plusser);
+      $.post("http://"+SERVER+"/plussers",plusser).done(function(data){
+        console.log(data);
+      });
+    });
+  </script>
+</div>

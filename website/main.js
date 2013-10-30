@@ -88,3 +88,13 @@ function logOut(){
 
 	navToPage("home");
 }
+
+// Puts all input fields values into a object with the input class as data
+function parseForm(data){
+	var answer = new Object();
+	data = $(data); // Just in case;
+	data.find('input').each(function(key, value){
+		answer[$(value).attr("class")] = $(value).val();
+	});
+	return answer;
+}

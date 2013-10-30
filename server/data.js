@@ -111,7 +111,7 @@ add = function(type,obj){
 				plusser.interests.push(obj.id);
 			}			
 		}		
-
+		//console.log(obj);
 		arr[obj.id] = obj;
 		return obj;
 	}

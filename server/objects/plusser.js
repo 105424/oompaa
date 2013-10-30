@@ -13,7 +13,7 @@ this.Plusser = function(args){
 
   this.bio = "";
 
-  this.image = "http://static.zoom.nl/33D3217CB8BE6DE8741AA78FB645AC36-de-opa-.jpg";
+  this.image = "";
 
 	this.interests = new Array(); 
 	this.groups = new Array();
@@ -28,5 +28,7 @@ this.Plusser = function(args){
   try { this.zipcode = args.zipcode;  } catch(err){ }
 
   try { this.bio = args.bio;  } catch(err){ }
+
+  try { this.image = args.image;  } catch(err){ }
 
 }

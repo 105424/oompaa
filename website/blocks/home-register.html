@@ -1,0 +1,20 @@
+<div id="home-register" class="block">
+  <div>
+    <h3>Register</h3>
+    <div class="form">
+      Voornaam: <input class="firstName"></input> </br>
+      Achternaam: <input class="lastName"></input>
+      <button class="btn-reg">Register</button>
+    </div>
+  </div>
+
+  <script>
+    $(".btn-reg").on("click",function(){
+      navToPage("register",{"firstName":$(".firstName").val(),"lastName":$(".lastName").val()});
+    });
+  </script>
+
+  <style>
+
+  </style>
+</div>

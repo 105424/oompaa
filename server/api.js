@@ -55,7 +55,7 @@ this.init = function(args){
 	}); 
 	
 	app.post('/:type', function(req, res){
-		var thingy = new objects[req.params.type](res.body);
+		var thingy = new objects[req.params.type](req.body);
 		res.json(data.add(req.params.type, thingy));
 	});
 
