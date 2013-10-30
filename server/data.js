@@ -19,9 +19,9 @@ database.interests[1] = firstInterest;
 
 this.load = function(){
 	/*get users from database*/
-	for (var i = 0; i < 50; i++) {
+	for (var i = 0; i < 10; i++) {
 		var plusser = add('plussers', new objects.plusser({"firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
-		add('groups', new objects.group({'name':'test'},[plusser.id,lastPlus.id]));
+		add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content"},[plusser.id,lastPlus.id]));
 		lastPlus = plusser;
 
 		add('interests', new objects.interest({"name":"TestInterest","description":"This interest was created for testing only."},[plusser.id]));

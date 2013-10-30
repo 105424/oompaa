@@ -8,7 +8,8 @@ this.Plusser = function(args){
   this.address = "";
   this.city = "";
   this.zipcode = "";
-
+  
+  this.bio = "";
 
   this.image = "http://static.zoom.nl/33D3217CB8BE6DE8741AA78FB645AC36-de-opa-.jpg";
 
@@ -23,4 +24,7 @@ this.Plusser = function(args){
   try { this.address = args.address; } catch(err){ }
   try { this.city = args.city;  } catch(err){ }
   try { this.zipcode = args.zipcode;  } catch(err){ }
+
+  try { this.bio = args.bio;  } catch(err){ }
+
 }
