@@ -1,11 +1,18 @@
 <div id="info-menu">
     <div>
-      <span> Logged in as <u>demo</u> </span>
+      <span id="info-logIn"></span>
       |
-      <button> Uitloggen </button>
+      <button id="btn-info"> </button>
     </div>
 
-
+    <script>
+      $("#info-logIn").on("click",function(){
+        navToPage("profile");
+      });
+      $("#btn-info").on("click",function(){
+        logOut();
+      });
+    </script>
     <style>
       #info-menu{
         float:right;

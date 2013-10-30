@@ -3,7 +3,7 @@
 var SERVER = "localhost:2001";
 var FIRSTPAGE = "home";
 var PLUSSER;
-
+var PARAMS; // Parameters object pased to  next page
 //console.log = function(){}; //Turns of console.log();
 
 $(document).ready(function(){
@@ -20,11 +20,8 @@ $(document).ready(function(){
 
 });
 
-function navToPage(page){
-	if(PLUSSER > 0){
-		if(page == "home")
-			page = "profile";
-	}
+function navToPage(page, params){
+	PARAMS = params;
 
 	$('.page').fadeOut(function(){
 		$('.page').remove();
@@ -72,4 +69,22 @@ function include(file,inTo,shouldReturn,async){
 		}
 	});
 	if(shouldReturn) return answer;
+}
+
+function logIn(id){
+	PLUSSER = 1;
+	$.get("http://"+SERVER+"/plussers/"+PLUSSER+"/firstName", function(data){
+		$("#info-logIn").html("Logged in as <u>"+data+"</u>");
+		$("#btn-info").html("Uitloggen");
+	});
+	navToPage("profile");
+}
+
+function logOut(){
+	PLUSSER = 0;
+
+	$("#info-logIn").html("");
+	$("#btn-info").html("");
+
+	navToPage("home");
 }

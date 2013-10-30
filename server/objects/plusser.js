@@ -9,6 +9,8 @@ this.Plusser = function(args){
   this.city = "";
   this.zipcode = "";
   
+  this.dob = "";
+
   this.bio = "";
 
   this.image = "http://static.zoom.nl/33D3217CB8BE6DE8741AA78FB645AC36-de-opa-.jpg";

@@ -9,6 +9,10 @@
     $("#btn-search").on("click", function(data){
       searchplussers($("#inp-search").val());
     });
+    $("#inp-search").on("input",function(data){
+      //console.log("test";)
+      searchplussers($("#inp-search").val());
+    });
 
     function searchplussers(term){
       console.log(term);

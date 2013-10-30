@@ -1,0 +1,62 @@
+<div id="plussers-detail" class="container page">
+  <h1>title</h1>
+    <section class="detail-info">
+        <p>
+            <img class="image" width="150px" src="" />
+        </p>
+        <table>
+            <tr>
+                <td>Adres:</td>
+                <td class="address"></td>
+            </tr>
+            <tr>
+                <td>Woonplaats:</td>
+                <td class="city"></td>
+            </tr>
+            <tr>
+                <td>Geboortedatum:</td>
+                <td class="dob"></td>
+            </tr>
+            <tr>
+                <td>Bio:</td>
+                <td class="bio"></td>
+            </tr>
+            <tr>
+                <td>Vaardigheden:</td>
+                <td class="skills"></td>
+            </tr>
+            <tr>
+                <td>Groep(en):</td>
+                <td class="groups"></td>
+            </tr>
+        </table>
+    </section>
+
+  <script>
+    if(PARAMS != undefined){
+      var id = PARAMS.id;
+      var plussers;
+      $.get( "http://"+SERVER+"/plussers/"+id).done(function(data){
+          plusser = data;
+          $("#plussers-detail h1").html(plusser.firstName +" "+ plusser.lastName );
+          $(".detail-info .address").html(plusser.address);
+          $(".detail-info .city").html(plusser.city);
+          $(".detail-info .dob").html(plusser.dob);
+          $(".detail-info .bio").html(plusser.bio);
+          
+          $(".detail-info .image").attr('src',plusser.image);
+
+
+      }); 
+    }
+  </script>
+  <style>
+    .container{
+      width:90%;
+    }
+    #plussers h1{
+      width:100px;
+      margin:auto;
+    }   
+  </style>
+</div>
