@@ -1,6 +1,6 @@
 // globals (Allways uppercase)
-//var SERVER = "thomassio.nl:2001";
-var SERVER = "localhost:2001";
+var SERVER = "thomassio.nl:2001";
+//var SERVER = "localhost:2001";
 var FIRSTPAGE = "home";
 var PLUSSER;
 var PARAMS; // Parameters object pased to  next page

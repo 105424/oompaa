@@ -20,13 +20,9 @@ database.interests[1] = firstInterest;
 this.load = function(){
 	/*get users from database*/
 	for (var i = 0; i < 10; i++) {
-<<<<<<< HEAD
-		var plusser = add('plussers', new objects.plusser({"firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
-		add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'img':'http://static1.volkskrant.nl/static/photo/2012/17/6/2/20121009110943/media_xl_1382837.jpg'},[plusser.id,lastPlus.id]));
-=======
 		var plusser = add('plussers', new objects.plusser({"dob":"06-04-1923","firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
-		add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content"},[plusser.id,lastPlus.id]));
->>>>>>> 01ae4919003df439ab93c1fc8502d0f8409f5cff
+		add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'img':'http://static1.volkskrant.nl/static/photo/2012/17/6/2/20121009110943/media_xl_1382837.jpg'},[plusser.id,lastPlus.id]));
+
 		lastPlus = plusser;
 
 		add('interests', new objects.interest({"name":"TestInterest","description":"This interest was created for testing only."},[plusser.id]));
