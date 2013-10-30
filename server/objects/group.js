@@ -7,7 +7,7 @@ this.Group = function(args,owners){;
 	
 	this.location;
 
-	this.img = "";
+	this.image = "";
 	this.video = "";
 
 	this.plussers = new Array();

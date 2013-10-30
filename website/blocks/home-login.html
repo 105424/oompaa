@@ -1,7 +1,7 @@
 <div id="home-login" class="block">
   <h3> Login  </h3>
   <labeL> Name</label> <input placeholder="name"> </input> </br>
-  <labeL> Wachtwoord</label> <input placeholder="wachtwoord"> </input> </br>
+  <labeL> Wachtwoord</label> <input type="password" placeholder="wachtwoord"> </input> </br>
   <button id ="btn-login"> Login </button>
 
   <style>
@@ -13,8 +13,7 @@
 
   <script>
     $("#btn-login").on("click",function(data){
-      PLUSSER = 1;
-      navToPage("home");
+      logIn(1);
     });
   </script>
 </div>

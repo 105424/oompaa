@@ -12,23 +12,28 @@
 
       html.fadeOut(function(){
         $.get( "http://"+SERVER+"/plussers/random/"+amount).done(function(data){
-            console.log(data);
           var i = 0;
           $.each(data,function(key,plusser){
 
             html2 += (
-              "<div class='r-plusser'>"+
+              "<div class='r-plusser' id='"+plusser.id+"'>"+
                 "<img src='"+plusser.image+"'>"+
                 "<p> "+plusser.firstName+" "+plusser.lastName+" </p>"+
                 "<p> "+plusser.city+"</p>"+
               "</div>"
             );
           });
+
           html.html(html2);
           html.fadeIn();
         });
       });
     }    
+
+    $("#randoms").on("click", 'img',function(target){
+      navToPage("plusser-detail",{"id":$(this).parent().attr("id")});
+    });
+
   </script>
   
   <style>

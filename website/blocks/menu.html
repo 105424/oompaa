@@ -38,7 +38,12 @@
   </style>
   <script>
     $(".menu ul li").click(function(data){
-        navToPage($(data.target).attr("link"));
+      page = $(data.target).attr("link")
+      if(PLUSSER > 0){
+        if(page == "home")
+          page = "profile";
+      }
+      navToPage(page);
     });
   </script>
 </div>
