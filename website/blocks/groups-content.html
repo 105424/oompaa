@@ -1,0 +1,51 @@
+<div class="groups-search block">
+  <div class="search">
+    <button id="btn-search">Zoeken</button> 
+    <input id="inp-search" placeholder="typ hier"></input>
+  </div>
+  <div id="results"> </div>
+
+  <script>
+    $("#btn-search").on("click", function(data){
+      searchgroupss($("#inp-search").val());
+    });
+
+    function searchgroupss(term){
+      console.log(term);
+      var html = $("#results");
+      var html2 = "";
+
+      html.fadeOut(function(){
+        $.get( "http://"+SERVER+"/groups/search/"+term).done(function(data){
+          var i = 0;
+          $.each(data,function(key,groups){
+            html2 += (
+              "<div class='r-groups'>"+
+                "<img src='"+groups.img+"'>"+
+                "<p> "+groups.description+"</p>"+
+              "</div>"
+            );
+          });
+          html.html(html2);
+          html.fadeIn();
+        });
+      });
+    }    
+  </script>
+  
+  <style>
+    .groups-search{
+      float:left;
+      width:40%;
+    }
+
+    .groups-search img{
+      width:10%;
+    }
+
+    .groups-search .search{
+      float:right;
+    }
+
+  </style>
+</div>
