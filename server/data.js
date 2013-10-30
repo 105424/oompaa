@@ -20,7 +20,7 @@ database.interests[1] = firstInterest;
 this.load = function(){
 	/*get users from database*/
 	for (var i = 0; i < 10; i++) {
-		var plusser = add('plussers', new objects.plusser({"firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
+		var plusser = add('plussers', new objects.plusser({"dob":"06-04-1923","firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
 		add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content"},[plusser.id,lastPlus.id]));
 		lastPlus = plusser;
 
