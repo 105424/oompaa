@@ -1,7 +1,8 @@
 <div id="home-login" class="block">
   <h3> Login  </h3>
-  <labeL> Name</label> <input placeholder="name"> </input> </br>
-  <labeL> Wachtwoord</label> <input type="password" placeholder="wachtwoord"> </input> </br>
+  <labeL> Voornaam</label> <input class="firstName" placeholder="voornaam"> </input>
+  <labeL> Achternaam</label> <input class="lastname" placeholder="achternaam"> </input> </br>
+  <labeL> Wachtwoord</label> <input class="password" type="password" placeholder="wachtwoord"> </input> </br>
   <button id ="btn-login"> Login </button>
 
   <style>
@@ -10,7 +11,19 @@
 
   <script>
     $("#btn-login").on("click",function(data){
-      logIn(1);
+      var data = new Object();
+
+      data.firstName = $(".firstName").val();
+      data.lastName = $(".lastname").val();
+      data.password = $(".password").val();
+
+      console.log(data);
+
+      $.post(SERVER+"/logIn",data,function(data){
+        logIn(data,true);
+      }).fail(function(err){
+        console.log(err.responseText);
+      });
     });
   </script>
 </div>

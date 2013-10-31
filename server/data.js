@@ -139,7 +139,7 @@ link = function(obj1, obj2){
 }
 exports.link = link;
 
-search = function(type, args){
+search = function(type, term, target){
 	var arr = getArr(type);
 	var answer = new Object();
 	if (arr){ // all objects
@@ -147,15 +147,21 @@ search = function(type, args){
 			var obj = arr[key];
 			for(key2 in obj){ //every item of object
 				var item = obj[key2];
+				
+				if(target){
+					if(key2 != target)
+						item = null;
+				}
+
 				if(typeof item == 'object'){
 					for (key3 in item){ // every subitem of object
 						if(typeof item[key3] == 'string'){
-							if(containsString(item[key3], args))
+							if(containsString(item[key3], term))
 								answer[obj.id] = obj;
 						}
 					}
 				}else if(typeof item == 'string'){
-					if(containsString(item, args))
+					if(containsString(item, term))
 						answer[obj.id] = obj;
 				}
 			}

@@ -1,6 +1,6 @@
 // globals (Allways uppercase)
-var SERVER = "thomassio.nl:2001";
-//var SERVER = "localhost:2001";
+//var SERVER = "http://thomassio.nl:2001";
+var SERVER = "http://localhost:2001";
 var FIRSTPAGE = "home";
 var PLUSSER;
 var PARAMS; // Parameters object pased to  next page
@@ -71,13 +71,14 @@ function include(file,inTo,shouldReturn,async){
 	if(shouldReturn) return answer;
 }
 
-function logIn(id){
-	PLUSSER = 1;
-	$.get("http://"+SERVER+"/plussers/"+PLUSSER+"/firstName", function(data){
+function logIn(id,shouldNav){
+	PLUSSER = id;
+	$.get(SERVER+"/plussers/"+PLUSSER+"/firstName", function(data){
 		$("#info-logIn").html("Logged in as <u>"+data+"</u>");
 		$("#btn-info").html("Uitloggen");
 	});
-	navToPage("profile");
+
+	if(shouldNav) navToPage("profile");
 }
 
 function logOut(){
@@ -93,7 +94,7 @@ function logOut(){
 function parseForm(data){
 	var answer = new Object();
 	data = $(data); // Just in case;
-	data.find('input').each(function(key, value){
+	data.find('input, textarea').each(function(key, value){
 		answer[$(value).attr("class")] = $(value).val();
 	});
 	return answer;

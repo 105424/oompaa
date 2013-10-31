@@ -1,16 +1,29 @@
 <div id="form-register-plusser" class="block" >
   <div>
     <h3>Register</h3>
-    <div class="form">
+    <div class="form" id="form1">
       <labeL> Voornaam: </label><input type="text" class="firstName"></input> </br>
       <labeL> Achternaam: </label><input type="text" class="lastName"></input> </br>    
-      <labeL> Geboortdatum: </label><input type="date" class="dop"></input></br>
+      <labeL> Geboortdatum: </label><input type="date" class="dayOfBirth"></input></br>
       <labeL> Foto: </label><input type="url" class="image"></input></br>
       <labeL> Adres: </label><input class="address"></input>      </br>
       <labeL> Postcode: </label><input class="zipcode"></input></br>
       <labeL> Stad: </label><input class="city"></input>      </br>
+      <button class="btn-register">Aanmelden</button>
+    </div>
+    <div class="form" id="form2">
+      <p>Welcome <b><span class="name"></span> </b> Schrijf hier wat informatie over jezelf zodat andere mensen wie je bent</p>
       <labeL> Bio: </label><textarea type="textarea" class="bio"></textarea></br>
-      <button class="btn-register">Register</button>
+      <button class="btn-register2">Verstuur</button>
+    </div>
+    <div class="form" id="form3">
+      <p>Welcome <b><span class="name"></span> </b> vul hier een wachtwoord in zodat u de volgende keer weer kan inloggen</p>
+      <labeL>Password: </labeL> <input type="password" class="password"> </input>
+      <button class="btn-register3">Verstuur</button>
+    </div>
+    <div class="confirmation">
+      <p>Gefeliciteerd. Je hebt je net geregistreed voor OOMPAA. De volgende keer dat je de website bezoek kan je inloggen met je naam en wachtwoord</p>
+      <button class="toProfile">Bekijk je profile</button>
     </div>
   </div>
 
@@ -25,18 +38,46 @@
   </style> 
 
   <script>
+    var plusser;
+
+    $('#form2').hide();
+    $('#form3').hide();
+    $('.confirmation').hide();
+
     if(PARAMS != undefined){
       $(".firstName").val(PARAMS.firstName);
       $(".lastName").val(PARAMS.lastName);
     }
 
     $(".btn-register").on("click",function(){
-
-      var plusser = parseForm($(".form"));
-      console.log(plusser);
-      $.post("http://"+SERVER+"/plussers",plusser).done(function(data){
-        console.log(data);
+      plusser = parseForm($("#form1"));
+      
+      $("#form1").fadeOut(function(){
+        $(".name").html(plusser.firstName+" "+plusser.lastName);
+        $("#form2").fadeIn();
       });
+    });
+
+    $(".btn-register2").on("click",function(){
+      plusser.bio = $(".bio").val();
+      
+      $("#form2").fadeOut(function(){
+        $("#form3").fadeIn();
+      });
+    });    
+
+    $(".btn-register3").on("click",function(){
+      plusser.password = $(".password").val();
+      $.post(SERVER+"/plussers",plusser).done(function(data){
+        logIn(plusser.id,false);
+        $("#form3").fadeOut(function(){
+          $(".confirmation").fadeIn();
+        })
+      });
+    });
+
+    $(".toProfile").on("click",function(){
+      navToPage("profile");
     });
   </script>
 </div>

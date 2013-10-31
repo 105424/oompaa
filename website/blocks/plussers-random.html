@@ -11,7 +11,7 @@
       var html2 = "";
 
       html.fadeOut(function(){
-        $.get( "http://"+SERVER+"/plussers/random/"+amount).done(function(data){
+        $.get( SERVER+"/plussers/random/"+amount).done(function(data){
           var i = 0;
           $.each(data,function(key,plusser){
 

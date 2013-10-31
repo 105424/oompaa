@@ -20,7 +20,7 @@
       var html2 = "";
 
       html.fadeOut(function(){
-        $.get( "http://"+SERVER+"/plussers/search/"+term).done(function(data){
+        $.get( SERVER+"/plussers/search/"+term).done(function(data){
           var i = 0;
           $.each(data,function(key,plusser){
             html2 += (

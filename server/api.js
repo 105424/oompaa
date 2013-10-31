@@ -19,6 +19,23 @@ this.init = function(args){
 		next();
 	});
 
+
+	app.post("/logIn", function(req,res){
+		if(req.body.hasOwnProperty('firstName') && req.body.hasOwnProperty('lastName') && req.body.hasOwnProperty('password')){
+			//TODO: Add check to see if they are empty 
+			var possibles = data.search("plussers",req.body.firstName,"firstName");
+			for(key in possibles){
+				if(possibles[key].lastName == req.body.lastName && possibles[key].password == req.body.password){
+					res.json(possibles[key].id);
+				}
+			}
+			res.statusCode = 400;			
+		//	return res.send("Error 400: Bad login");
+		}
+		res.statusCode = 400;
+		return res.send("Error 400: Syntax error");
+	});
+
 	app.post('/groups/:id', function(req, res) {
 		if(req.body.hasOwnProperty('plussers')){
 			if(data.link(data.get('groups',req.params.id),data.get('plussers',req.body.plussers))){
@@ -74,7 +91,6 @@ this.init = function(args){
 	app.get('/:type/:id/:item', function(req, res){
 		res.json(data.get(req.params.type, req.params.id, req.params.item));
 	}); 
-
 
 	app.put('/:type/:id', function(req, res){
 		res.json(data.modify(req.params.type, req.params.id, res.body));

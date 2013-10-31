@@ -36,17 +36,15 @@
     if(PARAMS != undefined){
       var id = PARAMS.id;
       var plussers;
-      $.get( "http://"+SERVER+"/plussers/"+id).done(function(data){
+      $.get( SERVER+"/plussers/"+id).done(function(data){
           plusser = data;
           $("#plussers-detail h1").html(plusser.firstName +" "+ plusser.lastName );
           $(".detail-info .address").html(plusser.address);
           $(".detail-info .city").html(plusser.city);
-          $(".detail-info .dob").html(plusser.dob);
+          $(".detail-info .dayOfBirth").html(plusser.dayOfBirth);
           $(".detail-info .bio").html(plusser.bio);
           
           $(".detail-info .image").attr('src',plusser.image);
-
-
       }); 
     }
   </script>
