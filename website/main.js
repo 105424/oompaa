@@ -1,23 +1,13 @@
 // globals (Allways uppercase)
-//var SERVER = "http://thomassio.nl:2001";
-var SERVER = "http://localhost:2001";
+var SERVER = "http://thomassio.nl:2001";
+//var SERVER = "http://localhost:2001";
 var FIRSTPAGE = "home";
 var PLUSSER;
 var PARAMS; // Parameters object pased to  next page
 //console.log = function(){}; //Turns of console.log();
 
 $(document).ready(function(){
-
-	include("header/header", "body");
-
-	$('body').append("<div id='content'></div>")
-	
-	include("blocks/menu", "#content");
-	
-	include("pages/"+FIRSTPAGE,"#content");
-
-	include("footer/footer", "body");	
-
+	init('body');
 });
 
 function navToPage(page, params){
@@ -45,6 +35,11 @@ function navToPage(page, params){
 			$('.page').fadeIn('slow');
 	});*/
 }
+  
+function replace(file,target,async){
+	var html = include(file,target,true,false)
+	$(target).replaceWith(html);
+}
 
 function include(file,inTo,shouldReturn,async){
 	var answer;
@@ -62,7 +57,6 @@ function include(file,inTo,shouldReturn,async){
 		  }
 			else{
 		  	$(inTo).append(data); // Activates all inputs in div. TODO: Check if this creates loops or shit. Not sure why it wors good here
-		  	//init(inTo);
 			}
 		},
 		error: function(err){
@@ -104,6 +98,6 @@ function parseForm(data){
 // Activates all include fields in the target
 function init(target){
 	$(target).find("include").each(function(key,value){
-    include($(value).attr("src"),value);
+    replace($(value).attr("src"),value);
   });
 }
