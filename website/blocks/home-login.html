@@ -4,6 +4,7 @@
   <labeL> Achternaam</label> <input class="lastname" placeholder="achternaam"> </input> </br>
   <labeL> Wachtwoord</label> <input class="password" type="password" placeholder="wachtwoord"> </input> </br>
   <button id ="btn-login"> Login </button>
+  <p class="feedback"> </p>
 
   <style>
 
@@ -17,12 +18,13 @@
       data.lastName = $(".lastname").val();
       data.password = $(".password").val();
 
-      console.log(data);
-
       $.post(SERVER+"/logIn",data,function(data){
         logIn(data,true);
       }).fail(function(err){
-        console.log(err.responseText);
+        $(".feedback").fadeOut("fast",function(){
+          $(".feedback").html("Deze inlog gegevens staan niet in ons systeem. Probeer het opnieuw");
+          $(".feedback").fadeIn("slow");
+        });
       });
     });
   </script>

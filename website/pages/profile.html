@@ -1,5 +1,6 @@
-<div class="container page">
+<div id="profile" class="container page">
     <section class="detail-info">
+        <h1></h1>
         <p>
             <img class="image" width="150px" src="" />
         </p>
@@ -20,24 +21,17 @@
                 <td>Bio:</td>
                 <td class="bio"></td>
             </tr>
-            <tr>
-                <td>Vaardigheden:</td>
-                <td class="skills"></td>
-            </tr>
-            <tr>
-                <td>Groep(en):</td>
-                <td class="groups"></td>
-            </tr>
         </table>
     </section>
 
   <script>
-    if(PARAMS != undefined){
+    if(PLUSSER > 0){
       var id = PLUSSER;
       var plussers;
       $.get( SERVER+"/plussers/"+id).done(function(data){
           plusser = data;
-          $("#plussers-detail h1").html(plusser.firstName +" "+ plusser.lastName );
+
+          $("#profile h1").html(plusser.firstName +" "+ plusser.lastName );
           $(".detail-info .address").html(plusser.address);
           $(".detail-info .city").html(plusser.city);
           $(".detail-info .dayOfBirth").html(plusser.dayOfBirth);
