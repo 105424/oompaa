@@ -45,6 +45,7 @@
     $('.confirmation').hide();
 
     if(PARAMS != undefined){
+      console.log(PARAMS);
       $(".firstName").val(PARAMS.firstName);
       $(".lastName").val(PARAMS.lastName);
     }
@@ -69,7 +70,7 @@
     $(".btn-register3").on("click",function(){
       plusser.password = $(".password").val();
       $.post(SERVER+"/plussers",plusser).done(function(data){
-        logIn(plusser.id,false);
+        logIn(data.id,false);
         $("#form3").fadeOut(function(){
           $(".confirmation").fadeIn();
         })

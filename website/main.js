@@ -61,7 +61,8 @@ function include(file,inTo,shouldReturn,async){
 		  	answer = data;
 		  }
 			else{
-		  	$(inTo).append(data);
+		  	$(inTo).append(data); // Activates all inputs in div. TODO: Check if this creates loops or shit. Not sure why it wors good here
+		  	//init(inTo);
 			}
 		},
 		error: function(err){
@@ -98,4 +99,11 @@ function parseForm(data){
 		answer[$(value).attr("class")] = $(value).val();
 	});
 	return answer;
+}
+
+// Activates all include fields in the target
+function init(target){
+	$(target).find("include").each(function(key,value){
+    include($(value).attr("src"),value);
+  });
 }

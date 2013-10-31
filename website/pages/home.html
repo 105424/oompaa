@@ -1,22 +1,23 @@
 <div id="home" class="container page">
   
+  <include src="blocks/home-info" />
+  
   <div id="left">
-    <script>
-      include("blocks/home-info","#left");
-      include("blocks/home-login","#left");
-    </script>    
+    <include src="blocks/home-login" />
   </div>
   
   <div id="right"> <!-- Only 1 can be right :p -->
-    <script>
-      include("blocks/home-register","#right");
-    </script>
+    <include src="blocks/home-register" />
+  </div>
+
+  <div id="bottom">
+    <include src="blocks/home-info-big" />
   </div>
 
   <style>
 
     #home{
-      padding-top:5%;
+      padding-top:10px;
       width:80%;
       margin:5px auto;
     }
@@ -27,6 +28,7 @@
       padding:0px;
       margin:0px;
     }
+
     #right{
       float:right;
       width:50%;
@@ -35,10 +37,26 @@
     }
 
     #home-info{
-      width:80%;
+      width:100%;
+      margin:auto;
+      text-align: center;
+    }
+    #home-info-big{
+      width:100%;
+      margin:auto;
+      text-align: center;
     }
 
     #home-register{
+      width:100%;
+      margin-top:;
+    }
+    #home-login{
+      width:50%;
+    }
+
+    #bottom{
+      float:left;
       width:100%;
     }
 
@@ -46,7 +64,10 @@
       background-image: url('http://t0.gstatic.com/images?q=tbn:ANd9GcQ_QmuI7FxZ8sahkKQhnOxP7JrqRcMvRawM3DUKdSpoHVEX7pAhXw');
       background-repeat:no-repeat;
       background-size: 100% 100%;
-    }*/
+    } */
   </style>
 
+  <script>
+    init("#home");
+  </script>
 </div>
