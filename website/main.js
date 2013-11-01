@@ -101,3 +101,57 @@ function init(target){
     replace($(value).attr("src"),value);
   });
 }
+
+function formInit(form, callback, always){
+  var forms = $(form+" .form");
+  var data = new Object();
+  var showing = 0;
+
+  forms.hide();
+
+  forms.each(function(key,value){
+    forms[key] = $(value);
+    if(key == 0) 
+      $(value).fadeIn();
+
+    $(value).find(".next").on("click",function(target){
+      next();
+    });
+
+    $(value).find(".previous").on("click",function(target){
+      previous();
+    });
+
+  });
+
+  function previous(){
+    navTo(showing-1)
+  }
+
+  function next(){
+    var sub = parseForm(forms[showing]);
+    $.extend(data, sub);
+
+    navTo(showing+1)
+  }
+
+  function navTo(target){
+
+  	if(always != undefined) always(data);
+
+    forms[showing].fadeOut("fast",function(){
+      showing = target;
+      if(showing > (forms.length - 1)){
+        if(callback != undefined){
+          callback(data);
+          return data;
+        }
+        else
+          return data;
+      }
+      else{
+        forms[showing].fadeIn();
+      }
+    });
+  }
+}

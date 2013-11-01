@@ -1,82 +1,93 @@
 <div id="form-register-plusser" class="block" >
   <div>
     <h3>Register</h3>
-    <div class="form" id="form1">
-      <labeL> Voornaam: </label><input type="text" class="firstName"></input> </br>
-      <labeL> Achternaam: </label><input type="text" class="lastName"></input> </br>    
-      <labeL> Geboortdatum: </label><input type="date" class="dayOfBirth"></input></br>
-      <labeL> Foto: </label><input type="url" class="image"></input></br>
-      <labeL> Adres: </label><input class="address"></input>      </br>
-      <labeL> Postcode: </label><input class="zipcode"></input></br>
-      <labeL> Stad: </label><input class="city"></input>      </br>
-      <button class="btn-register">Aanmelden</button>
-    </div>
-    <div class="form" id="form2">
-      <p>Welcome <b><span class="name"></span> </b> Schrijf hier wat informatie over jezelf zodat andere mensen wie je bent</p>
-      <labeL> Bio: </label><textarea type="textarea" class="bio"></textarea></br>
-      <button class="btn-register2">Verstuur</button>
-    </div>
-    <div class="form" id="form3">
-      <p>Welcome <b><span class="name"></span> </b> vul hier een wachtwoord in zodat u de volgende keer weer kan inloggen</p>
-      <labeL>Password: </labeL> <input type="password" class="password"> </input>
-      <button class="btn-register3">Verstuur</button>
-    </div>
-    <div class="confirmation">
-      <p>Gefeliciteerd. Je hebt je net geregistreed voor OOMPAA. De volgende keer dat je de website bezoek kan je inloggen met je naam en wachtwoord</p>
-      <button class="toProfile">Bekijk je profile</button>
+    <div id="forms">
+
+      <div class="form">
+        <p> Vul hier je voledige naam en geboortedatum in </p>
+        <labeL> Voornaam: </label><input type="text" class="firstName"></input> </br>
+        <labeL> Achternaam: </label><input type="text" class="lastName"></input> </br>    
+        <labeL> Geboortdatum: </label><input type="date" class="dayOfBirth"></input></br>
+        <button class="next">Verder</button>
+      </div>
+      
+      <div class="form">
+        <p>Hey <b><span class="name"></span></b> </p>
+        <p>Vul hier je address gegevens in zodat we mensen in jouw buurt kunnen vinden in vise versa</p>
+        <labeL> Adres: </label><input class="address"></input>      </br>
+        <labeL> Postcode: </label><input class="zipcode"></input></br>
+        <labeL> Stad: </label><input class="city"></input>      </br>
+        <button class="previous">Terug</button>
+        <button class="next">Verder</button>
+      </div>
+
+      <div class="form">
+        <p> Voeg een foto toe die een kort beeld geeft van wie jij bent </p>
+        <labeL> Foto: </label><input type="url" class="image"></input></br>
+        <button class="previous">Terug</button>
+        <button class="next">Verder</button>
+      </div>
+
+      <div class="form">
+        <p>Schrijf hier een krote text voer wie je bent en wat jouw kwalitieten zijn</p>
+        <labeL> Bio: </label><textarea type="textarea" class="bio"></textarea></br>
+        <button class="previous">Terug</button>
+        <button class="next">Verder</button>
+      </div>
+      
+      <div class="form">
+        <p>vul als laatste een wachtwoord in zodat u de volgende keer weer kan inloggen</p>
+        <labeL>Password: </labeL> <input type="password" class="password"> </input>
+        <button class="previous">Terug</button>
+        <button class="next">Verzenden</button>
+      </div>
+      
+      <div class="confirmation">
+        <p>Gefeliciteerd. Je hebt je net geregistreed voor OOMPAA. De volgende keer dat je de website bezoek kan je inloggen met je naam en wachtwoord</p>
+        <button class="toProfile">Bekijk je profile</button>
+      </div>
+    
     </div>
   </div>
 
   <style>
+    
     .form label{
       width:100px;
       float:left;
     }
+    
     .form input{
       max-width:40%;
     }
+
+    .bio {
+      width:200px;
+      height:100px;
+    }
+
   </style> 
 
   <script>
-    var plusser;
-
-    $('#form2').hide();
-    $('#form3').hide();
-    $('.confirmation').hide();
 
     if(PARAMS != undefined){
-      console.log(PARAMS);
       $(".firstName").val(PARAMS.firstName);
       $(".lastName").val(PARAMS.lastName);
     }
 
-    $(".btn-register").on("click",function(){
-      plusser = parseForm($("#form1"));
-      
-      $("#form1").fadeOut(function(){
-        $(".name").html(plusser.firstName+" "+plusser.lastName);
-        $("#form2").fadeIn();
+    $(".confirmation").hide();
+
+    formInit("#forms", function(data){
+      $.post(SERVER+"/plussers",data).done(function(response){
+        logIn(response.id,false);
+        $(".confirmation").fadeIn();
       });
+    },function(data){
+      if(data.firstName && data.lastName){
+        $(".name").html(data.firstName+" "+data.lastName);
+      }
     });
-
-    $(".btn-register2").on("click",function(){
-      plusser.bio = $(".bio").val();
-      
-      $("#form2").fadeOut(function(){
-        $("#form3").fadeIn();
-      });
-    });    
-
-    $(".btn-register3").on("click",function(){
-      plusser.password = $(".password").val();
-      $.post(SERVER+"/plussers",plusser).done(function(data){
-        logIn(data.id,false);
-        $("#form3").fadeOut(function(){
-          $(".confirmation").fadeIn();
-        })
-      });
-    });
-
+    
     $(".toProfile").on("click",function(){
       navToPage("profile");
     });
