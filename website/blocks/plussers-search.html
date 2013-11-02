@@ -1,21 +1,26 @@
 <div class="plussers-search block">
   <div class="search">
-    <button id="btn-search">Zoeken</button> 
-    <input id="inp-search" placeholder="typ hier"></input>
+    <div>
+      <button id="btn-search">Zoeken</button> 
+      <input id="inp-search" placeholder="typ hier"> </input>
+    </div>
+    <div id="results"> </div>
   </div>
-  <div id="results"> </div>
+  <div class="detail">
+    <h3>Detail</h3>
+    <div class="info"> </div>
+  </div>
+
 
   <script>
     $("#btn-search").on("click", function(data){
       searchplussers($("#inp-search").val());
     });
     $("#inp-search").on("input",function(data){
-      //console.log("test";)
       searchplussers($("#inp-search").val());
     });
 
     function searchplussers(term){
-      console.log(term);
       var html = $("#results");
       var html2 = "";
 
@@ -24,7 +29,7 @@
           var i = 0;
           $.each(data,function(key,plusser){
             html2 += (
-              "<div class='r-plusser'>"+
+              "<div id='"+plusser.id+"'class='r-plusser'>"+
                 "<img src='"+plusser.image+"'>"+
                 "<p> "+plusser.firstName+" "+plusser.lastName+" </p>"+
                 "<p> "+plusser.city+" "+plusser.address+" "+plusser.zipcode+"</p>"+
@@ -35,21 +40,78 @@
           html.fadeIn();
         });
       });
-    }    
+    }
+
+    $("#results").on("click",".r-plusser",function(data){
+
+      console.log($(this).attr("id"));
+      var id = $(this).attr("id");
+
+
+      var html = $(".detail .info");
+      var html2 = "";
+
+      html.fadeOut(function(){
+        $.get( SERVER+"/plussers/"+id).done(function(data){
+          plusser = data;
+          var i = 0;
+          html2 += (
+            "<div id='"+plusser.id+"'class='d-plusser'>"+
+              "<img src='"+plusser.image+"'>"+
+              "<div class='p-d-info'>"+
+                "<p>"+plusser.firstName+" "+plusser.lastName+" </p>"+
+                "<p>"+plusser.city+" "+plusser.address+" "+plusser.zipcode+"</p>"+
+                "<p>"+plusser.bio+"</p<"+
+              "</div>"+
+            "</div>"
+          );
+          html.html(html2);
+          html.fadeIn();
+        });
+      });
+    });
+
+    $(".plussers-search .detail .info").on("click",".d-plusser",function(data){
+      console.log($(this).attr("id"));
+      navToPage("plusser-detail",{"id":$(this).attr("id")});
+    });
+
   </script>
   
   <style>
-    .plussers-search{
-      float:left;
-      width:40%;
-    }
 
     .plussers-search img{
       width:10%;
     }
 
     .plussers-search .search{
+      width:60%;
+      float:left;
+    }
+
+    .p-s-info{
       float:right;
+    }
+    .r-plusser img{
+      float:left;
+    }
+
+    .plussers-search .detail{
+      position:fixed;
+      right:0px;
+
+      width: 33%;
+    }
+    .plussers-search .detail h3{
+      margin-top:0px;
+    }
+    #inp-search{
+      width: calc(100% - 80px);
+      float: right;
+    }
+    #btn-search{
+      width:75px;
+      float:left;
     }
 
   </style>
