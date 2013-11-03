@@ -31,8 +31,7 @@
             html2 += (
               "<div id='"+plusser.id+"'class='r-plusser'>"+
                 "<img src='"+plusser.image+"'>"+
-                "<p> "+plusser.firstName+" "+plusser.lastName+" </p>"+
-                "<p> "+plusser.city+"</p>"+
+                "<p> "+plusser.firstName+" "+plusser.lastName+" - "+ plusser.city+"</p>"+
                 "<p> "+plusser.motivation+"</p>"+
               "</div>"
             );
@@ -93,8 +92,10 @@
     .p-s-info{
       float:right;
     }
-    .r-plusser img{
+    .plussers-search .r-plusser img{
       float:left;
+      height: 65px;
+      margin-right: 5px;
     }
 
     .plussers-search .detail{
