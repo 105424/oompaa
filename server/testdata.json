@@ -71,7 +71,7 @@
     {
       "name":"Testgroep1",
       "description":"Descripti van test groep 1",
-      "img": "http://static1.volkskrant.nl/static/photo/2012/17/6/2/20121009110943/media_xl_1382837.jpg"
+      "image": "images/1.jpg"
     }
   ],
   "interests": [

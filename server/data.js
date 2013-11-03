@@ -21,7 +21,7 @@ this.load = function(){
 	/*get users from database*/
 	for (var i = 0; i < 10; i++) {
 		var plusser = add('plussers', new objects.plusser({"dob":"06-04-1923","firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
-		add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'img':'http://static1.volkskrant.nl/static/photo/2012/17/6/2/20121009110943/media_xl_1382837.jpg'},[plusser.id,lastPlus.id]));
+		add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'img':'image/1.jpg'},[plusser.id,lastPlus.id]));
 
 		lastPlus = plusser;
 

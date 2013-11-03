@@ -1,50 +1,115 @@
 <div class="groups-search block">
   <div class="search">
-    <button id="btn-search">Zoeken</button> 
-    <input id="inp-search" placeholder="typ hier"></input>
+    <div>
+      <button id="btn-search">Zoeken</button> 
+      <input id="inp-search" placeholder="typ hier"> </input>
+    </div>
+    <div id="results"> </div>
   </div>
-  <div id="results"> </div>
-
+  <div class="detail">
+    <h3>Detail</h3>
+    <div class="info"> </div>
+  </div>
   <script>
     $("#btn-search").on("click", function(data){
       searchgroupss($("#inp-search").val());
     });
+    $("#inp-search").on("input",function(data){
+      searchgroupss($("#inp-search").val());
+    });
 
     function searchgroupss(term){
-      console.log(term);
       var html = $("#results");
       var html2 = "";
 
       html.fadeOut(function(){
-        $.get( "http://"+SERVER+"/groups/search/"+term).done(function(data){
+        $.get( SERVER+"/groups/search/"+term).done(function(data){
           var i = 0;
           $.each(data,function(key,groups){
             html2 += (
-              "<div class='r-groups'>"+
-                "<img src='"+groups.img+"'>"+
-                "<p> "+groups.description+"</p>"+
+              "<div id='"+groups.id+"'class='r-groups'>"+
+                "<img height='150' width ='150'  src='"+groups.image+"'>"+
+				"<p>Naam: "+groups.name+"</p>"+
               "</div>"
             );
+			
+			
           });
           html.html(html2);
           html.fadeIn();
         });
       });
-    }    
+    }
+
+    $("#results").on("click",".r-groups",function(data){
+
+      console.log($(this).attr("id"));
+      var id = $(this).attr("id");
+
+
+      var html = $(".detail .info");
+      var html2 = "";
+
+      html.fadeOut(function(){
+        $.get( SERVER+"/groups/"+id).done(function(data){
+          groups = data;
+          var i = 0;
+          html2 += (
+            "<div id='"+groups.id+"'class='d-groups'>"+
+              "<img height='150' width ='150'  src='"+groups.image+"'>"+
+              "<div class='p-d-info'>"+
+			  "<p>Naam: "+groups.name+"</p>"+
+			  "<p>Beschrijving: "+groups.description+ "</p>"+
+
+              "</div>"+
+            "</div>"
+          );
+          html.html(html2);
+          html.fadeIn();
+        });
+      });
+    });
+
+    $(".groups-search .detail .info").on("click",".d-groups",function(data){
+      console.log($(this).attr("id"));
+      navToPage("groups-detail",{"id":$(this).attr("id")});
+    });
+
   </script>
   
   <style>
-    .groups-search{
-      float:left;
-      width:40%;
-    }
-
     .groups-search img{
-      width:10%;
+      width:20%;
     }
 
     .groups-search .search{
+      width:60%;
+      float:left;
+    }
+
+    .p-s-info{
       float:right;
+    }
+    .r-plusser img{
+      float:left;
+    }
+
+    .groups-search .detail{
+      position:fixed;
+      right:0px;
+
+      width: 33%;
+    }
+    .groups-search .detail h3{
+      margin-top:0px;
+    }
+    #inp-search{
+      width: calc(100% - 80px);
+      float: right;
+    }
+    #btn-search{
+      width:75px;
+      float:left;
     }
 
   </style>

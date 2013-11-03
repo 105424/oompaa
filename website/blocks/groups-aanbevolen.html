@@ -1,0 +1,61 @@
+<div class="groups-random block">
+  <div id="randoms"> </div>
+    <div class="r-groups">
+    </div>
+  <script>
+
+    getRandom(10);
+
+    function getRandom(amount){
+      var html = $("#random");
+      var html2 = "";
+
+      html.fadeOut(function(){
+        $.get( SERVER+"/groups/random/"+amount).done(function(data){
+          var i = 0;
+          $.each(data,function(key,group){
+
+            html2 += (
+              "<div class='r-group' id='"+group.id+"'>"+
+                "<img src='"+group.image+"'>"+
+               "<p>Naam: "+group.name+"</p>"+
+			  "<p>Beschrijving: "+group.description+"</p>"+
+              "</div>"
+            );
+          });
+
+          html.html(html2);
+          html.fadeIn();
+        });
+      });
+    }    
+
+    $("#random").on("click", 'img',function(target){
+      navToPage(".detail",{"id":$(this).parent().attr("id")});
+    });
+
+  </script>
+  
+  <style>
+  
+  .groups-random{
+   margin-top: 10%;
+  }
+  
+    .groups-random .r-group{
+      width: 100%;
+      overflow: auto;
+    }
+    .groups-random .group-info{
+      width:40%;
+      float:right;
+    }
+    .groups-random .group-info p{
+      margin-top: 2px;
+    }
+    .groups-random img{
+      float:left;
+      width:20%;
+    }
+  </style>
+</div>
