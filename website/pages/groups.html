@@ -1,7 +1,35 @@
 <div id="groups" class="container page">
-    <script>
-    include("blocks/groups-content","#groups")
-  </script>
+
   
   <h1> Groepen </h1>
+  
+    <script>
+    include("blocks/groups-content","#groups")
+	include("blocks/groups-aanbevolen","#groups")
+  </script>  
+  
+  
+  <style>
+    .container{
+      width:90%;
+    }
+    #groeps h1{
+      width:100px;
+      margin:auto;
+    }
+
+    .groeps-search{
+      float:left;
+      width:70%;
+      padding: 0px 5px;
+    }
+
+    .groep-random{
+      float:left;
+      width:25%;
+      overflow: auto;
+      min-height: 100px;
+    }
+
+  </style>
 </div>
