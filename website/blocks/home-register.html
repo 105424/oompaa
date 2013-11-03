@@ -2,19 +2,22 @@
   <div>
     <h3>Registreren</h3>
     <div class="form">
-      Voornaam: <input class="firstName"></input> </br>
-      Achternaam: <input class="lastName"></input>
+      <div class="label"> Voornaam </div> <input class="firstName"></input> </br>
+      <div class="label"> Achternaam </div>  <input class="lastName"></input> </br>
       <button class="btn-reg">Register</button>
     </div>
   </div>
+
+  <style>
+    #home-register .label{
+      width: 100px;
+      float: left;
+    }
+  </style>
 
   <script>
     $(".btn-reg").on("click",function(){
       navToPage("register",{"firstName":$(".firstName").val(),"lastName":$(".lastName").val()});
     });
   </script>
-
-  <style>
-
-  </style>
 </div>

@@ -1,13 +1,16 @@
 <div id="home-login" class="block">
   <h3> Login  </h3>
-  <labeL> Voornaam</label> <input class="login-firstName" placeholder="voornaam"> </input>
-  <labeL> Achternaam</label> <input class="login-lastname" placeholder="achternaam"> </input> </br>
-  <labeL> Wachtwoord</label> <input class="login-password" type="password" placeholder="wachtwoord"> </input> </br>
+  <div class="label"> Voornaam</div> <input class="login-firstName" placeholder="voornaam"> </input> </br>
+  <div class="label"> Achternaam</div> <input class="login-lastname" placeholder="achternaam"> </input> </br>
+  <div class="label"> Wachtwoord</div> <input class="login-password" type="password" placeholder="wachtwoord"> </input> </br>
   <button id ="btn-login"> Login </button>
   <p class="feedback"> </p>
 
   <style>
-
+    #home-login .label{
+      width: 100px;
+      float: left;
+    }
   </style> 
 
   <script>
