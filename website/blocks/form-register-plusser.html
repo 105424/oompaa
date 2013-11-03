@@ -1,10 +1,13 @@
 <div id="form-register-plusser" class="block" >
   <div>
-    <h3>Register</h3>
+    <h1>Registreren</h1>
     <div id="forms">
-
       <div class="form">
-        <p> Vul hier je voledige naam en geboortedatum in </p>
+        <h3>Naam en geboortedatum </h3>
+        <p> 
+          Vul hier je voledige naam en geboortedatum in </br>
+          Met deze informatie zullen andere mensen en u elkaar kunnen vinden
+        </p>
         <labeL> Voornaam: </label><input type="text" class="firstName"></input> </br>
         <labeL> Achternaam: </label><input type="text" class="lastName"></input> </br>    
         <labeL> Geboortdatum: </label><input type="date" class="dayOfBirth"></input></br>
@@ -12,8 +15,11 @@
       </div>
       
       <div class="form">
-        <p>Hey <b><span class="name"></span></b> </p>
-        <p>Vul hier je address gegevens in zodat we mensen in jouw buurt kunnen vinden in vise versa</p>
+        <h3>Address gegevens</h3>
+        <p>
+          Welkom <b><span class="name"></span></b>  </br>
+          Vul hier je address gegevens in zodat we mensen in jouw buurt kunnen vinden in vise versa
+        </p>
         <labeL> Adres: </label><input class="address"></input>      </br>
         <labeL> Postcode: </label><input class="zipcode"></input></br>
         <labeL> Stad: </label><input class="city"></input>      </br>
@@ -22,20 +28,34 @@
       </div>
 
       <div class="form">
-        <p> Voeg een foto toe die een kort beeld geeft van wie jij bent </p>
+        <h3> Foto </h3>
+        <p> Voeg nu een foto toe zodat andere u online kunnen herkennen</p>
         <labeL> Foto: </label><input type="url" class="image"></input></br>
         <button class="previous">Terug</button>
         <button class="next">Verder</button>
       </div>
 
       <div class="form">
-        <p>Schrijf hier een krote text voer wie je bent en wat jouw kwalitieten zijn</p>
+        <h3>Biography</h3>
+        <p>
+          Schrijf hier een verhaal over uwzelf. </br>
+          Probeer op te schrijven wat uw werkervaring is, uw intresses, of u wel of niet gepensioneerd bent
+        </p>
         <labeL> Bio: </label><textarea type="textarea" class="bio"></textarea></br>
+        <button class="previous">Terug</button>
+        <button class="next">Verder</button>
+      </div>
+
+      <div class="form">
+        <h3>Motivatie</h3>
+        <p>Beschrijv waarom u graag weer aan de slag wilt, op werkje schaak en hoevaak</p>
+        <labeL> Bio: </label><textarea type="textarea" class="motivation"></textarea></br>
         <button class="previous">Terug</button>
         <button class="next">Verder</button>
       </div>
       
       <div class="form">
+        <h3>Wachtwoord</h3>
         <p>vul als laatste een wachtwoord in zodat u de volgende keer weer kan inloggen</p>
         <labeL>Password: </labeL> <input type="password" class="password"> </input>
         <button class="previous">Terug</button>
@@ -58,12 +78,21 @@
     }
     
     .form input{
-      max-width:40%;
+      width: 100%;
+    }
+    .form textarea {
+      width:100%;
+      height:100px;
     }
 
-    .bio {
-      width:200px;
-      height:100px;
+    #form-register-plusser h1{
+      width: 100px;
+      margin: auto;
+    }
+
+    #forms{
+      width:50%;
+      margin:auto;
     }
 
   </style> 

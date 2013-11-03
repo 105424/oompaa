@@ -19,7 +19,7 @@
               "<div class='r-plusser' id='"+plusser.id+"'>"+
                 "<img src='"+plusser.image+"'>"+
                 "<p> "+plusser.firstName+" "+plusser.lastName+" </p>"+
-                "<p> "+plusser.city+"</p>"+
+                "<p> "+plusser.motivation.substring(0,50)+" ... </p>"+
               "</div>"
             );
           });
@@ -51,6 +51,12 @@
     .plussers-random img{
       float:left;
       width:50%;
+      height:100px;
+      padding-right: 2px;
+    }
+    .plussers-random p{
+      margin-top: 0px;
+      margin-bottom: 5px;
     }
   </style>
 </div>

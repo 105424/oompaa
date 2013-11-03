@@ -11,6 +11,7 @@ this.Plusser = function(args){
   this.zipcode = "";
   
   this.bio = "";
+  this.motivation = "";
   this.image = "";
 
   this.password = "";
@@ -29,6 +30,7 @@ this.Plusser = function(args){
   try { this.zipcode = args.zipcode;  } catch(err){ }
 
   try { this.bio = args.bio;  } catch(err){ }
+  try { this.motivation = args.motivation;  } catch(err){ }
   try { this.image = args.image;  } catch(err){ }
 
   try { this.password = args.password;  } catch(err){ }

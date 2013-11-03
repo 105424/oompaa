@@ -8,9 +8,9 @@ database['interests'] = new Object(); // Stored by id
 database['videos'] = new Object(); // Stored by id
 database['images'] = new Object(); // Stored by id
 
-var lastPlus = new objects.plusser({"firstName":"first"});
-lastPlus.id = 1;
-database.plussers[1] = lastPlus;
+//var lastPlus = new objects.plusser({"firstName":"first"});
+//lastPlus.id = 1;
+//database.plussers[1] = lastPlus;
 
 var firstInterest = new objects.interest({"name":"first"});
 firstInterest.id = 1;
@@ -20,12 +20,14 @@ database.interests[1] = firstInterest;
 this.load = function(){
 	/*get users from database*/
 	for (var i = 0; i < 10; i++) {
-		var plusser = add('plussers', new objects.plusser({"dob":"06-04-1923","firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
-		add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'img':'http://static1.volkskrant.nl/static/photo/2012/17/6/2/20121009110943/media_xl_1382837.jpg'},[plusser.id,lastPlus.id]));
+	//	var plusser = add('plussers', new objects.plusser({"dob":"06-04-1923","firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
+		//add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'img':'http://static1.volkskrant.nl/static/photo/2012/17/6/2/20121009110943/media_xl_1382837.jpg'},[plusser.id,lastPlus.id]));
+		add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'img':'http://static1.volkskrant.nl/static/photo/2012/17/6/2/20121009110943/media_xl_1382837.jpg'}));
 
-		lastPlus = plusser;
+		//lastPlus = plusser;
 
-		add('interests', new objects.interest({"name":"TestInterest","description":"This interest was created for testing only."},[plusser.id]));
+		//add('interests', new objects.interest({"name":"TestInterest","description":"This interest was created for testing only."},[plusser.id]));
+		add('interests', new objects.interest({"name":"TestInterest","description":"This interest was created for testing only."}));
 	}
 }
 

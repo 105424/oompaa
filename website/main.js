@@ -1,5 +1,5 @@
 // globals (Allways uppercase)
-//var SERVER = "http://thomassio.nl:2001";
+var SERVER = "http://thomassio.nl:2001";
 var SERVER = "http://localhost:2001";
 var FIRSTPAGE = "home";
 var PLUSSER;
