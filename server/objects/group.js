@@ -4,6 +4,8 @@ this.Group = function(args,owners){;
 
 	this.name;
 	this.description;
+	this.motivation;
+	this.interests;
 	
 	this.location;
 
@@ -18,6 +20,8 @@ this.Group = function(args,owners){;
 	try { this.name = args.name; } catch(err) {}
 	try { this.description = args.description; } catch(err) {}
 	try { this.location = args.location; } catch(err) {}
+	try { this.motivation = args.motivation; } catch(err) {}
+	try { this.interests = args.interests; } catch(err) {}
 
 	if(owners != undefined){
 		this.plussers = owners;
