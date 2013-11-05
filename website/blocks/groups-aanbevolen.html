@@ -1,6 +1,5 @@
 <div class="groups-random block">
-<h1>Aanbevolen</h1>
-  <div id="random"></div>
+  <div id="randoms"></div>
     <div class="r-groups">
     </div>
   <script>
@@ -8,7 +7,7 @@
     getRandom(10);
 
     function getRandom(amount){
-      var html = $("#random");
+      var html = $("#randoms");
       var html2 = "";
 
       html.fadeOut(function(){
@@ -31,23 +30,20 @@
       });
     }    
 
-    $("#random").on("click", 'img',function(target){
-      navToPage(".detail",{"id":$(this).parent().attr("id")});
+    $("#randoms").on("click", 'img',function(target){
+      navToPage("group-detail",{"id":$(this).parent().attr("id")});
     });
 
   </script>
   
   <style>
-  .groups-random{
-   margin-top: 20%;
-  }
-    .groups-random .r-groups{
+ .groups-random .r-groups{
       width: 100%;
       overflow: auto;
     }
     .groups-random .groups-info{
       width:40%;
-     
+      float:right;
     }
     .groups-random .groups-info p{
       margin-top: 2px;
