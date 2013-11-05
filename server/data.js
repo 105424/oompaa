@@ -1,3 +1,4 @@
+var fs = require('fs');
 var objects = require('./objectHolder');
 
 var database = new Object();
@@ -18,7 +19,23 @@ database.interests[1] = firstInterest;
 
 
 this.load = function(){
-	/*get users from database*/
+	/*get users from testdara.json*/
+	var file = __dirname + '/testdata.json';
+	 
+	fs.readFile(file, 'utf8', function (err, testdata) {
+	  if (err) {
+	    console.log('Error: ' + err);
+	    return;
+	  }
+	 
+	  testdata = JSON.parse(testdata);
+	  for( key in testdata){ // each type
+	    for (key2 in testdata[key]){ // each item in type
+	     	add(key, new objects[key](testdata[key][key2]));
+	    }
+	  }
+	});
+
 	for (var i = 0; i < 10; i++) {
 	//	var plusser = add('plussers', new objects.plusser({"dob":"06-04-1923","firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
 		//add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'img':'http://static1.volkskrant.nl/static/photo/2012/17/6/2/20121009110943/media_xl_1382837.jpg'},[plusser.id,lastPlus.id]));
@@ -99,7 +116,7 @@ exports.get = get;
 add = function(type,obj){
 	var arr = getArr(type);
 	if (arr){
-		obj.id = newId(arr);
+		if(obj['id'] == undefined) obj.id = newId(arr); //Voor testeb worden objects met vaste ids gemaakt
 		
 		if(type == "groups"){
 			for(key in obj.owners){

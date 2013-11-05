@@ -1,5 +1,6 @@
 <div id="plussers-detail" class="container page">
   <h1>title</h1>
+    <include src="blocks/btn-invite-to-group" />
     <section class="detail-info">
         <p>
             <img class="image" width="150px" src="" />
@@ -39,7 +40,7 @@
   <script>
     if(PARAMS != undefined){
       var id = PARAMS.id;
-      var plussers;
+      var plusser;
       $.get( SERVER+"/plussers/"+id).done(function(data){
           plusser = data;
           $("#plussers-detail h1").html(plusser.firstName +" "+ plusser.lastName );
@@ -50,8 +51,31 @@
           $(".detail-info .motivation").html(plusser.motivation);
           
           $(".detail-info .image").attr('src',plusser.image);
+
+          $("groups").hide();
+
+          for(key in plusser.groups){
+            $.get(SERVER+"/groups/"+plusser.groups[key],function(data){
+              console.log(data);
+              
+              var html = 
+                "<div class='group'>"+
+                  "<img src='"+data.image+"'</img>"+
+                  "<h4>"+data.name+"</h4>"+
+                  "<p>"+data.description+"</p>"+
+                "</div>";
+              console.log(html);
+              $(".groups").append(html);
+            });
+          }
+
+          $(".groups").fadeIn();
+
       }); 
     }
+
+    init("#plussers-detail");
+
   </script>
   <style>
     .container{
@@ -60,6 +84,12 @@
     #plussers h1{
       width:100px;
       margin:auto;
+    }
+    .group img{
+      width:100px;
     }   
+    .group{
+      float:left;
+    }
   </style>
 </div>

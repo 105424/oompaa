@@ -1,4 +1,3 @@
-var fs = require('fs');
 var express = require('express');
 var app = express();
 var api = require('./api');
@@ -8,23 +7,6 @@ var port = 2001;
 app.use(express.bodyParser());
 
 api.init({'port':port,'app':app,'data':data});
-
-
-var file = __dirname + '/testdata.json';
- 
-fs.readFile(file, 'utf8', function (err, testdata) {
-  if (err) {
-    console.log('Error: ' + err);
-    return;
-  }
- 
-  testdata = JSON.parse(testdata);
-  for( key in testdata){
-    for (key2 in testdata[key]){
-      data.add(key,testdata[key][key2]);
-    }
-  }
-});
 
 
 /*var a = new Date();

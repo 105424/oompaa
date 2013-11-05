@@ -4,6 +4,8 @@ this.Group = function(args,owners){;
 
 	this.name;
 	this.description;
+	this.motivation;
+	this.interests;
 	
 	this.location;
 
@@ -15,9 +17,20 @@ this.Group = function(args,owners){;
 	this.videos = new Array();
   this.images = new Array();
 
+
+	try { this.id = args.id; } catch(err){ } // !!!! ONLY FOR TESTING !!!!!!
+  if(args['plussers'] != undefined) this.plussers = args.plussers; // !!!! ONLY FOR TESTING !!!!!!
+
 	try { this.name = args.name; } catch(err) {}
 	try { this.description = args.description; } catch(err) {}
 	try { this.location = args.location; } catch(err) {}
+	try { this.motivation = args.motivation; } catch(err) {}
+	try { this.interests = args.interests; } catch(err) {}
+
+	try { this.image = args.image; } catch(err) {}
+
+
+
 
 	if(owners != undefined){
 		this.plussers = owners;

@@ -21,7 +21,11 @@ this.Plusser = function(args){
   this.videos = new Array();
   this.images = new Array();
 
-	try { this.firstName = args.firstName; } catch(err){ }
+  try { this.id = args.id; } catch(err){ } // !!!! ONLY FOR TESTING !!!!!!
+
+  if(args['groups'] != undefined) this.groups = args.groups; // !!!! ONLY FOR TESTING !!!!!!
+	
+  try { this.firstName = args.firstName; } catch(err){ }
   try { this.lastName = args.lastName;  } catch(err){ }
   try { this.dayOfBirth = args.dayOfBirth; } catch(err){ }
 
@@ -34,5 +38,13 @@ this.Plusser = function(args){
   try { this.image = args.image;  } catch(err){ }
 
   try { this.password = args.password;  } catch(err){ }
+
+
+
+/* for some unknow reason this very handy code doesn't work and crashes sotmhing somehow
+  for(key in this){
+    if(args[key] != undefined) this[key] = args[key];
+  }*/
+
 
 }
