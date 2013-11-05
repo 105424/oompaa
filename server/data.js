@@ -34,6 +34,11 @@ this.load = function(){
 	     	add(key, new objects[key](testdata[key][key2]));
 	    }
 	  }
+
+		for(key in getArr("groups")){
+			link(getArr("plussers")[1],getArr("groups")[key]);
+		}
+
 	});
 
 	for (var i = 0; i < 10; i++) {
@@ -116,7 +121,7 @@ exports.get = get;
 add = function(type,obj){
 	var arr = getArr(type);
 	if (arr){
-		if(obj['id'] == undefined) obj.id = newId(arr); //Voor testeb worden objects met vaste ids gemaakt
+		if (!(obj['id'] > 0)) obj.id = newId(arr); //Voor testeb worden objects met vaste ids gemaakt
 		
 		if(type == "groups"){
 			for(key in obj.owners){

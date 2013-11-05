@@ -2,10 +2,10 @@ this.Group = function(args,owners){;
 	this.id = 0;;
 	this.type = "groups"
 
-	this.name;
-	this.description;
-	this.motivation;
-	this.interests;
+	this.name = "";
+	this.description = "";
+	this.motivation = "";
+	this.interests = "";
 	
 	this.location;
 
@@ -18,17 +18,9 @@ this.Group = function(args,owners){;
   this.images = new Array();
 
 
-	try { this.id = args.id; } catch(err){ } // !!!! ONLY FOR TESTING !!!!!!
-  if(args['plussers'] != undefined) this.plussers = args.plussers; // !!!! ONLY FOR TESTING !!!!!!
-
-	try { this.name = args.name; } catch(err) {}
-	try { this.description = args.description; } catch(err) {}
-	try { this.location = args.location; } catch(err) {}
-	try { this.motivation = args.motivation; } catch(err) {}
-	try { this.interests = args.interests; } catch(err) {}
-
-	try { this.image = args.image; } catch(err) {}
-
+  for(item in this){ // wtf if this is called in a foor loop with the same variable name as keyVar the first var gets overwritten 
+    if(args[item] != undefined) this[item] = args[item];
+  }
 
 
 

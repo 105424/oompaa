@@ -8,12 +8,12 @@
       "zipcode": "666GH",
       "address":"djeddalaan 123",
       "city":"Rotterdam",
-      "bio":"Ik ben een testpersoon die als enige direct gekoppeld word aan een groep zodat het testen daarin makkelijker gaat werken",
+      "bio":"Ik ben een testpersoon die als enige direct gekoppeld word aan alle een groepen zodat het testen daarin makkelijker gaat werken",
       "motivation":"Dit account bestaat om te zorgen dat het gorup systeem gaat werken",
       "dayOfBirth":"06-04-1923",
       "password":"123",
       "groups":[
-        "1"
+        
       ]
     },  
     {
@@ -120,11 +120,21 @@
       "name":"Testgroep1",
       "description":"Descripti van test groep 1",
       "motivation":"lolsuckz",
-      "image": "images/1.jpg",
+      "image": "http://thumbs.dreamstime.com/x/groep-oude-mensen-met-hun-hoofden-samen-7766953.jpg",
       "plussers":[
-        "1"
+        
       ]
-    }
+    },
+    {
+      "id":"2",
+      "name":"Testgroep2",
+      "description":"Descripti van test groep 2",
+      "motivation":"lolsuckz",
+      "image": "http://thumbs.dreamstime.com/z/groep-gelukkige-oudere-mensen-die-een-zelfportret-nemen-7766668.jpg",
+      "plussers":[
+        
+      ]
+    }    
   ],
   "interests": [
     {

@@ -55,16 +55,13 @@
           $("groups").hide();
 
           for(key in plusser.groups){
-            $.get(SERVER+"/groups/"+plusser.groups[key],function(data){
-              console.log(data);
-              
+            $.get(SERVER+"/groups/"+plusser.groups[key],function(data){              
               var html = 
                 "<div class='group'>"+
                   "<img src='"+data.image+"'</img>"+
                   "<h4>"+data.name+"</h4>"+
                   "<p>"+data.description+"</p>"+
                 "</div>";
-              console.log(html);
               $(".groups").append(html);
             });
           }

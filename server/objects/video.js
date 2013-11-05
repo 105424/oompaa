@@ -6,7 +6,7 @@ this.Video = function(args){
   this.description = "";
   this.link = "";
 
-  try { this.name = args.name; } catch(err){ }
-  try { this.description = args.description; } catch(err){ }
-  try { this.link = args.link; } catch(err){ }
+  for(item in this){ // wtf if this is called in a foor loop with the same variable name as keyVar the first var gets overwritten 
+    if(args[item] != undefined) this[item] = args[item];
+  }
 }
