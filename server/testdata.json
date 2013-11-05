@@ -1,6 +1,22 @@
 {
   "plussers": [
     {
+      "id":"1",
+      "firstName": "Mark",
+      "lastName": "Arts",
+      "image": "http://www.gva.be/ahimgpath/assets_img_gva/2013/01/11/2466684/stad-zoekt-werk-opa-mark-uytterhoeven-id3842574-1000x800-n.jpg",
+      "zipcode": "666GH",
+      "address":"djeddalaan 123",
+      "city":"Rotterdam",
+      "bio":"Ik ben een testpersoon die als enige direct gekoppeld word aan een groep zodat het testen daarin makkelijker gaat werken",
+      "motivation":"Dit account bestaat om te zorgen dat het gorup systeem gaat werken",
+      "dayOfBirth":"06-04-1923",
+      "password":"123",
+      "groups":[
+        "1"
+      ]
+    },  
+    {
       "firstName": "Hans",
       "lastName": "Kablam",
       "image": "http://fitness.blog.nl/files/2009/07/vive.jpg",
@@ -100,9 +116,14 @@
   ],
   "groups": [
     {
+      "id":"1",
       "name":"Testgroep1",
       "description":"Descripti van test groep 1",
-      "image": "images/1.jpg"
+      "motivation":"lolsuckz",
+      "image": "images/1.jpg",
+      "plussers":[
+        "1"
+      ]
     }
   ],
   "interests": [

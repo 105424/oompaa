@@ -1,0 +1,102 @@
+<div class="btn-invite-to-group">
+  <div>
+    <button class="btn-invite">Invite</button>
+    <div class="pop-groups-select">
+      <h2>Select a group to invite to </h2>
+      <div class="pop-groups">
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    $('.pop-groups-select').hide();
+
+    var toInvite;
+    if(PARAMS != undefined){
+      if(PARAMS['id'] != undefined){
+        toInvite = PARAMS.id;
+      }
+    }
+
+    $(".btn-invite").on("click",function(){
+
+      $.get(SERVER+"/plussers/"+PLUSSER+"/groups", function(data){
+        for(key in data){
+          $.get(SERVER+"/groups/"+data[key],function(data){
+            var html = $(".btn-invite-to-group .pop-groups");
+            var html2 = 
+              "<div class='pop-group' id='"+data.id+"'>"+
+                "<img src='"+data.image+"'> </img>"+
+                "<p>"+data.name+"</p>"+
+                "<p>"+data.description+"</p>"+
+              "</div>"
+            ;
+      
+            html.html(html2);
+          });
+        }
+        $('.pop-groups-select').fadeIn();
+
+        $('.pop-groups-select').on("click",".pop-group", function(target){
+
+          $(".pop-groups-select *").fadeOut("fast");
+          
+          $.post(SERVER+"/groups/"+$(target.currentTarget).attr("id"),{"plussers":PARAMS.id})
+            .done(function(res){
+              $(".pop-groups-select").html("<p>The plusser was succesfully invited</p>");
+              $(".pop-groups-select").fadeIn();
+            })
+            .fail(function(res){
+              $(".pop-groups-select").html("<p>Somthing went wrong</p>");
+              $(".pop-groups-select").fadeIn();
+            })
+
+        });
+
+        $('body').on("click", function(target){
+          // this is for fun and lazyness not for effiency
+
+          if(target.clientX < ($('body').width()*0.15)){
+            $('.pop-groups-select').fadeOut();
+          }
+          if(target.clientX > ($("body").width()-($("body").width()*0.15))){
+            $('.pop-groups-select').fadeOut();
+          }
+          if(target.clientY < ($('body').height()*0.15)){
+            $('.pop-groups-select').fadeOut();
+          }
+          if(target.clientY > ($("body").height()-($("body").height()*0.15))){
+            $('.pop-groups-select').fadeOut();
+          }         
+
+        });
+      });
+    });
+
+  </script>
+
+
+  <style>
+    .btn-invite-to-group .pop-groups-select{
+      position: fixed;
+      width:70%;
+      height: 70%;
+      top:15%;
+      left:15%;
+      border-style:solid;
+      border-color:green;
+      background-color: rgba(255,255,255,0.9);
+    }
+    .btn-invite-to-group .pop-groups img{
+      width:100px;
+    }  
+    .btn-invite-to-group .pop-group{
+      float:left;
+    }
+    .btn-invite-to-group .pop-group:hover{
+      opacity: 0.6;
+    }          
+  </style>
+
+</div>
