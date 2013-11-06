@@ -2,11 +2,14 @@
 
   
   <h1> Groepen </h1>
-  
+    
+    <include src="blocks/groups-aanbevolen" />
+    <include src="blocks/groups-content" />
+
+
     <script>
-	include("blocks/groups-aanbevolen","#groups");
-	include("blocks/groups-content","#groups");
-  </script>  
+      init("#groups")
+    </script>  
   
   
   <style>
