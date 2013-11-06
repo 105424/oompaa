@@ -6,6 +6,7 @@ this.Group = function(args,owners){;
 	this.description = "";
 	this.motivation = "";
 	this.interests = "";
+	this.task = "";
 	
 	this.location;
 
