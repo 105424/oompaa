@@ -5,11 +5,17 @@
     
     <include src="blocks/groups-aanbevolen" />
     <include src="blocks/groups-content" />
-	<include src="blocks/groups-agenda" />
+	
 
 
     <script>
       init("#groups")
+	  
+	  
+	  
+	  if(PLUSSER > 0){
+        include("blocks/btn-invite-to-group","#btn-cont");
+      }
     </script>  
   
   

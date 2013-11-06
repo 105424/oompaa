@@ -1,89 +1,9 @@
 <div id="group-detail" class="container page">
-  <h1 class="name"></h1>
-   
-    <section class="detail-info">
-        <p>
-            <img class="image" width="150px" src="" />
-        </p>
-        <table>
-            <tr>
-                <td>Motivatie:</td>
-                <td class="motivation"></td>
-            </tr>
-            <tr>
-                <td>Beschrijving:</td>
-                <td class="description"></td>
-            </tr>
-            <tr>
-                <td>eigenaren:</td>
-                <td class="owners"></td>
-            </tr>
-            <tr>
-                <td>Video's:</td>
-                <td class="video"></td>
-            </tr>
-			<tr>
-                <td>Leden:</td>
-                <td class="leden"></td>
-            </tr>
-			<tr>
-                <td>images:</td>
-                <td class="images"></td>
-            </tr>           
-        </table>
-    </section>
-
+  
+  <include src="blocks/groups-agenda" />
   <script>
-    if(PARAMS != undefined){
-      var id = PARAMS.id;
-      var group;
-      $.get( SERVER+"/groups/"+id).done(function(data){
-          group = data;
-          $(".name").html(group.name);
-          $(".detail-info .motivation").html(group.motivation);
-		  //$(".detail-info .owners").html(group.owners);
-          $(".detail-info .description").html(group.description);
-          $(".detail-info .bio").html(group.bio);
-          
-          $(".detail-info .image").attr('src',group.image);
-			
-			
-			var countvideo=0;
-			while (group.videos[countvideo])
-			{
-			$(".detail-info .video").html(group.videos[countvideo]);
-			countvideo++;
-			}
-			
-			var countleden=0;
-			while (group.plussers[countleden])
-			{
-			$(".detail-info .leden").html(group.plussers[countleden])
-			countleden++
-			}
-			var countimages=0;
-			while (group.images[countimages])
-			{
-			$(".detail-info .images").html(group.videos[countimages]);
-			countimages++;
-			}
-			var countowners=0;
-			while (group.owners[countowners])
-			{
-			$(".detail-info .owners").html(group.owners[countowners])
-			countowners++
-			}
-			
-          $("groups").hide();
-          $(".groups").fadeIn();
-
-      });
-	
-	  
-    }
 
     init("#groups-detail");
-
   </script>
   <style>
     .container{
