@@ -1,9 +1,11 @@
 <div id="group-detail" class="container page">
   
-  <include src="blocks/groups-agenda" />
+ 
+  <include src="blocks/group-detail-info" />
+   <include src="blocks/groups-agenda" />
   <script>
 
-    init("#groups-detail");
+    init("#group-detail");
   </script>
   <style>
     .container{
@@ -19,5 +21,9 @@
     .group{
       float:left;
     }
+	.groups-agenda{
+	float:right;
+	}
+	
   </style>
 </div>
