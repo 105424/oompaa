@@ -1,0 +1,27 @@
+ <div class="group-detail-bezigheden block">
+ <h1>Onze Bezigheden</h1>
+   
+    <div class="bezigheden"></div>
+
+  <script>
+    if(PARAMS != undefined){
+      var id = PARAMS.id;
+      var group;
+      $.get( SERVER+"/groups/"+id).done(function(data){
+          group = data;
+          $(".bezigheden").html(group.task);
+		 console.log(group.task);
+          
+			
+          $(".bezigheden").hide();
+          $(".bezigheden").fadeIn();
+
+      });
+	
+	  
+    }
+
+    init("#groups-detail");
+
+  </script>
+  </div>

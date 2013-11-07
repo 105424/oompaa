@@ -117,9 +117,9 @@
   "groups": [
     {
       "id":"1",
-      "name":"Testgroep1",
-      "description":"Descripti van test groep 1",
-      "motivation":"lolsuckz",
+      "name":"C.D.O",
+      "description":"Wij zijn met een kleine groep een ict bedrijfje begonnen. ons team van drie mensen. kan het uitleggen op niveau. inplaats van die jongeren met hun technobabbel",
+      "motivation":"Goedkoop en duidelijk dat is onze motto",
       "image": "http://thumbs.dreamstime.com/x/groep-oude-mensen-met-hun-hoofden-samen-7766953.jpg",
       "plussers":[
         
@@ -127,10 +127,11 @@
     },
     {
       "id":"2",
-      "name":"Testgroep2",
-      "description":"Descripti van test groep 2",
-      "motivation":"lolsuckz",
+      "name":"T.D.O Tuinieren Door Ouderen",
+      "description":"Wij zijn met zijn een kleine groep een tuinierbedrijfje begonnen. wij zijn nu al met zeven werknemers en werken in volkstuintjes in hoogvliet",
+      "motivation":"wij werken op onze eigen tempo. maar zijn wel goedkoper als de meeste hoveniersbedrijven ",
       "image": "http://thumbs.dreamstime.com/z/groep-gelukkige-oudere-mensen-die-een-zelfportret-nemen-7766668.jpg",
+	  "task": "wij zijn een groep mensen die houden van tuinieren",
       "plussers":[
         
       ],

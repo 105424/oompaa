@@ -2,7 +2,9 @@
   
  
   <include src="blocks/group-detail-info" />
-   <include src="blocks/groups-agenda" />
+  
+   <include src="blocks/group-detail-bezigheden" />
+    <include src="blocks/group-agenda" />
   <script>
 
     init("#group-detail");
@@ -22,7 +24,18 @@
       float:left;
     }
 	.groups-agenda{
-	float:right;
+	clear: right;
+    float: right;
+	}
+	.group-detail-info{
+	float: left;
+    width: 30%;
+	}
+	
+	.group-detail-bezigheden {
+    float: right;
+    height: 60%;
+    width: 20%;
 	}
 	
   </style>
