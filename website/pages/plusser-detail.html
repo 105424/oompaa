@@ -1,7 +1,7 @@
 <div id="plussers-detail" class="container page">
-  <h1>title</h1>
     <div id="btn-cont" />
     <section class="detail-info">
+        <h1>title</h1>
         <p>
             <img class="image" width="150px" src="" />
         </p>
@@ -26,16 +26,13 @@
                 <td>Motivatie:</td>
                 <td class="motivation"></td>
             </tr>
-            <tr>
-                <td>Vaardigheden:</td>
-                <td class="skills"></td>
-            </tr>
-            <tr>
-                <td>Groep(en):</td>
-                <td class="groups"></td>
-            </tr>
         </table>
     </section>
+    <iframe id="google" src="https://www.google.com/calendar/embed?mode=WEEK&amp;height=400&amp;wkst=2&amp;hl=nl&amp;bgcolor=%23FFFFFF&amp;ctz=Europe%2FAmsterdam" style=" border-width:0 " width="500" height="400" frameborder="0" scrolling="no"></iframe>
+    <div class="groups">
+      <h3>Groepen</h3>
+    </div>
+
 
   <script>
     if(PARAMS != undefined){
@@ -78,6 +75,10 @@
 
   </script>
   <style>
+    .detail-info{
+      width:45%;
+      float:left;
+    }
     .container{
       width:90%;
     }
@@ -85,11 +86,20 @@
       width:100px;
       margin:auto;
     }
+    .groups{
+      width:100%;
+      overflow: auto;
+    }
     .group img{
       width:100px;
     }   
     .group{
       float:left;
+    }
+    #google{
+      padding-top: 20px;
+      width: 40%;
+      float:right;
     }
   </style>
 </div>
