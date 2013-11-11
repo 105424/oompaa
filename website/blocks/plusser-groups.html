@@ -26,14 +26,18 @@
         for(key in plusser.groups){
           $.get(SERVER+"/groups/"+plusser.groups[key],function(data){              
             var html = 
-              "<div class='group'>"+
+              "<div id="+data.id+" class='group'>"+
                 "<img src='"+data.image+"'</img>"+
                 "<h4>"+data.name+"</h4>"+
-                "<p>"+data.description+"</p>"+
+                "<p>"+data.description.substring(0,50)+"</p>"+
               "</div>";
             $(".groups").append(html);
           });
         }
+
+        $(".groups").on("click",".group",function(target){
+          navToPage("group-detail",{"id":$(this).attr("id")});
+        });
 
         $(".groups").fadeIn();
       });
@@ -47,7 +51,7 @@
     .group{
       float:left;
       width:200px;
-      height: 400px;
+      height: 300px;
 
       border-style: none solid solid solid;
       border-color:#60D4AE;
