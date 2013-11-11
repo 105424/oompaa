@@ -1,0 +1,31 @@
+ <div class="group-detail-leden block">
+ <h1>Onze Bezigheden</h1>
+   
+    <div class="leden"></div>
+
+  <script>
+    if(PARAMS != undefined){
+      var id = PARAMS.id;
+      var group;
+      $.get( SERVER+"/groups/"+id).done(function(data){
+          group = data;
+          $(".leden").html(group.plussers);
+		 console.log(group.task);
+          
+			
+          $(".leden").hide();
+          $(".leden").fadeIn();
+
+      });
+	  while(group.plussers)
+	  {
+	$.get( SERVER+"/ )
+	  }
+    
+	
+	}
+
+    init("#groups-detail");
+
+  </script>
+  </div>

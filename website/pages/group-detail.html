@@ -1,6 +1,6 @@
 <div id="group-detail" class="container page">
   
- 
+ <div id="btn-cont" />
   <include src="blocks/group-detail-info" />
   
    <include src="blocks/group-detail-bezigheden" />
@@ -21,7 +21,7 @@
 		  }
 		  
 		  if(isInGroup == false){
-			init(".btn-join-to-group");
+			 include("blocks/btn-join-to-group","#btn-cont");
 		  }
       }); 
 

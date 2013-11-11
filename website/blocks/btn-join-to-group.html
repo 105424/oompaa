@@ -10,92 +10,24 @@
 
   <script>
 
-    $('.pop-groups-select').hide();
+//    $('.pop-groups-select').hide();
 
-    $.get(SERVER+"/plussers/"+PARAMS.id+"/firstName",function(data){
-      $(".p-name").html(data);
-    });
+  //  $.get(SERVER+"/plussers/"+PARAMS.id+"/firstName",function(data){
+   //   $(".p-name").html(data);
+   // });
 
-    var tojoin;
-    if(PARAMS != undefined){
-      if(PARAMS['id'] != undefined){
-        tojoin = PARAMS.id;
-      }
-    }
 
     $(".btn-join").on("click",function(){
-      $(".btn-join-to-group .pop-groups").html("");
-      $.get(SERVER+"/plussers/"+PLUSSER+"/groups", function(data){
-        for(key in data){
-          $.get(SERVER+"/groups/"+data[key],function(data){
-            var html = $(".btn-join-to-group .pop-groups");
-            var html2 = 
-              "<div class='pop-group' id='"+data.id+"'>"+
-                "<p>"+data.name+"</p>"+
-                "<img src='"+data.image+"'> </img>"+
-              "</div>"
-            ;
-      
-            html.append(html2);
-            sizePop();
-          });
-        }
-        $('.pop-groups-select').fadeIn();
-
-        $("html").css("overflow-y","hidden");
-
-
-        $('.pop-groups-select').on("click",".pop-group", function(target){
-
-          $(".pop-groups-select *").fadeOut("fast");
-          
           $.post(SERVER+"/groups/"+$(target.currentTarget).attr("id"),{"plussers":PARAMS.id})
             .done(function(res){
-              $(".pop-groups").html("<p>The plusser was succesfully joind</p>");
-              $(".pop-groups-select").fadeIn();
+
             }).fail(function(res){
-              $(".pop-groups").html("<p>Somthing went wrong</p>");
-              $(".pop-groups-select").fadeIn();
+
             });
-        });
-
-        $('html').on("click", function(target){
-          // this is for fun and lazyness not for effiency
-
-          if(target.clientX < ($('body').width()*0.15)){
-            closePop();
-          }
-          if(target.clientX > ($("body").width()-($("body").width()*0.15))){
-            closePop();
-          }
-          if(target.clientY < ($('body').height()*0.15)){
-            closePop();
-          }
-          if(target.clientY > ($("body").height()-($("body").height()*0.15))){
-            closePop();
-          }         
-
-          function closePop(){
-            $("html").css("overflow-y","auto");
-            $('.pop-groups-select').fadeOut();
-          }
-        });
-      });
-    });
+			}
 
 
-    //workaround to alwasy center pop-groups (damn you css)
-    $( window ).resize(function(){
-      sizePop();
-    });
 
-    function sizePop(){
-      $(".btn-join-to-group .pop-groups").css("width", "90%");
-
-      var newWidth = 110 * (Math.floor($(".btn-join-to-group .pop-groups").width()/110)); ;
-      $(".btn-join-to-group .pop-groups").css("width",newWidth);
-
-    }
   </script>
 
 
