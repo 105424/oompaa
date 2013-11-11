@@ -67,7 +67,7 @@
 			var countimages=0;
 			while (group.images[countimages])
 			{
-			$(".detail-info .images").append("<img height='100px' width= '100px' src="+group.images[countimages]+"/>");
+			$(".detail-info .images").append("<img height='200px' width= '200px' src="+group.images[countimages]+"/>");
 			countimages++;
 			console.log("ik loop ", countimages ," images heen");
 			}
@@ -90,4 +90,10 @@
     init("#groups-detail");
 
   </script>
+    <style>
+
+.images > img {
+    padding: 5px;
+}
+  </style> 
   </div>

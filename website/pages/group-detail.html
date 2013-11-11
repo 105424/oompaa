@@ -8,6 +8,24 @@
   <script>
 
     init("#group-detail");
+	if(PLUSSER > 0){
+      var id = PLUSSER;
+      var plussers;
+		console.log("ik ben ingelogd");
+
+      $.get( SERVER+"/plussers/"+id+"/groups").done(function(data){
+          isInGroup = false;
+		  for (key in data){
+			if(data[key] == PARAMS.id)
+				isInGroup = true;
+		  }
+		  
+		  if(isInGroup == false){
+			init(".btn-join-to-group");
+		  }
+      }); 
+
+    }
   </script>
   <style>
     .container{
