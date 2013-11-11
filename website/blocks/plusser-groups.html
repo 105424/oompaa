@@ -1,0 +1,59 @@
+<div id="plusser-groups">
+  <h3>Groepen</h3>
+
+  <div class="groups">
+
+  </div>
+
+  <script>
+
+    if(PARAMS != undefined){
+      var id = PARAMS.id;
+      var plusser;
+      $.get( SERVER+"/plussers/"+id).done(function(data){
+        plusser = data;
+        $("#plussers-detail h1").html(plusser.firstName +" "+ plusser.lastName );
+        $(".detail-info .address").html(plusser.address);
+        $(".detail-info .city").html(plusser.city);
+        $(".detail-info .dayOfBirth").html(plusser.dayOfBirth);
+        $(".detail-info .bio").html(plusser.bio);
+        $(".detail-info .motivation").html(plusser.motivation);
+        
+        $(".detail-info .image").attr('src',plusser.image);
+
+        $("groups").hide();
+
+        for(key in plusser.groups){
+          $.get(SERVER+"/groups/"+plusser.groups[key],function(data){              
+            var html = 
+              "<div class='group'>"+
+                "<img src='"+data.image+"'</img>"+
+                "<h4>"+data.name+"</h4>"+
+                "<p>"+data.description+"</p>"+
+              "</div>";
+            $(".groups").append(html);
+          });
+        }
+
+        $(".groups").fadeIn();
+      });
+    }
+  </script>
+
+  <style>
+    .group img{
+      width:200px;
+    }   
+    .group{
+      float:left;
+      width:200px;
+      height: 400px;
+
+      border-style: none solid solid solid;
+      border-color:#60D4AE;
+      margin: 2px;
+
+    }
+  </style>
+
+</div>

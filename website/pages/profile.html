@@ -1,49 +1,66 @@
 <div id="profile" class="container page">
-    <section class="detail-info">
-        <h1></h1>
-        <p>
-            <img class="image" width="150px" src="" />
-        </p>
-        <table>
-            <tr>
-                <td>Adres:</td>
-                <td class="address"></td>
-            </tr>
-            <tr>
-                <td>Woonplaats:</td>
-                <td class="city"></td>
-            </tr>
-            <tr>
-                <td>Geboortedatum:</td>
-                <td class="dob"></td>
-            </tr>
-            <tr>
-                <td>Bio:</td>
-                <td class="bio"></td>
-            </tr>
-            <tr>
-                <td>Motivatie:</td>
-                <td class="motivation"></td>
-            </tr>            
-        </table>
-    </section>
+  
+  <div id="btn-cont" />
+
+  <section class="detail-info">
+      <h1>title</h1>
+      <p>
+          <img class="image" width="150px" src="" />
+      </p>
+      <table>
+          <tr>
+              <td>Adres:</td>
+              <td class="address"></td>
+          </tr>
+          <tr>
+              <td>Woonplaats:</td>
+              <td class="city"></td>
+          </tr>
+          <tr>
+              <td>Geboortedatum:</td>
+              <td class="dob"></td>
+          </tr>
+          <tr>
+              <td>Bio:</td>
+              <td class="bio"></td>
+          </tr>
+          <tr>
+              <td>Motivatie:</td>
+              <td class="motivation"></td>
+          </tr>
+      </table>
+  </section>
+  <iframe id="google" src="https://www.google.com/calendar/embed?mode=WEEK&amp;height=400&amp;wkst=2&amp;hl=nl&amp;bgcolor=%23FFFFFF&amp;ctz=Europe%2FAmsterdam" style=" border-width:0 " width="500" height="400" frameborder="0" scrolling="no"></iframe>
+  
+  <include src="blocks/plusser-groups" />
+
 
   <script>
-    if(PLUSSER > 0){
-      var id = PLUSSER;
-      var plussers;
-      $.get( SERVER+"/plussers/"+id).done(function(data){
-          plusser = data;
+  PARAMS = {"id":PLUSSER}
+  
+  init("#profile");
 
-          $("#profile h1").html(plusser.firstName +" "+ plusser.lastName );
-          $(".detail-info .address").html(plusser.address);
-          $(".detail-info .city").html(plusser.city);
-          $(".detail-info .dayOfBirth").html(plusser.dayOfBirth);
-          $(".detail-info .bio").html(plusser.bio);
-          $(".detail-info .motivation").html(plusser.motivation);
-          
-          $(".detail-info .image").attr('src',plusser.image);
-      }); 
-    }
   </script>
+  <style>
+    .detail-info{
+      width:45%;
+      float:left;
+    }
+    .container{
+      width:90%;
+    }
+    #plussers h1{
+      width:100px;
+      margin:auto;
+    }
+    #google{
+      padding-top: 20px;
+      width: 40%;
+      float:right;
+    }
+    #plusser-groups{
+      width:90%;
+      overflow: auto;
+    }
+  </style>
 </div>

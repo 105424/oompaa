@@ -1,74 +1,41 @@
 <div id="plussers-detail" class="container page">
-    <div id="btn-cont" />
-    <section class="detail-info">
-        <h1>title</h1>
-        <p>
-            <img class="image" width="150px" src="" />
-        </p>
-        <table>
-            <tr>
-                <td>Adres:</td>
-                <td class="address"></td>
-            </tr>
-            <tr>
-                <td>Woonplaats:</td>
-                <td class="city"></td>
-            </tr>
-            <tr>
-                <td>Geboortedatum:</td>
-                <td class="dob"></td>
-            </tr>
-            <tr>
-                <td>Bio:</td>
-                <td class="bio"></td>
-            </tr>
-            <tr>
-                <td>Motivatie:</td>
-                <td class="motivation"></td>
-            </tr>
-        </table>
-    </section>
-    <iframe id="google" src="https://www.google.com/calendar/embed?mode=WEEK&amp;height=400&amp;wkst=2&amp;hl=nl&amp;bgcolor=%23FFFFFF&amp;ctz=Europe%2FAmsterdam" style=" border-width:0 " width="500" height="400" frameborder="0" scrolling="no"></iframe>
-    <div class="groups">
-      <h3>Groepen</h3>
-    </div>
+  <div id="btn-cont" />
+  <section class="detail-info">
+      <h1>title</h1>
+      <p>
+          <img class="image" width="150px" src="" />
+      </p>
+      <table>
+          <tr>
+              <td>Adres:</td>
+              <td class="address"></td>
+          </tr>
+          <tr>
+              <td>Woonplaats:</td>
+              <td class="city"></td>
+          </tr>
+          <tr>
+              <td>Geboortedatum:</td>
+              <td class="dob"></td>
+          </tr>
+          <tr>
+              <td>Bio:</td>
+              <td class="bio"></td>
+          </tr>
+          <tr>
+              <td>Motivatie:</td>
+              <td class="motivation"></td>
+          </tr>
+      </table>
+  </section>
+  <iframe id="google" src="https://www.google.com/calendar/embed?mode=WEEK&amp;height=400&amp;wkst=2&amp;hl=nl&amp;bgcolor=%23FFFFFF&amp;ctz=Europe%2FAmsterdam" style=" border-width:0 " width="500" height="400" frameborder="0" scrolling="no"></iframe>
+  
+  <include src="blocks/plusser-groups" />
 
 
   <script>
-    if(PARAMS != undefined){
-      var id = PARAMS.id;
-      var plusser;
-      $.get( SERVER+"/plussers/"+id).done(function(data){
-          plusser = data;
-          $("#plussers-detail h1").html(plusser.firstName +" "+ plusser.lastName );
-          $(".detail-info .address").html(plusser.address);
-          $(".detail-info .city").html(plusser.city);
-          $(".detail-info .dayOfBirth").html(plusser.dayOfBirth);
-          $(".detail-info .bio").html(plusser.bio);
-          $(".detail-info .motivation").html(plusser.motivation);
-          
-          $(".detail-info .image").attr('src',plusser.image);
-
-          $("groups").hide();
-
-          for(key in plusser.groups){
-            $.get(SERVER+"/groups/"+plusser.groups[key],function(data){              
-              var html = 
-                "<div class='group'>"+
-                  "<img src='"+data.image+"'</img>"+
-                  "<h4>"+data.name+"</h4>"+
-                  "<p>"+data.description+"</p>"+
-                "</div>";
-              $(".groups").append(html);
-            });
-          }
-
-          $(".groups").fadeIn();
-      });
-
-      if(PLUSSER > 0){
-        include("blocks/btn-invite-to-group","#btn-cont");
-      }
+    if(PLUSSER > 0){
+      include("blocks/btn-invite-to-group","#btn-cont");
     }
 
     init("#plussers-detail");
@@ -86,20 +53,14 @@
       width:100px;
       margin:auto;
     }
-    .groups{
-      width:100%;
-      overflow: auto;
-    }
-    .group img{
-      width:100px;
-    }   
-    .group{
-      float:left;
-    }
     #google{
       padding-top: 20px;
       width: 40%;
       float:right;
+    }
+    #plusser-groups{
+      width:90%;
+      overflow: auto;
     }
   </style>
 </div>

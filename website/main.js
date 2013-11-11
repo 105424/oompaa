@@ -1,6 +1,6 @@
 // globals (Allways uppercase)
-var SERVER = "http://thomassio.nl:2001";
-//var SERVER = "http://localhost:2001";
+//var SERVER = "http://thomassio.nl:2001";
+var SERVER = "http://localhost:2001";
 var FIRSTPAGE = "home";
 var PLUSSER;
 var PARAMS; // Parameters object pased to  next page
@@ -12,7 +12,6 @@ $(document).ready(function(){
 
 function navToPage(page, params){
 	PARAMS = params;
-
 	$('.page').fadeOut(function(){
 		$('.page').remove();
 
