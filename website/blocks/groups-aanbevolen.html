@@ -19,7 +19,7 @@
               "<div class='r-group' id='"+group.id+"'>"+
                 "<img src='"+group.image+"'>"+
                "<p>Naam: "+group.name+"</p>"+
-			  "<p>Beschrijving: "+group.description+"</p>"+
+			  "<p>"+group.description.substring(0,50)+" ... </p>"+
               "</div>"
             );
           });

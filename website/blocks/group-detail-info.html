@@ -53,6 +53,7 @@
 			{
 			$(".detail-info .video").html(group.videos[countvideo]);
 			countvideo++;
+			console.log("er zitten videos in");
 			}
 			
 			var countleden=0;
@@ -61,18 +62,21 @@
 			//$(".detail-info .leden").html(group.plussers[countleden])
 			$(".detail-info .leden").html(countleden)
 			countleden++
+			console.log("er zitten leden in");
 			}
 			var countimages=0;
 			while (group.images[countimages])
 			{
-			$(".detail-info .images").html(group.videos[countimages]);
+			$(".detail-info .images").append("<img height='100px' width= '100px' src="+group.images[countimages]+"/>");
 			countimages++;
+			console.log("ik loop ", countimages ," images heen");
 			}
 			var countowners=0;
 			while (group.owners[countowners])
 			{
-			$(".detail-info .owners").html(group.owners[countowners])
+			$(".detail-info .owners").append(group.owners[countowners])
 			countowners++
+			console.log("ik loop door countowners");
 			}
 			
           $("groups").hide();
