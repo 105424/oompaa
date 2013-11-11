@@ -133,11 +133,11 @@
       "image": "http://thumbs.dreamstime.com/z/groep-gelukkige-oudere-mensen-die-een-zelfportret-nemen-7766668.jpg",
 	  "task": "wij zijn een groep mensen die houden van tuinieren",
       "plussers":[
-        
+        "1","2","3"
       ],
 	  "images":[
-	  {"image": "http://thumbs.dreamstime.com/z/groep-gelukkige-oudere-mensen-die-een-zelfportret-nemen-7766668.jpg"},
-	  {"image": "http://thumbs.dreamstime.com/z/groep-gelukkige-oudere-mensen-die-een-zelfportret-nemen-7766668.jpg"}
+	  "http://thumbs.dreamstime.com/z/groep-gelukkige-oudere-mensen-die-een-zelfportret-nemen-7766668.jpg",
+	  "http://thumbs.dreamstime.com/z/groep-gelukkige-oudere-mensen-die-een-zelfportret-nemen-7766668.jpg"
 	  ]
     }    
   ],
