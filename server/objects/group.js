@@ -8,7 +8,7 @@ this.Group = function(args,owners){;
 	this.interests = "";
 	this.task = "";
 	
-	this.location;
+	this.location = "";
 
 	this.image = "";
 	this.video = "";

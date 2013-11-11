@@ -1,0 +1,103 @@
+<div id="form-add-group" class="block" >
+  <div>
+    <h2>Een groep toevoegen</h2>
+    <div id="forms">
+      <div class="form">
+        <h3>Naam</h3>
+        <p> 
+          Vul hier een pakkende naam voor jouw groep in.
+        </p>
+        <labeL> Naam: </label><input type="text" class="name"></input> </br>
+        <button class="next">Verder</button>
+      </div>
+      
+      <div class="form">
+        <h3>Omschrijving</h3>
+        <p>
+          Wat een prachtige naam. Schrijf nu een leuke en pakkende beschrijving van de groep.
+        </p>
+        <labeL> Omschrijvin: </label><textarea type="textarea" class="description"></textarea>      </br>
+        <button class="previous">Terug</button>
+        <button class="next">Verder</button>
+      </div>
+
+      <div class="form">
+        <h3> Foto </h3>
+        <p> Voeg nu een foto toe zodat andere u online kunnen herkennen</p>
+        <labeL> Foto: </label><input type="url" class="image"></input></br>
+        <button class="previous">Terug</button>
+        <button class="next">Verder</button>
+      </div>
+
+      <div class="form">
+        <h3>Intresses</h3>
+        <p>
+          Schrijf hier over de gezamelijke intresses van deze groep </br>
+          Op basis van deze intresses kunnen andere uw groep vinden
+        <labeL> intresses: </label><textarea type="textarea" class="interests"></textarea></br>
+        <button class="previous">Terug</button>
+        <button class="next">Verder</button>
+      </div>
+
+      <div class="form">
+        <h3>Motivatie</h3>
+        <p>Beschrijv hier waarom deze groep is aangemaakt</p>
+        <labeL> Motivatie: </label><textarea type="textarea" class="motivation"></textarea></br>
+        <button class="previous">Terug</button>
+        <button class="next">Verder</button>
+      </div>
+      
+      <div class="form">
+        <h3>Bezigheden</h3>
+        <p>Vul als laatste de taken in die uw groep zal gaan uitvoeren</p>
+        <labeL>Bezigheden: </labeL><textarea type="textarea" class="task"></textarea> </input>
+        <button class="previous">Terug</button>
+        <button class="next">Verzenden</button>
+      </div>
+      
+      <div class="confirmation">
+        <p>Gefeliciteerd. Je hebt je hebt een niewue groep aangemaakt. Je kan nu mensen van hun profil pagina uitnodiggen</p>
+        <button class="toProfile">Bekijk je profile</button>
+      </div>
+    
+    </div>
+  </div>
+
+  <style>
+    
+    .form label{
+      width:100px;
+      float:left;
+    }
+    
+    .form input{
+      width: 100%;
+    }
+    .form textarea {
+      width:100%;
+      height:100px;
+    }
+
+    #form-register-plusser h1{
+      width: 100px;
+      margin: auto;
+    }
+
+  </style> 
+
+  <script>
+
+    $(".confirmation").hide();
+
+    formInit("#forms", function(form){
+
+      $.post(SERVER+"/groups",form,function(data){
+        $.post(SERVER+"/groups/"+data.id,{"plussers":PLUSSER},function(data2){
+          $(".confirmation").fadeIn();
+          console.log(data2);
+        });
+        console.log(data);
+      });
+    });
+  </script>
+</div>
