@@ -1,5 +1,5 @@
-<div id="groups-leden">
-  <h3>Groepen</h3>
+<div id="groepsleden">
+  <h3>Groepsleden</h3>
 
   <div class="leden">
 
@@ -23,7 +23,6 @@
                 "<h4>"+data.firstName+"</h4>"+
                 "<p>"+data.lastName+"</p>"+
               "</div>";
-              console.log(participants);
             $(".leden").append(participants);
           });
         }
@@ -49,6 +48,10 @@
       margin: 2px;
 
     }
+
+      #groepsleden{
+          clear: left;
+      }
   </style>
 
 </div>
