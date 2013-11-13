@@ -1,22 +1,24 @@
 <div class="btn-join-to-group">
   <div>
-    <button class="btn-join">join</button>
-    <div class="pop-groups-select">
-      <h2>Select a group to join <u><span class="p-name"></span></u> to </h2>
-      <div class="pop-groups">
+    <button class="btn-join">Toevoegen aan groep</button>
+
       </div>
     </div>
   </div>
 
   <script>
+ 
+
     $(".btn-join").on("click",function(){
-          $.post(SERVER+"/groups/"+$(PARAMS).attr("id"),{"plussers":PLUSSERS})
+	console.log("ik druk op een knop");
+          $.post(SERVER+"/groups/"+$(PARAMS).attr("id"),{"plussers":id})
             .done(function(res){
+			console.log("toegevoegd nu redirecten");
 			navToPage(groups,PARAMS.id);
             }).fail(function(res){
-
+			console.log("ik faal hier in");
             });
-			}
+			})
 
 
 
@@ -24,51 +26,7 @@
 
 
   <style>
-    .btn-join-to-group .pop-groups-select{
-      position: fixed;
-      width:70%;
-      height: 70%;
-      top:15%;
-      left:15%;
-      border-style:solid;
-      border-color:green;
-      background-color: rgba(255,255,255,0.9);
-      overflow: auto;
-    }
-    .btn-join-to-group .pop-groups{
-      width:90%;
-      margin:auto;
-      overflow:auto;
-    }
-    .btn-join-to-group h2{
-      width:100%;
-      text-align: center;
-    }    
-
-    .btn-join-to-group .pop-groups img{
-      width:100%;
-      height: 80%;
-      margin:auto;
-    }  
-    .btn-join-to-group .pop-group{
-      float:left;
-      width: 100px;
-      height: 120px;
-      border-style: none solid solid solid;
-      border-color:#60D4AE;
-      margin: 2px;
-    }
-    .btn-join-to-group .pop-group p{
-      height: 20%;
-      margin-top: 0px;
-      padding-top: 0px;
-      text-align: center;
-      margin:auto;
-      width:90%;
-    }    
-    .btn-join-to-group .pop-group:hover{
-      opacity: 0.6;
-    }          
+     
   </style>
 
 </div>

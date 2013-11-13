@@ -10,6 +10,8 @@
     init("#group-detail");
 	if(PLUSSER > 0){
       var id = PLUSSER;
+	  
+	    
       var plussers;
 		console.log("ik ben ingelogd");
 
@@ -17,7 +19,11 @@
           isInGroup = false;
 		  for (key in data){
 			if(data[key] == PARAMS.id)
+			{
 				isInGroup = true;
+				console.log(isInGroup);
+			}
+
 		  }
 		  
 		  if(isInGroup == false){
