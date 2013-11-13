@@ -27,7 +27,10 @@
       "bio":"Ik ben een beroeps magician. Nadat ik bekend werd in Nederland met mijn kaart truken werd ik ook internationaal erkend en ging ik door naar las vegas",
       "motivation":"Ik zou graag 2 dagen per week een show willen geven binnen voor een bedrijf.",
       "dayOfBirth":"06-04-1923",
-      "password":"123"
+      "password":"123",
+      "groups":[
+        "2"  
+      ]
     },
     {
       "id":"3",
@@ -40,7 +43,13 @@
       "bio":"Ik ben een bouwvaker die 5 jaar geleden met pensioen is gegaan.",
       "motivation":"Na 5 jaar niks gedaan te hebben wil ik toch weer aan de slag.",
       "dayOfBirth":"06-04-1923",
-      "password":"123"
+      "password":"123",
+      "groups":[
+        "1" 
+      ],
+      "groups":[
+        "1","2"  
+      ]
     },
     {
       "id":"4",
@@ -53,7 +62,10 @@
       "bio":"All jaren ben ik actief in de ict sector. All loop ik achter op de nieuwste technieken heb ik kijkvaste kennis over ude systemen",
       "motivation":"Ik ben opzoek naar een baan voor 1 dag per week op maandag of woensdag",
       "dayOfBirth":"06-04-1923",
-      "password":"123"
+      "password":"123",
+       "groups":[
+        "1"
+      ]
     },
     {
       "id":"5",
@@ -66,7 +78,10 @@
       "bio":"Ik heb altijd gewerkt als brugwachter maar toen de banen overbodig werden werd ik ontslagen",
       "motivation":"Toch weer opzoek naar een nieuwe baan voor 4 dagen per week om mijn pensioen te betalen",
       "dayOfBirth":"06-04-1923",
-      "password":"123"      
+      "password":"123",
+       "groups":[
+        "1" 
+      ]
     },
     {
       "id":"6",

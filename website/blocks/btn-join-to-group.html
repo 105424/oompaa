@@ -10,15 +10,12 @@
  
 
     $(".btn-join").on("click",function(){
-	console.log("ik druk op een knop");
-          $.post(SERVER+"/groups/"+$(PARAMS).attr("id"),{"plussers":id})
-            .done(function(res){
-			console.log("toegevoegd nu redirecten");
-			navToPage(groups,PARAMS.id);
-            }).fail(function(res){
-			console.log("ik faal hier in");
-            });
-			})
+      $.post(SERVER+"/groups/"+PARAMS.id,{"plussers":id}).done(function(res){
+		    navToPage("group-detail", PARAMS);
+      }).fail(function(res){
+		     console.log(res);
+      });
+		})
 
 
 

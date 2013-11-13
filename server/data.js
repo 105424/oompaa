@@ -41,9 +41,12 @@ this.load = function(){
 
 	});
 
+	console.log("start loading");
 	for (var i = 0; i < 10; i++) {
-	//	var plusser = add('plussers', new objects.plusser({"dob":"06-04-1923","firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
-		//add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'img':'http://static1.volkskrant.nl/static/photo/2012/17/6/2/20121009110943/media_xl_1382837.jpg'},[plusser.id,lastPlus.id]));
+		
+		console.log(i);
+		//var plusser = add('plussers', new objects.plusser({"dob":"06-04-1923","firstName":"Mark","lastName":"Arts","city":"Rotterdam","address":"Loydstraze 23","zipcode":"3827MG"}));
+		//add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'img':'http://static1.volkskrant.nl/static/photo/2012/17/6/2/20121009110943/media_xl_1382837.jpg'},[plusser.id]));
 		//add('groups', new objects.group({'name':'test',"description":"Dynamisch gemaakte content",'image':'http://us.123rf.com/450wm/stylephotographs/stylephotographs1211/stylephotographs121100175/16502536-gelukkig-groep-van-senioren-in-een-fitnesscentrum-die-hun-duimen-omhoog.jpg'}));
 
 		//lastPlus = plusser;
@@ -51,6 +54,7 @@ this.load = function(){
 		//add('interests', new objects.interest({"name":"TestInterest","description":"This interest was created for testing only."},[plusser.id]));
 		add('interests', new objects.interest({"name":"TestInterest","description":"This interest was created for testing only."}));
 	}
+	console.log("done loading");
 }
 
 modify = function(type, id, adjustments){
