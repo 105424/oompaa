@@ -16,16 +16,19 @@
         $("leden").hide();
 
         for(key in groups.plussers){
-          $.get(SERVER+"/plussers/"+groups.plussers[key],function(data){              
-            var html = 
+          $.get(SERVER+"/plussers/"+groups.plussers[key],function(data){
+            var participants =
               "<div class='group'>"+
-                "<img src='"+data.image+"'</img>"+
+                "<img src='"+data.image+"' />"+
                 "<h4>"+data.firstName+"</h4>"+
                 "<p>"+data.lastName+"</p>"+
               "</div>";
-            $(".groups").append(html);
+              console.log(participants);
+            $(".leden").append(participants);
           });
         }
+
+
 
         $(".groups").fadeIn();
       });
