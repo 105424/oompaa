@@ -20,10 +20,11 @@ button {
   display:inline-block;
   font-weight:bold;
   text-align:center;
-  color: #006D4C
+  color: #006D4C;
 }
 button:hover {
   background-color:#20C896;
+  cursor:pointer;
 }
 button:active {
   position:relative;
