@@ -1,31 +1,51 @@
- <div class="group-detail-leden block">
- <h1>Onze Bezigheden</h1>
-   
-    <div class="leden"></div>
+<div id="groups-leden">
+  <h3>Groepen</h3>
+
+  <div class="leden">
+
+  </div>
 
   <script>
+
     if(PARAMS != undefined){
       var id = PARAMS.id;
-      var group;
+      var groups;
       $.get( SERVER+"/groups/"+id).done(function(data){
-          group = data;
-          $(".leden").html(group.plussers);
-		 console.log(group.task);
-          
-			
-          $(".leden").hide();
-          $(".leden").fadeIn();
+        groups = data;
 
+        $("leden").hide();
+
+        for(key in groups.plussers){
+          $.get(SERVER+"/plussers/"+groups.plussers[key],function(data){              
+            var html = 
+              "<div class='group'>"+
+                "<img src='"+data.image+"'</img>"+
+                "<h4>"+data.firstName+"</h4>"+
+                "<p>"+data.lastName+"</p>"+
+              "</div>";
+            $(".groups").append(html);
+          });
+        }
+
+        $(".groups").fadeIn();
       });
-	  while(group.plussers)
-	  {
-	$.get( SERVER+"/ )
-	  }
-    
-	
-	}
-
-    init("#groups-detail");
-
+    }
   </script>
-  </div>
+
+  <style>
+    .group img{
+      width:200px;
+    }   
+    .group{
+      float:left;
+      width:200px;
+      height: 400px;
+
+      border-style: none solid solid solid;
+      border-color:#60D4AE;
+      margin: 2px;
+
+    }
+  </style>
+
+</div>
