@@ -18,7 +18,7 @@
         for(key in groups.plussers){
           $.get(SERVER+"/plussers/"+groups.plussers[key],function(data){
             var participants =
-              "<div class='group'>"+
+              "<div class='plusser' id='"+data.id+"' >"+
                 "<img src='"+data.image+"' />"+
                 "<h4>"+data.firstName+"</h4>"+
                 "<p>"+data.lastName+"</p>"+
@@ -31,23 +31,28 @@
 
         $(".groups").fadeIn();
       });
+
+      $(".groepslid").on("click",".plusser",function(event){
+        navToPage("plusser-detail",{id:$(this).attr("id")});
+      });
     }
   </script>
 
   <style>
-    .group img{
-
+    .plusser img{
+      height:200px;
       width:200px;
     }   
-    .group{
+    .plusser{
       float:left;
+
       width:200px;
-      height: 250px;
-        text-align: center;
+      height: 300px;
+
+      text-align: center;
       border-style: none solid solid solid;
       border-color:#60D4AE;
       margin: 2px;
-
     }
 
       #groepsleden{

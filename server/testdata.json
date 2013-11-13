@@ -127,6 +127,7 @@
       "motivation":"Goedkoop en duidelijk dat is onze motto",
       "image": "http://thumbs.dreamstime.com/x/groep-oude-mensen-met-hun-hoofden-samen-7766953.jpg",
       "location":"Rotterdam",
+      "task":"ICT, SCRUM, PHP, NodeJs, Less, Sass, Puppets, Linux",
       "plussers":[
         "3","4","5"
       ]
@@ -137,14 +138,15 @@
       "description":"Wij zijn met zijn een kleine groep een tuinierbedrijfje begonnen. wij zijn nu al met zeven werknemers en werken in volkstuintjes in hoogvliet",
       "motivation":"wij werken op onze eigen tempo. maar zijn wel goedkoper als de meeste hoveniersbedrijven ",
       "image": "http://thumbs.dreamstime.com/z/groep-gelukkige-oudere-mensen-die-een-zelfportret-nemen-7766668.jpg",
-	  "task": "wij zijn een groep mensen die houden van tuinieren",
+	    "task": "wij zijn een groep mensen die houden van tuinieren",
       "location":"Amsterdam",
+      "task":"Tuinieren, Planten, Zonnebloemen, Gras, Knippen, Buiten werken",
       "plussers":[
         "1","2","3"
       ],
 	  "images":[
-	  "http://img2.ymlp282.net/85sv_130602WH091_1.jpg?w=408&h=231",
-	  "http://img2.ymlp282.net/85sv_130602WH091_1.jpg?w=408&h=231"
+	   "http://img2.ymlp282.net/85sv_130602WH091_1.jpg?w=408&h=231",
+	   "http://us.123rf.com/450wm/xalanx/xalanx1210/xalanx121000128/15609855-oude-boer-maaien-van-het-gazon-in-de-buurt-van-het-bos-met-een-vintage-zeis.jpg"
 	  ]
     }    
   ],
