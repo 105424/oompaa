@@ -78,9 +78,14 @@ this.init = function(args){
 
 	app.get('/:type/:id', function(req, res){
 		res.json(data.get(req.params.type, req.params.id));
+	});
+
+	app.delete('/:type/:id', function(req, res){
+		console.log("jeeee");
+		res.json(data.remove(req.params.type, req.params.id, req.body.hard));
 	}); 
 
-	app.get('/:type/random/amount', function(req, res){
+	app.get('/:type/random/:amount', function(req, res){
 		res.json(data.get(req.params.type,'random',req.params.amount));
 	}); 
 
@@ -90,6 +95,10 @@ this.init = function(args){
 
 	app.get('/:type/:id/:item', function(req, res){
 		res.json(data.get(req.params.type, req.params.id, req.params.item));
+	}); 
+
+	app.delete('/:type/:id/:item', function(req, res){
+		res.json(data.remove(req.params.type, req.params.id, req.params.item, req.body.hard));
 	}); 
 
 	app.put('/:type/:id', function(req, res){
@@ -106,7 +115,7 @@ function isJson(str) {
     return true;
 }
 
-depth = 0;
+/*depth = 0;
 function circularJson(json){
 	var cache = [];
 	var depthMax = 2;
@@ -123,4 +132,4 @@ function circularJson(json){
 	});
 	cache = null;
 	return answer;
-}
+}*/

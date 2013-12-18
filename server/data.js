@@ -139,13 +139,37 @@ add = function(type,obj){
 				plusser.interests.push(obj.id);
 			}			
 		}		
-		//console.log(obj);
 		arr[obj.id] = obj;
 		return obj;
 	}
-	return "add: Invalid type";
+	return false; //"add: Invalid type";
 }
 exports.add = add;
+
+remove = function(type, id, item, hard){
+	if(hard == undefined) var hard = false; // If true the item is removed else it is emptied
+
+	var arr = getArr(type);
+	if (arr){
+		if(arr[id]){
+			if(item != undefined){
+				if(arr[id][item]) {
+					if(hard) delete arr[id][item];
+					else arr[id][item] = "";
+					return arr[id];
+				}
+				else
+					return false; //"remove: Invalid item";
+			}else{
+				delete arr[id];
+				return {'removed':id}; //arr[id];
+			}
+		}
+		return false; // "remove: Invalid id";
+	}
+	return false; // "remove: Invalid type";
+}
+exports.remove = remove;
 
 link = function(obj1, obj2){
 	if(obj1 && obj2)
