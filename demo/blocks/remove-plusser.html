@@ -1,0 +1,68 @@
+<div class="demo remove-plussers" style="width:200">
+  <h3>Remove plussers</h3>
+  <div class="buttons">
+    <button id="buttonRP">Get</button>
+    <input id="amountRP" type="text" placeholder="id"> </input>
+  </div>
+
+  <div id="answer"></div>
+
+  <script>
+
+    getPlussers(5);
+
+    $('#buttonRP').click(function(item){
+      deletePlusser($('#amountRP').val());
+    });
+
+
+    function deletePlusser(id){
+      var html = $("answer");
+      var html2 = "";
+
+      html.fadeOut(function(){
+        $.ajax({
+          url: 'http://'+link+'/plussers/'+id,
+          type: 'DELETE',
+          success: function(result) {
+            success(result);
+          }
+        });
+
+        console.log('http://'+link+'/plussers/'+id);
+
+        success = function(data){
+          console.log(data);
+          var i = 0;
+          
+          html2 = data;
+
+          html.html(html2);
+          html.fadeIn();
+          $(".container").masonry();
+        };
+      });
+    }
+  </script>
+
+  <style>
+
+    #plussers .plusser img{
+        width:40px;
+        float: left;
+    } 
+    #plussers .plusser{;
+      padding-top: 10px;
+      width:100%;
+      height:50px;
+      border-top-style: solid;
+      border-width: 1px;
+      border-color: #60D4AE;
+    }
+    #plussers p{
+      float:left;
+      padding-left:10px;
+      margin:0px;
+    }  
+  </style>
+</div>

@@ -12,16 +12,16 @@ $(document).ready(function(){
 
 function navToPage(page, params){
 	PARAMS = params;
-	$('.page').fadeOut(function(){
+/*	$('.page').fadeOut(function(){
 		$('.page').remove();
 
 		include("pages/"+page, "#content");
 
 		$('.page').css("display","none");
 		$('.page').fadeIn('slow');
-	});
+	});*/
 
-/*	$('.page').animate({
+	$('.page').animate({
 			opacity: 0.25,
     	left: "+=5000",
    		height: "toggle"
@@ -32,7 +32,7 @@ function navToPage(page, params){
 			
 			$('.page').css("display","none");
 			$('.page').fadeIn('slow');
-	});*/
+	});
 }
   
 function replace(file,target,async){
@@ -154,3 +154,7 @@ function formInit(form, callback, always){
     });
   }
 }
+
+$( window ).resize(function(event){
+  $('section').height(window.height());
+});

@@ -1,4 +1,4 @@
-var link = "thomassio.nl:2001";
+var link = "localhost:2001";
 var firstPage = "all";
 //var link = "localhost:2001";
 
