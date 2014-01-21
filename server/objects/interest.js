@@ -1,5 +1,5 @@
 this.Interest = function(args,plussers){
-  this.id;
+  this.id = 0;
   this.type = "interests"
 
 	this.name = "";

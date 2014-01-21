@@ -13,9 +13,6 @@ database['images'] = new Object(); // Stored by id
 //lastPlus.id = 1;
 //database.plussers[1] = lastPlus;
 
-var firstInterest = new objects.interest({"name":"first"});
-firstInterest.id = 1;
-database.interests[1] = firstInterest;
 
 
 this.load = function(){
@@ -124,7 +121,7 @@ exports.get = get;
 add = function(type,obj){
 	var arr = getArr(type);
 	if (arr){
-		if (!(obj['id'] > 0)) obj.id = newId(arr); //Voor testeb worden objects met vaste ids gemaakt
+		if (!(obj.id > 0)) obj.id = newId(arr); //Voor testeb worden objects met vaste ids gemaakt
 		
 		if(type == "groups"){
 			for(key in obj.owners){
@@ -176,7 +173,7 @@ exports.remove = remove;
 link = function(obj1, obj2){
 	if(obj1 && obj2)
 	{
-		if( hasId( obj1[obj2.type], obj2.id ) == false && hasId( obj2[obj1.type], obj1.id ) == false ) { // <-- check for duplicates
+		if( hasId( obj1[obj2.type], obj2.url ) == false && hasId( obj2[obj1.type], obj1.url ) == false ) { // <-- check for duplicates
 			try{
 				obj1[obj2.type].push(obj2.url);
 				obj2[obj1.type].push(obj1.url);
