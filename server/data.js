@@ -138,7 +138,10 @@ add = function(type,obj){
 				var plusser = get('plussers',obj.owners[key]);
 				plusser.interests.push(obj.id);
 			}			
-		}		
+		}
+
+		obj.url = "/"+obj.type+"/"+obj.id;
+
 		arr[obj.id] = obj;
 		return obj;
 	}
@@ -176,8 +179,8 @@ link = function(obj1, obj2){
 	{
 		if( hasId( obj1[obj2.type], obj2.id ) == false && hasId( obj2[obj1.type], obj1.id ) == false ) { // <-- check for duplicates
 			try{
-				obj1[obj2.type].push(obj2.id);
-				obj2[obj1.type].push(obj1.id);
+				obj1[obj2.type].push(obj2.url);
+				obj2[obj1.type].push(obj1.url);
 
 				return true;
 			}

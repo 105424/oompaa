@@ -29,7 +29,7 @@
       "dayOfBirth":"06-04-1923",
       "password":"123",
       "groups":[
-        "2"  
+        "/groups/2"  
       ]
     },
     {
@@ -48,7 +48,7 @@
         "1" 
       ],
       "groups":[
-        "1","2"  
+        "/groups/1","/groups/2"  
       ]
     },
     {
@@ -64,7 +64,7 @@
       "dayOfBirth":"06-04-1923",
       "password":"123",
        "groups":[
-        "1"
+        "/groups/1"
       ]
     },
     {
@@ -80,7 +80,7 @@
       "dayOfBirth":"06-04-1923",
       "password":"123",
        "groups":[
-        "1" 
+        "/groups/1" 
       ]
     },
     {
@@ -144,7 +144,7 @@
       "location":"Rotterdam",
       "task":"ICT, SCRUM, PHP, NodeJs, Less, Sass, Puppets, Linux",
       "plussers":[
-        "3","4","5"
+        "/plussers/3","/plussers/4","/plussers/5"
       ]
     },
     {
@@ -157,7 +157,7 @@
       "location":"Amsterdam",
       "task":"Tuinieren, Planten, Zonnebloemen, Gras, Knippen, Buiten werken",
       "plussers":[
-        "1","2","3"
+        "/plussers/1","/plussers/2","/plussers/3"
       ],
 	  "images":[
 	   "http://img2.ymlp282.net/85sv_130602WH091_1.jpg?w=408&h=231",
