@@ -1,7 +1,7 @@
 var fs = require('fs');
 var objects = require('./objectHolder');
-
 var database = new Object();
+var extend = require("xtend")
 
 database['plussers'] = new Object();  // Stored by id
 database['groups'] = new Object();	 // Stored by id
@@ -29,7 +29,7 @@ this.load = function(){
 	  }
 	 
 	  testdata = JSON.parse(testdata);
-	  for( key in testdata){ // each type
+	  for (key in testdata){ // each type
 	    for (key2 in testdata[key]){ // each item in type
 	     	add(key, new objects[key](testdata[key][key2]));
 	    }
@@ -62,8 +62,7 @@ modify = function(type, id, adjustments){
 	if(arr){
 		var original = arr[id];
 		if(original){
-			jQuery.extend(original, adjustments);
-			return original;
+			return extend(original, adjustments);
 		}
 		return false; // "Invalid id";
 	}
@@ -185,7 +184,7 @@ link = function(obj1, obj2){
 				return true;
 			}
 			catch(err){
-				return false // "link: link could not be made";
+				return false; // "link: link could not be made";
 			} 
 		}
 		else return false; // "link: link has already been (partly) made";

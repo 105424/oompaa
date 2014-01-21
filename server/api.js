@@ -17,12 +17,11 @@ this.init = function(args){
 		res.header("Access-Control-Allow-Origin", "*");
 		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-
 		if(req.header("Authorization") == "Basic bWFyazptYXJr"){
 			next();
 		}else{
 			res.statusCode = 401;
-			res.header("WWW-Authenticate",' Basic realm=http://localhost:2001/)');
+			res.header("WWW-Authenticate",'Basic realm=http://localhost:2001/)');
 			res.send("Error 401: Authorization required");
 		}
 	});
@@ -60,7 +59,7 @@ this.init = function(args){
 	app.post('/plussers/:id', function(req, res) {
 		if(req.body.hasOwnProperty('interests')){
 			if(data.link(data.get('interests',req.body.interests),data.get('plussers',req.params.id))){
-				res.json(data.get('interests',req.params.id));
+				res.json(data.get('plussers',req.params.id));
 			}else{
 				res.statusCode = 400;
 	    		return res.send('Error 400: No interest or group found with that ID.');				
@@ -89,7 +88,6 @@ this.init = function(args){
 	});
 
 	app.delete('/:type/:id', function(req, res){
-		console.log("jeeee");
 		res.json(data.remove(req.params.type, req.params.id, req.body.hard));
 	}); 
 
@@ -110,7 +108,7 @@ this.init = function(args){
 	}); 
 
 	app.put('/:type/:id', function(req, res){
-		res.json(data.modify(req.params.type, req.params.id, res.body));
+		res.json(data.modify(req.params.type, req.params.id, req.body));
 	});
 }
 

@@ -1,4 +1,5 @@
 this.Plusser = function(args){
+
 	this.id = 0;
 	this.type = "plussers";
 
