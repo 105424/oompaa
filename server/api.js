@@ -1,3 +1,5 @@
+var jsonxml = require('jsontoxml');
+
 var app;
 var port;
 var data;
@@ -18,6 +20,15 @@ this.init = function(args){
 		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
 		if(req.header("Authorization") == "Basic bWFyazptYXJr"){
+			
+			if(req.originalUrl == "/plussers.xml"){
+				res.header("Content-Type", "application/atom+xml");
+				console.log(jsonxml(data.get('plussers')).replace("<1>",""));
+				res.send('<plussers>'+jsonxml(data.get('plussers')).replace("<1>","")+'</plussers>');
+				return
+			}
+
+
 			next();
 		}else{
 			res.statusCode = 401;
@@ -76,7 +87,7 @@ this.init = function(args){
 
 	app.get('/:type', function(req, res){
 		res.json(data.get(req.params.type));
-	}); 
+	});
 	
 	app.post('/:type', function(req, res){
 		var thingy = new objects[req.params.type](req.body);
