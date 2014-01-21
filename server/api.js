@@ -20,7 +20,7 @@ this.init = function(args){
 		res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
 		if(req.header("Authorization") == "Basic bWFyazptYXJr"){
-			
+
 			if(req.originalUrl == "/plussers.xml"){
 				res.header("Content-Type", "application/atom+xml");
 				console.log(jsonxml(data.get('plussers')).replace("<1>",""));
@@ -48,7 +48,7 @@ this.init = function(args){
 				}
 			}
 			res.statusCode = 400;			
-		//	return res.send("Error 400: Bad login");
+			return res.send("Error 400: Bad login");
 		}
 		res.statusCode = 400;
 		return res.send("Error 400: Syntax error");

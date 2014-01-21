@@ -171,6 +171,9 @@ t.id.N = "2";
 console.log(t);
 t.name.N = "3";
 console.log(t);
+t2 = t.name;
+t2.N = "4";
+console.log(t);
 */
 
 

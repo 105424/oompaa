@@ -1,0 +1,112 @@
+Mark Arts
+0851423
+MT3A
+
+Algemeen
+  Deze Rest api is gemaakt voor de herkansing van het eerste project van de tweede jaars en daarna uitgebreid voor het vak MT-NLL012I
+  De hoofdfocus van deze api was code effieciente en uitbreiding.
+  Met de gedachte als het twee keer gebeurd moet het 100 keer kunnen gebeuren.
+
+Structuur
+  De structuur van de data in de api bestaat uit 3 lagen. 
+    1. type
+    2. id
+    3. item
+  Als een object een 4 lage nodig heeft betekend dit dar een nieuw data type aangemaakt moet worden. Vervolgens zal het object van het nieuwe typen als item gekoppeld worden.
+
+  De keuze voor deze structuur was voornamelijk: Dynamische Code. 
+  Door deze keuze kunnen ingewikkelde data structuren gemmakelijk geparsd worden door de api in vrij wienig code. Ook heeft dit als mgoelijkheid om de database met een circular data structuur op te zetten. 
+
+Data Flow
+  In de map objects worden de basis structuur van types gedefineerd, dit gebeurd doormiddel van een javascript object.
+  Vervolgens word in het bestand objectHolder.js de data type toegevoegd waardoor het in de hoofd code beschikbaar word.
+  Op het moment dat een nieuw object aangemaakt word zal er een nieuw object aangemaakt worden van het opgegeven type.
+  Dit object word met zijn id als key in een array gestopt die als key zijn type in de database array heeft ( database['type']['id'] = item )
+  Als twee objecten aan elkaar gekoppeld worden zal de id van de objecten in een array opgeslagen worden met als key de type naam item['type'] = array(item, item)
+
+Representaties
+  Aangezien de api volledig in javascript geschreven is JSON nattuurlijk de logische keuze geweest. 
+  Niet alleen is JSON makkelijker te begrijpen voor machines maar is het makkelijk om zelf te schrijven en nog makkelijker om het met javascript te parsen in tegenstelling tot oudere representatties
+  Daarnaast is JSON een erg effieciente manier om data gestructureerd te versturen
+
+  Aangezien we meerde representaties nodig hadden voor de opdracht geeft de resource /plussers.xml nu een xml representatie weer van de resource
+
+
+Urls
+  De drie lagen van de data structuur is ook terug te vinden in de urls natuurlijk. De standart is 
+  /type/id/item
+
+  Iets wat op de todo lijst staat en wat de circular data mogelijk zal maken
+  /type/id/type/id/type/type
+
+  Bijvoorbeeld: /plussers/1/groups/plussers/images
+  Zal alle plaatjes ophallen van alle plussers die aan dezelfde groepen zijn gekoppeld als de plusser met id 1
+
+  Functies (/random /search)
+  Ook is er de mogelijkheid om specifieke functios aan te spreken zoals random en search
+
+  /plussers/random/3
+    Haalt 3 random plussers op
+  /plussers/search/mark
+    Haalt alle plussers op die de zoekterm Mark matchen
+
+  Ook hierbij zal uiteindelijk chaining mogelijk zijn doormiddel van circular data
+  /plussers/1/groups/search/mark/images/random/3
+  Zal 3 random images ophalen van alle groupen van de plusser met id 1 die de search term mark bevatten
+
+
+Authenticatie
+  De api is op dit moment bevieligd met een simpele basic 
+  gebruiker: mark
+  wachtwoord: mark
+
+
+Test urls
+  De test urls zijn gebaaseerd op een applicatie die 55+ kunnen gebruiken om met elkaar werk te vinden. (videos en images zijn nog neit geimplementeerd)
+
+  OPTIONS /*
+    Options geeft de mogelijke requests types op
+
+  GET /
+    geeft de complete database terug
+
+  GET /plussers
+    Geeft alle plussers terug
+  POST /plussers {"firstName":"Mark","lastName":"Arts"}
+    Maakt een nieuwer plusser aan en antwoord me de aangemaakte plusser
+
+  GET /plussers/1
+    Geeft de plusser met id 1 terug
+  PUT /plussers/1 {"firstName":"Mark","lastName":"Arts"}
+    Deep extends de plusser met het opegeven json object en antwoord met de aangepaste plusser
+  POST /plussers/1 {"intresses", [1] } 
+    Koppeled de plusser aan een opgegeven intresseen antwoord met de aangepaste plusser
+  DELETE /plussers/1
+    Verwijderd de plusser uit de database variable
+
+  GET /plussers/1/firstName
+    Geeft de eerste naam terug van een plusser
+  DELETE /plussers/1/firstName {"hard", "true/false" } 
+    Leegt de property van het object database['plussers'][1] of verwijderd de property als opgegeven met {'hard':'true'} en antwoord met de aangemaakte plusser 
+
+
+  /groups en /intresses werken op de zelfde maniet als de plussers resource op de volgende resource na
+
+  POST /groups/1 {"plussers", [1] }
+    Koppeld de group aan een opgegeven plussers en antwoord met de aangepaste group
+
+  POST /logIn {"firstName":"Mark","lastName":"Arts","password":"123"}
+    Returns true or false if the password matched the users password 
+
+  Mogelijke filters
+
+    GET /type/random/amount
+      GET /plussers/random/10
+        Geeft 10 random plussers terug
+    GET /type/search/term
+      GET /groups/search/wij
+        Geeft alle groupen terug die de zoekterm wij matchen
+
+
+
+
