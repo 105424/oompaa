@@ -16,7 +16,15 @@ this.init = function(args){
 	app.use(function(req,res,next) { // Always called
 		res.header("Access-Control-Allow-Origin", "*");
 		res.header("Access-Control-Allow-Headers", "X-Requested-With");
-		next();
+
+
+		if(req.header("Authorization") == "Basic bWFyazptYXJr"){
+			next();
+		}else{
+			res.statusCode = 401;
+			res.header("WWW-Authenticate",' Basic realm=http://localhost:2001/)');
+			res.send("Error 401: Authorization required");
+		}
 	});
 
 
